@@ -23,10 +23,10 @@ public class ParseApplication extends Application {
     Parse.initialize(this, "O55K2qUiFUhSJ1SfVOW3KQDQt8p5eGuORNFoQJHp", "4aY7YBIFKkouGEpZKzPWAFdfR43nzdn3w6qtVhZD");
 
 
-    ParseUser.enableAutomaticUser();
-    ParseACL defaultACL = new ParseACL();
+    //ParseUser.enableAutomaticUser(); normally not commented out
+    //ParseACL defaultACL = new ParseACL(); normally not commented out
     // Optionally enable public read access.
     // defaultACL.setPublicReadAccess(true);
-    ParseACL.setDefaultACL(defaultACL, true);
+    //ParseACL.setDefaultACL(defaultACL, true); normally not commented out
   }
 }
