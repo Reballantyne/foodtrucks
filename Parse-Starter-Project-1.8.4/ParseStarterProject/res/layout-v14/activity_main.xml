@@ -70,7 +70,8 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:showDividers="beginning"
-                android:background="#c2e8e9ee" />
+                android:background="#c2e8e9ee"
+                android:inputType="text" />
 
         </LinearLayout>
 
@@ -80,10 +81,7 @@
             android:id="@+id/listView"
             android:layout_row="2"
             android:layout_column="0"
-            android:background="#c2e8e9ec"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:background="#c2e8e9ec" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -100,7 +98,8 @@
                 android:id="@+id/imageButton"
                 android:layout_weight="0.25"
                 android:background="@android:color/transparent"
-                android:src="@drawable/search" />
+                android:src="@drawable/search"
+                android:contentDescription="searchButton" />
 
             <ImageButton
                 android:layout_width="0dp"
@@ -108,7 +107,8 @@
                 android:id="@+id/imageButton2"
                 android:layout_weight="0.25"
                 android:background="@android:color/transparent"
-                android:src="@drawable/map" />
+                android:src="@drawable/map"
+                android:contentDescription="mapButton" />
 
             <ImageButton
                 android:layout_width="0dp"
@@ -116,7 +116,8 @@
                 android:id="@+id/imageButton3"
                 android:layout_weight="0.25"
                 android:src="@drawable/favorites"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:contentDescription="favoritesButton" />
 
             <ImageButton
                 android:layout_width="0dp"
@@ -124,7 +125,8 @@
                 android:id="@+id/imageButton4"
                 android:layout_weight="0.25"
                 android:src="@drawable/specials"
-                android:background="@android:color/transparent" />
+                android:background="@android:color/transparent"
+                android:contentDescription="specialsButton" />
         </LinearLayout>
     </GridLayout>
 

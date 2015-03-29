@@ -1,11 +1,13 @@
 package com.parse.starter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import com.parse.ParseObject;
 import com.parse.*;
 import java.util.*;
 import android.util.*;
+import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
 
@@ -13,7 +15,9 @@ public class ParseStarterProjectActivity extends Activity {
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+        MainActivity main = new MainActivity();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
 
 
 //        This is some example code about how to add a user. Message Paarth or Nikila if confused.
