@@ -13,7 +13,7 @@ public class ParseStarterProjectActivity extends Activity {
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.activity_main);
 
 
 //        This is some example code about how to add a user. Message Paarth or Nikila if confused.

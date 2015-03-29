@@ -1,4 +1,4 @@
-/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/classes/debug
-/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/bolts-android-1.1.4-acf63b4a93f48999013623392a592dfebedaa144.jar
-/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/ParseCrashReporting-1.8.4-09b30060ab795b930ac403f9c28adea87f692394.jar
-/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/Parse-1.8.4-d40e1715b1e2d1038735752c83e3a66773996239.jar
+C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\classes\debug
+C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\bolts-android-1.1.4-e5075be0a9f20b34356230f5680917abb19ed1d1.jar
+C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\ParseCrashReporting-1.8.4-4f1364e14e9eb83bc77e23af0109371c28294cab.jar
+C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\Parse-1.8.4-2853bda782b149c14026e6dcf865c5050d23a131.jar
