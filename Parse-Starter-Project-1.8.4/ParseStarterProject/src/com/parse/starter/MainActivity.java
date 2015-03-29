@@ -28,13 +28,13 @@ public class MainActivity extends Activity {
 
     @TargetApi(11)
     @Override
+    //Method: Rebecca
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setQueryHint("Search for a food truck.");
         new RemoteDataTask().execute();
-        //registerForContextMenu((ListView) findViewById(R.id.listView).getListView());
     }
 
     @Override
@@ -68,6 +68,7 @@ public class MainActivity extends Activity {
         inputMethodManager.showSoftInput(search, InputMethodManager.SHOW_IMPLICIT);
     }
 
+    //Method: Rebecca
     private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
         protected Void doInBackground(Void... params) {
             //Get the current list of foodtrucks

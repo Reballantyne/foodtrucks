@@ -1,4 +1,8 @@
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\classes\debug
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\bolts-android-1.1.4-e5075be0a9f20b34356230f5680917abb19ed1d1.jar
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\ParseCrashReporting-1.8.4-4f1364e14e9eb83bc77e23af0109371c28294cab.jar
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\Parse-1.8.4-2853bda782b149c14026e6dcf865c5050d23a131.jar
+/Users/raginiraghavan/Documents/cis350FP/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/classes/debug
+/Users/raginiraghavan/Documents/cis350FP/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-4caedca55d03b48c028ea2220c12dc2eb84884ad.jar
+/Users/raginiraghavan/Documents/cis350FP/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/bolts-android-1.1.4-8c5063a50fc70ecada7e6a81cd79ced408742ba6.jar
+/Users/raginiraghavan/Documents/cis350FP/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/ParseCrashReporting-1.8.4-25c98fecba47dcd01b9060610a49ea27e489f6e0.jar
+/Users/raginiraghavan/Documents/cis350FP/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-9780f5376b09243eb197f7c2c7433796e2de5204.jar
+/Users/raginiraghavan/Documents/cis350FP/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/classes-a485f160c9f945cc0c6754f291ed72f0eb9a7f78.jar
+/Users/raginiraghavan/Documents/cis350FP/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/Parse-1.8.4-22afe664b78f6829f1eacc440f2dc6be55b34143.jar
+/Users/raginiraghavan/Documents/cis350FP/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/classes-83ea13094f08833623ef57c27a4df6146de11627.jar
