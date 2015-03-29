@@ -11,7 +11,12 @@ buildscript {
   }
 }
 
+repositories {
+    mavenCentral()
+}
+
 dependencies {
+    compile 'com.facebook.android:facebook-android-sdk:4.0.0'
     compile 'com.parse.bolts:bolts-android:1.1.4'
     compile fileTree(dir: 'libs', include: 'Parse-*.jar')
     compile fileTree(dir: 'libs', include: 'ParseCrashReporting-*.jar')

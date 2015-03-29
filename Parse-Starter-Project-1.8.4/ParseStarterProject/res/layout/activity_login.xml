@@ -66,12 +66,13 @@
                 android:layout_marginTop="10dip"
                 android:text="Login"/>
             <!-- Link to Registration Screen -->
-            <Button
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Button"
-                android:id="@+id/button"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp" />
 
             <TextView android:id="@+id/link_to_register"
                 android:layout_width="fill_parent"

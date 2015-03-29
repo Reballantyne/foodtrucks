@@ -2,11 +2,14 @@ package com.parse.starter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import com.facebook.FacebookSdk;
 
 
 public class LoginActivity extends Activity {
@@ -14,6 +17,7 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
         registerScreen.setOnClickListener(new View.OnClickListener() {
@@ -33,6 +37,7 @@ public class LoginActivity extends Activity {
                 startActivity(i);
             }
         });
+
     }
 
     @Override
