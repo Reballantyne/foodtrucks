@@ -57,6 +57,10 @@
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" >
         </activity>
+                <activity
+            android:name=".FilterActivity"
+            android:label="@string/title_activity_filter" >
+        </activity>
     </application>
 
 </manifest>
