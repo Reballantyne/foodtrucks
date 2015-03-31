@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
                 android:layout_marginBottom="40dip"
-                android:text="Continue without regestration"
+                android:text="Continue without registration"
                 android:gravity="center"
                 android:textSize="20dip"
                 android:textColor="#0b84aa"/>
