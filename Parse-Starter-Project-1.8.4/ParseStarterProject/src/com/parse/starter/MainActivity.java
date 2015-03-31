@@ -3,6 +3,7 @@ package com.parse.starter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
     private List<ParseObject> foodTrucks;
+    public static String TRUCK_ID;
 
     @TargetApi(11)
     @Override
@@ -33,7 +35,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
-        searchView.setQueryHint("Search for a food truck.");
+        searchView.setQueryHint("Search for a truck.");
         new RemoteDataTask().execute();
     }
 
@@ -59,9 +61,16 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Method:Rebecca
+    //redirects to food truck page
+    public void foodTruckRedirect(View v){
+        Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
+        startActivity(i);
+    }
+
     //Method: Rebecca
     //displays the on screen keyboard when a user clicks on the searchView
-    public void searchClick(){
+    public void searchClick(View v){
         SearchView search = (SearchView) findViewById(R.id.searchView);
         search.requestFocus();
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -93,5 +102,7 @@ public class MainActivity extends Activity {
             foodList.setAdapter(adapter);
         }
     }
+
+    //On-Click methods that re-direct to the relevant FoodTruckPage - Rebecca
 
 }
