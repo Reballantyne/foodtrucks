@@ -10,6 +10,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <android:uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
@@ -43,6 +45,9 @@
             android:label="@string/title_activity_main" >
         </activity>
         <activity
+            android:name="com.parse.starter.FoodTruckPage"
+            android:label="FoodTruckPage" />
+        <activity
             android:name="com.parse.starter.LoginActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/title_activity_login"
@@ -56,6 +61,10 @@
         <activity
             android:name="com.parse.starter.RegisterActivity"
             android:label="@string/title_activity_register" >
+        </activity>
+        <activity
+            android:name="com.parse.starter.FilterActivity"
+            android:label="@string/title_activity_filter" >
         </activity>
     </application>
 

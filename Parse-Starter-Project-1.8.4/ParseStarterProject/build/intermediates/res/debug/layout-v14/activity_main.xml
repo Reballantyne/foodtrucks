@@ -57,7 +57,8 @@
                 android:background="#c2e8e9ee"
                 android:textColor="#000000"
                 android:shadowColor="#000000"
-                android:gravity="center" />
+                android:gravity="center"
+                android:onClick="onFilterClicked"/>
 
             <Space
                 android:layout_width="4dp"
@@ -131,4 +132,4 @@
     </GridLayout>
 
 </RelativeLayout>
-<!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout-v14/activity_main.xml -->
+<!-- From: file:/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout-v14/activity_main.xml -->

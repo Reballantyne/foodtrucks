@@ -25,6 +25,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.List;
+import java.util.ArrayList;
 
 
 public class MainActivity extends Activity {
@@ -43,9 +44,10 @@ public class MainActivity extends Activity {
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setQueryHint("Search for a truck.");
         new RemoteDataTask().execute();
-                Bundle extraBundles = getIntent().getExtras();
+        Bundle extraBundles = getIntent().getExtras();
         if(extraBundles != null) {
             sorted = extraBundles.getInt("filter");
+            Log.v("bundles","x" + sorted);
             RadioButton selected = (RadioButton) findViewById(sorted);
         }
         /*
@@ -113,20 +115,20 @@ public class MainActivity extends Activity {
                     foodTrucks = query.find();
                 } catch (ParseException e) {
                 }
-            } else if(sorted == 0){
+            } else if(sorted == R.id.radio_distance){
                 query.orderByDescending("location");
                 try {
                     foodTrucks = query.find();
                 } catch (ParseException e) {
                 }
 
-            } else if (sorted == 1){
+            } else if (sorted == R.id.radio_food){
                 query.orderByDescending("categories");
                 try {
                     foodTrucks = query.find();
                 } catch (ParseException e) {
                 }
-            } else if (sorted == 2){
+            } else if (sorted == R.id.radio_open){
                 Calendar current = Calendar.getInstance();
                 int dayOfWeek = current.get(Calendar.DAY_OF_WEEK)-1;
                 SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
@@ -137,16 +139,16 @@ public class MainActivity extends Activity {
                     foodTrucks = query.find();
                     List<ParseObject> foodTrucksCopy = query.find();
                     for(ParseObject f: foodTrucksCopy){
-                        int[] open = (int[])f.get("opening_times");
-                        int[] close = (int[])f.get("closing_times");
-                        int openTime = open[dayOfWeek];
-                        int closeTime = close[dayOfWeek];
+                        ArrayList<Integer> open = (ArrayList<Integer>)f.get("opening_times");
+                        ArrayList<Integer> close = (ArrayList<Integer>)f.get("closing_times");
+                        int openTime = open.get(dayOfWeek);
+                        int closeTime = close.get(dayOfWeek);
                         if(openTime == -1 || militaryTime < openTime || militaryTime > closeTime)
                             foodTrucks.remove(f);
                     }
                 } catch (ParseException e) {
                 }
-            } else if (sorted == 3){
+            } else if (sorted == R.id.radio_healthy){
                 query.whereEqualTo("hasHealthyOptions", true);
                 try {
                     foodTrucks = query.find();
@@ -172,6 +174,7 @@ public class MainActivity extends Activity {
     public void onFilterClicked(View view){
             Intent i = new Intent(this, FilterActivity.class);
             startActivity(i);
+        new RemoteDataTask().execute();
     }
     //On-Click methods that re-direct to the relevant FoodTruckPage - Rebecca
 

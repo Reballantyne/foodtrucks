@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
                 android:layout_marginBottom="40dip"
-                android:text="Continue without regestration"
+                android:text="Continue without registration"
                 android:gravity="center"
                 android:textSize="20dip"
                 android:textColor="#0b84aa"/>
@@ -96,4 +96,5 @@
         </LinearLayout>
         <!-- Login Form Ends -->
     </RelativeLayout>
-</ScrollView><!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/activity_login.xml -->
+</ScrollView>
+<!-- From: file:/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/activity_login.xml -->
