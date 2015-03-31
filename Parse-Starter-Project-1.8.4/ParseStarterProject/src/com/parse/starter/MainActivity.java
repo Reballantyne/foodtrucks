@@ -153,6 +153,7 @@ public class MainActivity extends Activity {
                 } catch (ParseException e) {
                 }
             }
+            return null;
         }
 
         @Override
