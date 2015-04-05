@@ -89,6 +89,12 @@ public class FoodTruckPage extends Activity {
         startActivity(i);
     }
 
+    //Method: Nikila & Paarth
+    public void goMap(View v) {
+        Intent i = new Intent(getApplicationContext(), MapTest.class);
+        startActivity(i);
+    }
+
     //Method: Rebecca
     private class EndCallListener extends PhoneStateListener {
         @Override

@@ -17,5 +17,6 @@
     <string name="open_now">Currently Open</string>
     <string name="healthy_options">Healthy Options</string>
     <string name="title_activity_picture_swiper">PictureSwiper</string>
+    <string name="title_activity_map_test">MapTest</string>
 
 </resources>
