@@ -1,19 +1,30 @@
 package com.parse.starter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.facebook.FacebookSdk;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 
 public class LoginActivity extends Activity {
 
+    String password = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,5 +71,43 @@ public class LoginActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void createNewUser(View v){
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
+        EditText passwordView = (EditText) findViewById(R.id.passwordField);
+        password = passwordView.getText().toString();
+        EditText userNameView = (EditText) findViewById(R.id.UserNameTF);
+        String userName = userNameView.getText().toString();
+        try {
+            //query.whereEqualTo("login", "rebecca");
+            query.whereEqualTo("login", userName);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> users, ParseException e) {
+                    if (e == null) {
+                        for (ParseObject u : users) {
+                            String passwordMatch = (String) u.get("password");
+                            if (passwordMatch.equals(password)) {
+                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(i);
+                            } else {
+                                Context context = getApplicationContext();
+                                CharSequence text = "Incorrect Password/UserName";
+                                int duration = Toast.LENGTH_SHORT;
+
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                            }
+
+                        }
+                    } else {
+                        Log.d("score", "Error: " + e.getMessage());
+                    }
+                }
+            });
+
+        } catch (Exception e){
+
+        }
     }
 }

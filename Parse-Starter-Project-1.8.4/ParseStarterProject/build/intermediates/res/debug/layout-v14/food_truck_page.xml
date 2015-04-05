@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="445dp"
+        android:layout_row="2"
+        android:layout_column="0"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="89dp"
+            android:background="#c2e8e9ec">
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="36dp"
+                android:id="@+id/space" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="362dp"
+                android:layout_height="68dp"
+                android:layout_toRightOf="@+id/space"
+                android:layout_toStartOf="@+id/genre"
+                android:weightSum="1"
+                android:layout_alignBottom="@+id/space"
+                android:id="@+id/linearLayout"
+                android:layout_toLeftOf="@+id/genre">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Name of Food Truck"
+                    android:id="@+id/name"
+                    android:textColor="#ff030303"
+                    android:layout_marginTop="10dp" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="86dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/space2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="17336 NE 34th ST, Redmond, WA"
+                android:id="@+id/address"
+                android:layout_below="@+id/linearLayout"
+                android:layout_toRightOf="@+id/space"
+                android:layout_toEndOf="@+id/space"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Hours Today: 11 AM - 12 PM"
+                android:id="@+id/hoursToday"
+                android:layout_below="@+id/address"
+                android:layout_alignLeft="@+id/address"
+                android:layout_alignStart="@+id/address"
+                android:textColor="#ff000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Closed"
+                android:id="@+id/oC"
+                android:textColor="#ffd81b27"
+                android:layout_alignTop="@+id/hoursToday"
+                android:layout_toLeftOf="@+id/space2"
+                android:layout_toStartOf="@+id/space2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Genre"
+                android:id="@+id/genre"
+                android:textColor="#ff000000"
+                android:layout_alignBottom="@+id/linearLayout"
+                android:layout_toLeftOf="@+id/space2"
+                android:layout_toStartOf="@+id/space2"
+                android:layout_marginBottom="3dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:background="#ff5a6b77"
+            android:id="@+id/allbuttons"
+            android:weightSum="1">
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="Call"
+                android:id="@+id/callButton"
+                android:background="#c2e8e9ec"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#ff000000"
+                android:onClick="callTruck" />
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="Menu"
+                android:id="@+id/button3"
+                android:background="#c2e8e9ec"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="9dp"
+                android:textColor="#ff000000" />
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="Website"
+                android:id="@+id/button2"
+                android:background="#c2e8e9ec"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="9dp"
+                android:textColor="#ff000000"
+                android:onClick="viewWebsite" />
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="Favorite"
+                android:id="@+id/button4"
+                android:background="#c2e8e9ec"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginLeft="9dp"
+                android:textColor="#ff000000"
+                android:layout_marginRight="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="225dp"
+            android:background="#ffffac0f">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/PictureBox"
+                android:src="@drawable/veg1"
+                android:onClick="photoClick"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:id="@+id/listView2"
+            android:background="#ff3331ff"
+            android:layout_weight="0.15" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="64dp"
+        android:layout_row="3"
+        android:layout_column="0"
+        android:background="#ff5a6b77">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/search"
+            android:layout_weight="0.25"
+            android:background="@android:color/transparent"
+            android:src="@drawable/search"
+            android:contentDescription="searchButton"
+            android:onClick="goSearch" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton2"
+            android:layout_weight="0.25"
+            android:background="@android:color/transparent"
+            android:src="@drawable/map"
+            android:contentDescription="mapButton" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton3"
+            android:layout_weight="0.25"
+            android:src="@drawable/favorites"
+            android:background="@android:color/transparent"
+            android:contentDescription="favoritesButton" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton4"
+            android:layout_weight="0.25"
+            android:src="@drawable/specials"
+            android:background="@android:color/transparent"
+            android:contentDescription="specialsButton" />
+
+        </LinearLayout>
+
+</GridLayout>
+<!-- From: file:/Users/raginiraghavan/Documents/cis350/ProjectNew/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout-v14/food_truck_page.xml -->

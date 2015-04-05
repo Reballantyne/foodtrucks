@@ -149,4 +149,9 @@ public class FoodTruckPage extends Activity {
         */
     }
 
+    public void photoClick(View v){
+        Intent i = new Intent(this, PictureSwiper.class);
+        startActivity(i);
+    }
+
 }

@@ -11,10 +11,11 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="facebook_app_id">904252309595407</string>
-    <string name = "title_activity_filter">FilterActivity</string>
+    <string name="title_activity_filter">FilterActivity</string>
     <string name="distance">Distance</string>
-    <string name = "food_type">Type of Food</string>
-    <string name = "open_now">Currently Open</string>
-    <string name = "healthy_options">Healthy Options</string>
+    <string name="food_type">Type of Food</string>
+    <string name="open_now">Currently Open</string>
+    <string name="healthy_options">Healthy Options</string>
+    <string name="title_activity_picture_swiper">PictureSwiper</string>
 
 </resources>

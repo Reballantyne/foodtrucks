@@ -1,12 +1,27 @@
 package com.parse.starter;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 
 public class RegisterActivity extends Activity {
+    String[] output = new String [4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,4 +51,64 @@ public class RegisterActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void createNewUser(View v) {
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
+        EditText fullNameET = (EditText) findViewById(R.id.reg_fullname);
+        output[0] = fullNameET.getText().toString();
+        EditText emailET = (EditText) findViewById(R.id.reg_email);
+        output[1] = emailET.getText().toString();
+        EditText userIDET = (EditText) findViewById(R.id.reg_id);
+        output[2] = userIDET.getText().toString();
+        EditText passwordET = (EditText) findViewById(R.id.reg_password);
+        output[3] = passwordET.getText().toString();
+        ParseObject user = new ParseObject("User");
+        user.put("first_name", output[0]);
+        user.put("user_name", output[2]);
+        user.put("password", output[3]);
+        user.saveInBackground();
+        Context context = getApplicationContext();
+        CharSequence text = "Thanks for registering!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+        /*
+        try {
+            //query.whereEqualTo("login", "rebecca");
+            query.whereEqualTo("login", userName);
+            query.findInBackground(new FindCallback<ParseObject>() {
+                public void done(List<ParseObject> users, ParseException e) {
+                    if (e == null) {
+                        for (ParseObject u : users) {
+                            String passwordMatch = (String) u.get("password");
+                            if (passwordMatch.equals(password)) {
+                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(i);
+                            } else {
+                                Context context = getApplicationContext();
+                                CharSequence text = "Incorrect Password/UserName";
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                            }
+
+                        }
+                    } else {
+                        Log.d("score", "Error: " + e.getMessage());
+                    }
+                }
+            });
+
+        } catch (Exception e){
+
+        }
+        */
+    }
+
+
+
+
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.0.0/res/values-it/values.xml -->
+    <!-- From: file:/Users/raginiraghavan/Documents/cis350/ProjectNew/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.0.0/res/values-it/values.xml -->
     <eat-comment/>
     <string name="messenger_send_button_text">Invia</string>
 </resources>

@@ -158,7 +158,15 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="225dp"
-            android:background="#ffffac0f"></LinearLayout>
+            android:background="#ffffac0f">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/PictureBox"
+                android:src="@drawable/veg1"
+                android:onClick="photoClick"/>
+
+        </LinearLayout>
 
         <ListView
             android:layout_width="wrap_content"

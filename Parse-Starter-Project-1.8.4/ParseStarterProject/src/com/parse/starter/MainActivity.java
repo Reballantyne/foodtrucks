@@ -109,7 +109,7 @@ public class MainActivity extends Activity {
         protected Void doInBackground(Void... params) {
             //Get the current list of foodtrucks
             ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("FoodTruck");
-                        if(sorted == -1) {
+            if(sorted == -1) {
                 query.orderByDescending("name");
                 try {
                     foodTrucks = query.find();
