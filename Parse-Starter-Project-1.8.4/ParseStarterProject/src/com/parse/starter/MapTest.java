@@ -80,18 +80,20 @@ public class MapTest extends Activity implements OnMapReadyCallback{
         });
 
 
-        //map.setMyLocationEnabled(false);
-
-        //map.getMyLocation();
-
-
-        //LatLng mylocation = new LatLng(map.getMyLocation().getLatitude(), map.getMyLocation().getLongitude());
-
-        LatLng mylocation = new LatLng(39.950948, -75.195417);
-
         map.setMyLocationEnabled(true);
 
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(mylocation, 13));
+        LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String provider = service.getBestProvider(criteria, false);
+        Location location = service.getLastKnownLocation(provider);
+        LatLng userLocation;
+        if (location == null) {
+            userLocation = new LatLng(39.950948, -75.195417);
+        } else {
+            userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+        }
+
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 13));
 
     }
 
