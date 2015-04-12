@@ -22,7 +22,7 @@ android:fillViewport="true">
             android:text="Filter"
             android:id="@+id/headerText"
             android:gravity="center_vertical|center_horizontal"
-            android:background="#ff2d88ff"
+            android:background="#ff318e21"
             android:textStyle="bold"
             android:textSize="22dp" />
         <!-- Logo Ends -->
@@ -38,7 +38,9 @@ android:fillViewport="true">
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dip"
-        android:layout_below="@+id/header">
+        android:layout_below="@+id/header"
+        android:background="#ccb1b2a7"
+        android:layout_alignParentBottom="true">
 
         <RadioGroup xmlns:android = "http://schemas.android.com/apk/res/android"
             android:layout_width = "fill_parent"
@@ -65,4 +67,4 @@ android:fillViewport="true">
     <!-- Login Form Ends -->
 </RelativeLayout>
 </ScrollView>
-<!-- From: file:/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/activity_filter.xml -->
+<!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/activity_filter.xml -->

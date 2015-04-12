@@ -8,12 +8,13 @@
         android:layout_height="445dp"
         android:layout_row="2"
         android:layout_column="0"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:background="#ccb1b2a7">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="89dp"
-            android:background="#c2e8e9ec">
+            android:layout_height="80dp"
+            android:background="#ccb1b2a7">
 
             <Space
                 android:layout_width="10dp"
@@ -100,80 +101,81 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:background="#ff5a6b77"
+            android:layout_height="wrap_content"
+            android:background="#ccb1b2a7"
             android:id="@+id/allbuttons"
             android:weightSum="1">
 
             <Button
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
                 android:text="Call"
-                android:id="@+id/callButton"
-                android:background="#c2e8e9ec"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="7dp"
-                android:layout_marginLeft="15dp"
-                android:textColor="#ff000000"
-                android:onClick="callTruck" />
+                android:id="@+id/callTruck"
+                android:layout_marginLeft="7dp" />
 
             <Button
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="70dp"
+                android:layout_height="36dp"
                 android:text="Menu"
-                android:id="@+id/button3"
-                android:background="#c2e8e9ec"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="7dp"
-                android:layout_marginLeft="9dp"
-                android:textColor="#ff000000" />
+                android:id="@+id/button5" />
 
             <Button
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text="Website"
-                android:id="@+id/button2"
-                android:background="#c2e8e9ec"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="7dp"
-                android:layout_marginLeft="9dp"
-                android:textColor="#ff000000"
-                android:onClick="viewWebsite" />
-
-            <Button
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
                 android:text="Favorite"
-                android:id="@+id/button4"
-                android:background="#c2e8e9ec"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="7dp"
-                android:layout_marginLeft="9dp"
-                android:textColor="#ff000000"
-                android:layout_marginRight="20dp" />
+                android:id="@+id/favorite" />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Website"
+                android:id="@+id/viewWebsite" />
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="225dp"
-            android:background="#ffffac0f">
+            android:layout_height="210dp"
+            android:background="#ccb1b2a7">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/PictureBox"
                 android:src="@drawable/veg1"
-                android:onClick="photoClick"/>
+                android:onClick="photoClick"
+                android:background="#ccb1b2a7"
+                android:layout_marginBottom="7dp"
+                android:layout_marginTop="7dp" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ccb1b2a7">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Reviews"
+                android:id="@+id/textView2"
+                android:layout_marginLeft="10dp"
+                android:textColor="#ff000000" />
         </LinearLayout>
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="88dp"
+            android:layout_height="match_parent"
             android:id="@+id/listView2"
-            android:background="#ff3331ff"
-            android:layout_weight="0.15" />
+            android:background="#ccb1b2a7"
+            android:touchscreenBlocksFocus="false" />
 
     </LinearLayout>
 
@@ -183,17 +185,7 @@
         android:layout_height="64dp"
         android:layout_row="3"
         android:layout_column="0"
-        android:background="#ff5a6b77">
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:id="@+id/search"
-            android:layout_weight="0.25"
-            android:background="@android:color/transparent"
-            android:src="@drawable/search"
-            android:contentDescription="searchButton"
-            android:onClick="goSearch" />
+        android:background="#ff318e21">
 
         <ImageButton
             android:layout_width="0dp"
@@ -204,6 +196,16 @@
             android:src="@drawable/map"
             android:contentDescription="mapButton"
             android:onClick="goMap" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/search"
+            android:layout_weight="0.25"
+            android:background="@android:color/transparent"
+            android:src="@drawable/search"
+            android:contentDescription="searchButton"
+            android:onClick="goSearch" />
 
         <ImageButton
             android:layout_width="0dp"
@@ -226,4 +228,4 @@
         </LinearLayout>
 
 </GridLayout>
-<!-- From: file:/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout-v14/food_truck_page.xml -->
+<!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout-v14/food_truck_page.xml -->

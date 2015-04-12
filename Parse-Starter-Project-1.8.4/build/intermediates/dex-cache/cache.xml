@@ -2,60 +2,60 @@
 <items version="2" >
 
     <item
-        jar="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="0f254ec13d6671680482d2218f01ecf14dfa93e6">
-        <dex dex="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/classes-deb897694814928a7d0a1eaa34d5a9a6da77a78f.jar" />
-    </item>
-    <item
-        jar="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/libs/Parse-1.8.4.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="0fcb6bbc9cf6d2643a90c812539aa82ed16ea315">
-        <dex dex="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/Parse-1.8.4-d40e1715b1e2d1038735752c83e3a66773996239.jar" />
-    </item>
-    <item
-        jar="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jar="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.1"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-44074aae6f0e3facd9d49080fd5682481c0787a6.jar" />
+        <dex dex="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-df3e81e890a0ea29eb732a9152d2179f653d1bb7.jar" />
     </item>
     <item
-        jar="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/classes-5ddfb6adf40238523f62690871df8843c0a9c44b.jar" />
-    </item>
-    <item
-        jar="/Users/paarth/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.1.4/129874135e6081269ace2312092031558865de12/bolts-android-1.1.4.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="129874135e6081269ace2312092031558865de12">
-        <dex dex="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/bolts-android-1.1.4-acf63b4a93f48999013623392a592dfebedaa144.jar" />
-    </item>
-    <item
-        jar="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jar="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
         jumboMode="false"
         revision="21.1.1"
         sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/classes-91abad55e6757bff9ac1afd294a84cf935cbfd97.jar" />
+        <dex dex="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\classes-28608c6288d369074b56e1cdef983dd019bac183.jar" />
     </item>
     <item
-        jar="/Users/paarth/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jar="C:\Users\Rebecca_2\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.1"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-fdaa4620a8608e342176d8f594173a9867a10051.jar" />
+        <dex dex="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-6083eedf1d48d319f9054484a84d19fc4c987b72.jar" />
     </item>
     <item
-        jar="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/libs/ParseCrashReporting-1.8.4.jar"
+        jar="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\libs\ParseCrashReporting-1.8.4.jar"
         jumboMode="false"
         revision="21.1.1"
         sha1="1d00b92e605b3d970994449b93d8ff135f96bb41">
-        <dex dex="/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/ParseCrashReporting-1.8.4-09b30060ab795b930ac403f9c28adea87f692394.jar" />
+        <dex dex="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\ParseCrashReporting-1.8.4-4f1364e14e9eb83bc77e23af0109371c28294cab.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\classes-ffbe44ebaf927014cd2fe397ac187623fbc3096a.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rebecca_2\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.1.4\129874135e6081269ace2312092031558865de12\bolts-android-1.1.4.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="129874135e6081269ace2312092031558865de12">
+        <dex dex="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\bolts-android-1.1.4-e5075be0a9f20b34356230f5680917abb19ed1d1.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\libs\Parse-1.8.4.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="0fcb6bbc9cf6d2643a90c812539aa82ed16ea315">
+        <dex dex="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\Parse-1.8.4-2853bda782b149c14026e6dcf865c5050d23a131.jar" />
+    </item>
+    <item
+        jar="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="0f254ec13d6671680482d2218f01ecf14dfa93e6">
+        <dex dex="C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\classes-8d95954e40ff9e898f098848de411989583e46fb.jar" />
     </item>
 
 </items>
