@@ -27,7 +27,8 @@ import java.util.List;
  * Created by Rebecca_2 on 3/29/2015.
  */
 public class FoodTruckPage extends Activity {
-    static String foodTruckName;
+    private List<ParseObject> foodTrucks;
+    static String foodTruckName = "Cucina Zapata";
     static String address;
     static String phoneNum;
     static String categories;
@@ -37,11 +38,11 @@ public class FoodTruckPage extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food_truck_page);
-        //Intent intent = getIntent();
+       // Intent intent = getIntent();
         //foodTruckName = intent.getStringExtra(MainActivity.TRUCK_ID);
         //TextView name = (TextView) findViewById(R.id.name);
         //name.setText(foodTruckName);
-        //new GetFoodTruckInfo().execute();
+        new GetFoodTruckInfo().execute();
     }
 
     @Override
@@ -116,43 +117,46 @@ public class FoodTruckPage extends Activity {
 
 
     //Method: Rebecca
-    private class GetFoodTruckInfo extends AsyncTask<Void, Void, String[]> {
-        protected String[] doInBackground(Void... params) {
+    private class GetFoodTruckInfo extends AsyncTask<Void, Void, Void> {
+        protected Void doInBackground(Void... params) {
             //Get the current list of foodtrucks
             final String[] result = new String[4];
             ParseQuery<ParseObject> query = ParseQuery.getQuery("FoodTruck");
             query.whereEqualTo("name", foodTruckName);
-            query.findInBackground(new FindCallback<ParseObject>() {
-                public void done(List<ParseObject> trucks, ParseException e) {
-                if (e == null) {
-                    for (ParseObject u: trucks) {
-                        result[0] = (String) u.get("address");
-                        result[1] = "tel:" + (String)u.get("phoneNum");
-                        result[2] = (String) u.get(categories);
-                        result[3] = (String)u.get("url");
-                    }
-                } else {
-                    Log.d("score", "Error: " + e.getMessage());
-                }
-                }
-           });
-           Log.v("parse", "x" + result[0]);
-           return result;
+            try {
+                foodTrucks = query.find();
+            } catch (ParseException e) {
+            }
+            return null;
         }
 
-        /* Rebecca: Method is still not correct, callback function cannot set global variables
+        // Rebecca: Method is still not correct, callback function cannot set global variables
         @Override
-        protected void onPostExecute(String[] result) {
+        protected void onPostExecute(Void v) {
             //Put the new information into the view
+            String[] result = new String[4];
+            //pulls the data from the database
+            for (ParseObject truck: foodTrucks) {
+                result[0] = (String) truck.get("address");
+                Log.v("result", "x" + result[0]);
+                result[1] = "tel:" + (String) truck.get("phoneNum");
+                Log.v("result", "x" + result[1]);
+                result[2] = (String) truck.get(categories);
+                Log.v("result", "x" + result[2]);
+                result[3] = (String) truck.get("url");
+                Log.v("result", "x" + result[3]);
+            }
+            //places the data in the UI
             TextView name = (TextView) findViewById(R.id.name);
             name.setText(foodTruckName);
             TextView addresser = (TextView) findViewById(R.id.address);
-           // Log.v("parse", "x" + result[0]);
+            Log.v("onPost", "x" + result[0]);
             addresser.setText(result[0]);
             TextView truckGenre = (TextView) findViewById(R.id.genre);
+            Log.v("onPost", "x" + result[1]);
+            Log.v("onPost", "x" + result[2]);
             truckGenre.setText(result[2]);
         }
-        */
     }
 
     public void photoClick(View v){

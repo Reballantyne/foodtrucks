@@ -112,28 +112,32 @@
                 android:layout_height="36dp"
                 android:text="Call"
                 android:id="@+id/callTruck"
-                android:layout_marginLeft="7dp" />
+                android:layout_marginLeft="7dp"
+                android:gravity="center_vertical|center_horizontal" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="70dp"
                 android:layout_height="36dp"
                 android:text="Menu"
-                android:id="@+id/button5" />
+                android:id="@+id/button5"
+                android:gravity="center_vertical|center_horizontal" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="Favorite"
-                android:id="@+id/favorite" />
+                android:id="@+id/favorite"
+                android:gravity="center_vertical|center_horizontal" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="Website"
-                android:id="@+id/viewWebsite" />
+                android:id="@+id/viewWebsite"
+                android:gravity="center_vertical|center_horizontal" />
 
         </LinearLayout>
 
@@ -190,22 +194,22 @@
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:id="@+id/imageButton2"
-            android:layout_weight="0.25"
-            android:background="@android:color/transparent"
-            android:src="@drawable/map"
-            android:contentDescription="mapButton"
-            android:onClick="goMap" />
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:id="@+id/search"
             android:layout_weight="0.25"
             android:background="@android:color/transparent"
             android:src="@drawable/search"
             android:contentDescription="searchButton"
             android:onClick="goSearch" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton2"
+            android:layout_weight="0.25"
+            android:background="@android:color/transparent"
+            android:src="@drawable/map"
+            android:contentDescription="mapButton"
+            android:onClick="goMap" />
 
         <ImageButton
             android:layout_width="0dp"
