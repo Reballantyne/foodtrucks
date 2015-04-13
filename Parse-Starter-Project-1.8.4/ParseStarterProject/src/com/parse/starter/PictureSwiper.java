@@ -2,6 +2,8 @@ package com.parse.starter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -10,7 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.parse.Parse;
+import com.parse.ParseFile;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.starter.R;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class PictureSwiper extends Activity {
 
@@ -25,15 +35,41 @@ public class PictureSwiper extends Activity {
     }
 
     private class ImagePagerAdapter extends PagerAdapter {
+
+        /*
         private int[] mImages = new int[] {
                 R.drawable.veg1,
                 R.drawable.veg2,
                 R.drawable.veg3
         };
+        */
+
+        private ArrayList<Bitmap> mImages = new ArrayList<Bitmap>();
+        public ImagePagerAdapter() {
+            try {
+                ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("FoodTruck");
+                queryFoodTruck.whereEqualTo("name", FoodTruckPage.foodTruckName);
+                List<ParseObject> foodTrucks = queryFoodTruck.find();
+                String foodTruckID = (String) foodTrucks.get(0).get("objectId");
+                ParseQuery<ParseObject> queryPhotos = new ParseQuery<ParseObject>("Photo");
+                queryPhotos.whereEqualTo("foodtruck_id", foodTruckID);
+                List<ParseObject> dataPhotos = queryPhotos.find();
+                for (ParseObject photoObject : dataPhotos){
+                    ParseFile photo = (ParseFile) photoObject.get("photo_file");
+                    byte[] file  = photo.getData();
+                    Bitmap image = BitmapFactory.decodeByteArray(file,0,file.length);
+                    mImages.add(image);
+
+                }
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+
+        }
 
         @Override
         public int getCount() {
-            return mImages.length;
+            return mImages.size();
         }
 
         @Override
@@ -49,7 +85,8 @@ public class PictureSwiper extends Activity {
                     R.dimen.activity_vertical_margin);
             imageView.setPadding(padding, padding, padding, padding);
             imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-            imageView.setImageResource(mImages[position]);
+            imageView.setImageBitmap(mImages.get(position));
+            //imageView.setImageResource(mImages.get(position));
             ((ViewPager) container).addView(imageView, 0);
             return imageView;
         }

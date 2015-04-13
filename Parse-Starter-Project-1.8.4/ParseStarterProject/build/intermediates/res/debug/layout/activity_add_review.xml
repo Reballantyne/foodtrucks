@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:background = "#ccb1b2a7">
+
+    <LinearLayout android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff">
+    <!-- Logo Start-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Add a Review"
+        android:id="@+id/headerText"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="#ff318e21"
+        android:textStyle="bold"
+        android:textSize="22dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/header"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:weightSum="1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Food Truck Name"
+            android:id="@+id/textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Review"
+            android:id="@+id/textView2"
+            android:paddingBottom="5dp"
+            android:paddingTop = "10dp"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="250dp">
+            <EditText
+                android:textSize="12dip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reviewBox"
+                android:layout_weight="0.42"
+                android:background="@drawable/background_text"
+                android:gravity="top"
+                android:paddingTop = "10dp"
+                android:paddingLeft = "10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit Review"
+            android:id="@+id/SubmitReview"
+            android:layout_gravity="right"
+            android:onClick="submitReview"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+<!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/activity_add_review.xml -->

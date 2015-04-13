@@ -43,6 +43,17 @@ public class FoodTruckPage extends Activity {
         //TextView name = (TextView) findViewById(R.id.name);
         //name.setText(foodTruckName);
         new GetFoodTruckInfo().execute();
+
+        TextView reviewScreen = (TextView) findViewById(R.id.ReviewClick);
+        reviewScreen.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                // Switching to Register screen
+                Intent i = new Intent(getApplicationContext(), ReviewPage.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override
@@ -161,6 +172,12 @@ public class FoodTruckPage extends Activity {
 
     public void photoClick(View v){
         Intent i = new Intent(this, PictureSwiper.class);
+        startActivity(i);
+    }
+
+    public void seeMoreReviews(View v){
+        Log.v("food", "got here");
+        Intent i = new Intent(this, ReviewPage.class);
         startActivity(i);
     }
 

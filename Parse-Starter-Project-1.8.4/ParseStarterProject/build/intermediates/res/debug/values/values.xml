@@ -160,12 +160,14 @@
     <string name="store_picture_title">Save image</string>
     <!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/values/strings.xml -->
     <eat-comment/>
+    <string name="title_activity_add_review">AddReview</string>
     <string name="title_activity_filter">FilterActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_map_test">MapTest</string>
     <string name="title_activity_picture_swiper">PictureSwiper</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_review_page">ReviewPage</string>
     <!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder" translation_description="Text on a button that allows a user to make a payment with Google Wallet [CHAR LIMIT=30]">Buy with Google</string>

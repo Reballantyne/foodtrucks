@@ -1,0 +1,54 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+   <TableRow>
+       <TextView
+           android:id="@+id/userPrompt"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text = "Username"/>
+    <EditText
+        android:id="@+id/usernameDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"/>
+   </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/passwordPrompt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text = "Password"/>
+    <EditText
+        android:id="@+id/passwordDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
+        android:password="true"/>
+    </TableRow>
+    <TableRow>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:id="@+id/SignIn" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:id="@+id/cancel" />
+    </LinearLayout>
+    </TableRow>
+
+</TableLayout><!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/dialog_login.xml -->

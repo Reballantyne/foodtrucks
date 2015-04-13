@@ -25,6 +25,8 @@ import java.util.List;
 public class LoginActivity extends Activity {
 
     String password = "";
+    static String userNameSession = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,7 @@ public class LoginActivity extends Activity {
 
             public void onClick(View v) {
                 // Switching to Register screen
-                Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
             }
         });
@@ -78,16 +80,17 @@ public class LoginActivity extends Activity {
         EditText passwordView = (EditText) findViewById(R.id.passwordField);
         password = passwordView.getText().toString();
         EditText userNameView = (EditText) findViewById(R.id.UserNameTF);
-        String userName = userNameView.getText().toString();
+        final String userName = userNameView.getText().toString();
         try {
             //query.whereEqualTo("login", "rebecca");
-            query.whereEqualTo("login", userName);
+            query.whereEqualTo("user_name", userName);
             query.findInBackground(new FindCallback<ParseObject>() {
                 public void done(List<ParseObject> users, ParseException e) {
                     if (e == null) {
                         for (ParseObject u : users) {
                             String passwordMatch = (String) u.get("password");
                             if (passwordMatch.equals(password)) {
+                                userNameSession = userName;
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
                             } else {

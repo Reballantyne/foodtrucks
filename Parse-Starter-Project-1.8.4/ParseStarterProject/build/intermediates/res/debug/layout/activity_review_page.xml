@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background = "#ccb1b2a7"
+    tools:context="com.parse.starter.ReviewPage">
+
+    <!--  Header  Starts-->
+    <LinearLayout android:id="@+id/header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff">
+        <!-- Logo Start-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Reviews"
+            android:id="@+id/headerText"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="#ff318e21"
+            android:textStyle="bold"
+            android:textSize="22dp" />
+        <!-- Logo Ends -->
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/header"
+        android:padding="10dip"
+        android:id="@+id/gridLayout">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Food Truck Name"
+            android:id="@+id/foodTruck"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:textStyle = "bold"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Write a Review!"
+            android:id="@+id/wrButton"
+            android:layout_row="0"
+            android:layout_column="13"
+            android:background = "#0b84aa"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="x Reviews"
+            android:id="@+id/numReviews"
+            android:layout_row="1"
+            android:layout_column="0" />
+
+
+
+
+    </GridLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/gridLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView"
+            android:layout_gravity="center_horizontal"
+            android:fillViewport="false">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/listReview" />
+        </ScrollView>
+    </LinearLayout>
+
+
+</RelativeLayout>
+
+
+<!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/activity_review_page.xml -->
