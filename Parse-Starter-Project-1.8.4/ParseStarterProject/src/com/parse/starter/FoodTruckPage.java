@@ -126,8 +126,7 @@ public class FoodTruckPage extends Activity {
         }
     }
 
-
-    //Method: Rebecca
+    //method: rebecca
     private class GetFoodTruckInfo extends AsyncTask<Void, Void, Void> {
         protected Void doInBackground(Void... params) {
             //Get the current list of foodtrucks
