@@ -37,6 +37,7 @@ public class FoodTruckPage extends Activity {
     private static String website;
     private static String hoursOpen;
     private static String openClosed;
+    private static boolean hasHealthy;
 
     //Method: Rebecca
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,6 +165,8 @@ public class FoodTruckPage extends Activity {
                 }
                 result[3] = (String) truck.get("url");
                 website = result[3];
+                //get if it has healthy options
+                hasHealthy = (Boolean) truck.get("hasHealthyOptions");
                 //get when its open and closed
                 Calendar current = Calendar.getInstance();
                 int dayOfWeek = current.get(Calendar.DAY_OF_WEEK) - 1;
@@ -196,9 +199,16 @@ public class FoodTruckPage extends Activity {
                 oC.setTextColor(Color.parseColor("#ff318e21"));
             }
             oC.setText(openClosed);
+            TextView healthy = (TextView) findViewById(R.id.isHealthy);
+            if (hasHealthy) {
+                healthy.setText("Healthy");
+                healthy.setTextColor(Color.parseColor("#ff318e21"));
+            }
+
         }
     }
 
+    //Method: Rebecca
     private void formatOpenClosedText(int openTime, int closeTime){
         if (openTime == -1) { hoursOpen = "Closed today"; }
         else {
