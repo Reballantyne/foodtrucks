@@ -3,6 +3,7 @@ package com.parse.starter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -191,6 +192,9 @@ public class FoodTruckPage extends Activity {
             TextView truckTimes = (TextView) findViewById(R.id.hoursToday);
             truckTimes.setText("Hours Today: " + hoursOpen);
             TextView oC = (TextView) findViewById(R.id.oC);
+            if (openClosed.equals("Open")) {
+                oC.setTextColor(Color.parseColor("#ff318e21"));
+            }
             oC.setText(openClosed);
         }
     }
