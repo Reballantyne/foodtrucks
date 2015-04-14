@@ -114,7 +114,8 @@
                 android:text="Call"
                 android:id="@+id/callTruck"
                 android:layout_marginLeft="7dp"
-                android:gravity="center_vertical|center_horizontal" />
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="callTruck" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -138,7 +139,8 @@
                 android:layout_height="36dp"
                 android:text="Website"
                 android:id="@+id/viewWebsite"
-                android:gravity="center_vertical|center_horizontal" />
+                android:gravity="center_vertical|center_horizontal"
+                android:onClick="viewWebsite" />
 
         </LinearLayout>
 
@@ -213,7 +215,8 @@
             android:layout_weight="0.25"
             android:src="@drawable/favorites"
             android:background="@android:color/transparent"
-            android:contentDescription="favoritesButton" />
+            android:contentDescription="favoritesButton"
+            android:onClick="goFavorite" />
 
         <ImageButton
             android:layout_width="0dp"
@@ -222,7 +225,8 @@
             android:layout_weight="0.25"
             android:src="@drawable/specials"
             android:background="@android:color/transparent"
-            android:contentDescription="specialsButton" />
+            android:contentDescription="specialsButton"
+            android:onClick="goSpecial" />
 
         </LinearLayout>
 

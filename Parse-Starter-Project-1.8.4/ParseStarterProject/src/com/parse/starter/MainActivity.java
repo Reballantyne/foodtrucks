@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -30,7 +31,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
     private List<ParseObject> foodTrucks;
-    public static String TRUCK_ID;
     private int sorted = -1;
     private int latitude;
     private int longitude;
@@ -50,6 +50,9 @@ public class MainActivity extends Activity {
             Log.v("bundles","x" + sorted);
             RadioButton selected = (RadioButton) findViewById(sorted);
         }
+        //handle creating the onClickListener for the arrayList
+        arrayListOnClick();
+
         /*
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         LocationListener listener = new LocationListener() {
@@ -64,6 +67,20 @@ public class MainActivity extends Activity {
             public void onProviderDisabled(String provider) {}
         };
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);*/
+    }
+
+    private void arrayListOnClick(){
+        ListView foodList = (ListView) findViewById(R.id.listView);
+
+        foodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String truckName = ((TextView) view).getText().toString();
+                Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
+                i.putExtra("TRUCK_NAME", truckName);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -86,13 +103,6 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    //Method:Rebecca
-    //redirects to food truck page
-    public void foodTruckRedirect(View v){
-        Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
-        startActivity(i);
     }
 
     //Method: Rebecca
@@ -171,11 +181,31 @@ public class MainActivity extends Activity {
             foodList.setAdapter(adapter);
         }
     }
+
     public void onFilterClicked(View view){
             Intent i = new Intent(this, FilterActivity.class);
             startActivity(i);
         new RemoteDataTask().execute();
     }
+
+
+   /* public void launchFoodTruckPage(AdapterView<?> adapter, View v, int position, long id) {
+        String item = ((TextView)v).getText().toString();
+        Log.v("Working?", "x" + item);
+    }*/
+
+    /*
+    //Method:Rebecca
+    //redirects to food truck page
+    public void foodTruckRedirect(View v){
+        Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
+        startActivity(i);
+    }
+
+    public void redirectFoodTruckPage(AdapterView<?> adapter, View v, int position){
+        ItemClicked truck = adapter.getItem(position);
+    }*/
+
     //On-Click methods that re-direct to the relevant FoodTruckPage - Rebecca
 
 }

@@ -22,6 +22,7 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by Rebecca_2 on 3/29/2015.
@@ -29,19 +30,21 @@ import java.util.List;
 public class FoodTruckPage extends Activity {
     private List<ParseObject> foodTrucks;
     static String foodTruckName = "Cucina Zapata";
-    static String address;
-    static String phoneNum;
-    static String categories;
-    static String url;
+    private static String telNumber;
+    private static String website;
 
     //Method: Rebecca
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food_truck_page);
-       // Intent intent = getIntent();
-        //foodTruckName = intent.getStringExtra(MainActivity.TRUCK_ID);
-        //TextView name = (TextView) findViewById(R.id.name);
-        //name.setText(foodTruckName);
+        //get information about what food truck was called on
+        Intent intent = getIntent();
+        foodTruckName = intent.getStringExtra("TRUCK_NAME");
+        Log.v("truckName", foodTruckName);
+        TextView name = (TextView) findViewById(R.id.name);
+        //set foodtruck name
+        name.setText(foodTruckName);
+        //get the other information about the foodtruck from the database
         new GetFoodTruckInfo().execute();
 
         TextView reviewScreen = (TextView) findViewById(R.id.ReviewClick);
@@ -81,7 +84,7 @@ public class FoodTruckPage extends Activity {
     //Method: Rebecca
     public void callTruck(View v){
         Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:123456789"));
+        callIntent.setData(Uri.parse(telNumber));
         EndCallListener callListener = new EndCallListener();
         TelephonyManager mTM = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
         mTM.listen(callListener, PhoneStateListener.LISTEN_CALL_STATE);
@@ -91,7 +94,7 @@ public class FoodTruckPage extends Activity {
     //Method: Rebecca
     public void viewWebsite(View v){
         Intent intent = new Intent("android.intent.action.VIEW",
-                    Uri.parse("http://www.google.com/"));
+                    Uri.parse(website));
         startActivity(intent);
     }
 
@@ -140,7 +143,7 @@ public class FoodTruckPage extends Activity {
             return null;
         }
 
-        // Rebecca: Method is still not correct, callback function cannot set global variables
+        // Rebecca: Method pulls all foodtruck info from database to populate foodtruck page
         @Override
         protected void onPostExecute(Void v) {
             //Put the new information into the view
@@ -150,10 +153,15 @@ public class FoodTruckPage extends Activity {
                 result[0] = (String) truck.get("address");
                 Log.v("result", "x" + result[0]);
                 result[1] = "tel:" + (String) truck.get("phoneNum");
+                telNumber = result[1];
                 Log.v("result", "x" + result[1]);
-                result[2] = (String) truck.get(categories);
+                ArrayList<String> genre = (ArrayList<String>) truck.get("categories");
+                if (genre != null) {
+                    result[2] = genre.get(0);
+                }
                 Log.v("result", "x" + result[2]);
                 result[3] = (String) truck.get("url");
+                website = result[3];
                 Log.v("result", "x" + result[3]);
             }
             //places the data in the UI
