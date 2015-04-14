@@ -105,6 +105,12 @@ public class FoodTruckPage extends Activity {
     }
 
     //Method: Rebecca
+    public void goSpecials(View v){
+        Intent i = new Intent(getApplicationContext(), Specials.class);
+        startActivity(i);
+    }
+
+    //Method: Rebecca
     public void goSearch(View v){
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);

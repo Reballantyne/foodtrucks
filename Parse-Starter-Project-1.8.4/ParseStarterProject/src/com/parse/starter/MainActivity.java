@@ -188,6 +188,18 @@ public class MainActivity extends Activity {
         new RemoteDataTask().execute();
     }
 
+    //Method: Rebecca
+    public void goSpecials(View v){
+        Intent i = new Intent(getApplicationContext(), Specials.class);
+        startActivity(i);
+    }
+
+    //Method: Nikila & Paarth
+    public void goMap(View v) {
+        Intent i = new Intent(getApplicationContext(), MapTest.class);
+        startActivity(i);
+    }
+
 
    /* public void launchFoodTruckPage(AdapterView<?> adapter, View v, int position, long id) {
         String item = ((TextView)v).getText().toString();

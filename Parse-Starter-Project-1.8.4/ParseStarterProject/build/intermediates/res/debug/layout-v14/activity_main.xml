@@ -109,7 +109,8 @@
                 android:layout_weight="0.25"
                 android:background="@android:color/transparent"
                 android:src="@drawable/map"
-                android:contentDescription="mapButton" />
+                android:contentDescription="mapButton"
+                android:onClick="goMap" />
 
             <ImageButton
                 android:layout_width="0dp"
@@ -127,7 +128,8 @@
                 android:layout_weight="0.25"
                 android:src="@drawable/specials"
                 android:background="@android:color/transparent"
-                android:contentDescription="specialsButton" />
+                android:contentDescription="specialsButton"
+                android:onClick="goSpecials" />
         </LinearLayout>
     </GridLayout>
 
