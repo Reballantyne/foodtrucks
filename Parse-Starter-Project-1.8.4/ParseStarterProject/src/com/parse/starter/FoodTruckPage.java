@@ -21,6 +21,8 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -29,9 +31,11 @@ import java.util.ArrayList;
  */
 public class FoodTruckPage extends Activity {
     private List<ParseObject> foodTrucks;
-    static String foodTruckName = "Cucina Zapata";
+    static String foodTruckName;
     private static String telNumber;
     private static String website;
+    private static String hoursOpen;
+    private static String openClosed;
 
     //Method: Rebecca
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,31 +155,63 @@ public class FoodTruckPage extends Activity {
             //pulls the data from the database
             for (ParseObject truck: foodTrucks) {
                 result[0] = (String) truck.get("address");
-                Log.v("result", "x" + result[0]);
                 result[1] = "tel:" + (String) truck.get("phoneNum");
                 telNumber = result[1];
-                Log.v("result", "x" + result[1]);
                 ArrayList<String> genre = (ArrayList<String>) truck.get("categories");
                 if (genre != null) {
                     result[2] = genre.get(0);
                 }
-                Log.v("result", "x" + result[2]);
                 result[3] = (String) truck.get("url");
                 website = result[3];
-                Log.v("result", "x" + result[3]);
+                //get when its open and closed
+                Calendar current = Calendar.getInstance();
+                int dayOfWeek = current.get(Calendar.DAY_OF_WEEK) - 1;
+                ArrayList<Integer> open = (ArrayList<Integer>)truck.get("opening_times");
+                ArrayList<Integer> close = (ArrayList<Integer>)truck.get("closing_times");
+                int openTime = open.get(dayOfWeek);
+                int closeTime = close.get(dayOfWeek);
+                formatOpenClosedText(openTime, closeTime);
+                //check whether open now or not
+                SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
+                String currentTime = sdf.format(current.getTime());
+                int militaryTime = Integer.parseInt(currentTime);
+                if (militaryTime < openTime || militaryTime > closeTime) {
+                    { openClosed = "Closed"; }
+                }
+                else { openClosed = "Open"; }
+
             }
             //places the data in the UI
             TextView name = (TextView) findViewById(R.id.name);
             name.setText(foodTruckName);
             TextView addresser = (TextView) findViewById(R.id.address);
-            Log.v("onPost", "x" + result[0]);
             addresser.setText(result[0]);
             TextView truckGenre = (TextView) findViewById(R.id.genre);
-            Log.v("onPost", "x" + result[1]);
-            Log.v("onPost", "x" + result[2]);
             truckGenre.setText(result[2]);
+            TextView truckTimes = (TextView) findViewById(R.id.hoursToday);
+            truckTimes.setText("Hours Today: " + hoursOpen);
+            TextView oC = (TextView) findViewById(R.id.oC);
+            oC.setText(openClosed);
         }
     }
+
+    private void formatOpenClosedText(int openTime, int closeTime){
+        if (openTime == -1) { hoursOpen = "Closed today"; }
+        else {
+            //change the int for openTime to a properly formatted string
+            String openString = "" + openTime;
+            String closeString = "" + closeTime;
+            Log.v("closeString", closeString);
+            String openEnd = openString.substring(openString.length() - 2, openString.length());
+            String openBeg = openString.substring(0, openString.length() - 2);
+            String closeEnd = closeString.substring(closeString.length() - 2, closeString.length());
+            String closeBeg = closeString.substring(0, closeString.length() - 2);
+            String startOpenString = openBeg + ":" + openEnd;
+            String startCloseString = closeBeg + ":" + closeEnd;
+            hoursOpen = startOpenString + " - " + startCloseString;
+        }
+    }
+
 
     public void photoClick(View v){
         Intent i = new Intent(this, PictureSwiper.class);
