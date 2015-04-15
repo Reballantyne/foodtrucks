@@ -57,7 +57,6 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
 
                 // 4. Set the text for textView
         Log.v("RA1 Likes:", reviewItemsList.get(position).likes+"");
-
         Log.v("RA1", reviewItemsList.get(position).user_name);
         userNameView.setText(reviewItemsList.get(position).user_name);
         likesView.setText(reviewItemsList.get(position).likes+"");
@@ -87,8 +86,10 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
 
     private void helperLike(int pos){
         try {
+
             String revId = reviewItemsList.get(pos).reviewID;
             ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("ReviewLike");
+            Log.v("RAD1: review id", revId);
             query.whereEqualTo("review_id", revId);
             List<ParseObject> queryReview = query.find();
             boolean beenReview = false;
@@ -98,6 +99,7 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
                 }
             }
             if (!beenReview) {
+
                 ParseQuery<ParseObject> queryUserName = new ParseQuery<ParseObject>("User");
                 queryUserName.whereEqualTo("user_name", LoginActivity.userNameSession);
                 List<ParseObject> queryId = queryUserName.find();
@@ -110,9 +112,11 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
 
                 newReviewLike.put("user_name", LoginActivity.userNameSession);
                 newReviewLike.put("review_id", revId);
-                newReviewLike.put("createdAt", currentTime);
                 newReviewLike.put("user_id", userID);
                 newReviewLike.saveInBackground();
+
+
+
             }
         } catch(Exception e){
             e.printStackTrace();
@@ -127,7 +131,6 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
 
         Button dialogCancel= (Button) dialog.findViewById(R.id.cancel);
         Button dialogLogin = (Button) dialog.findViewById(R.id.SignIn);
-        Log.v("in review", "here2");
         dialogCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,6 +154,7 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
                                     String passwordMatch = (String) u.get("password");
                                     if (passwordMatch.equals(password)) {
                                         LoginActivity.userNameSession = userName;
+                                        dialog.dismiss();
                                         helperLike(position);
                                     } else {
                                         CharSequence text = "Incorrect Password/UserName";

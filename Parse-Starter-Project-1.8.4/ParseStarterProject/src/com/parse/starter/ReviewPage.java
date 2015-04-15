@@ -161,13 +161,8 @@ public class ReviewPage extends Activity {
                 String reviewId = r.getObjectId();
                 ParseQuery<ParseObject> queryLikes = new ParseQuery<ParseObject>("ReviewLike");
                 queryLikes.whereEqualTo("review_id", reviewId);
-                if (username == null){
-                    Log.v("AR2", "null");
-                }
-                //Log.v("AR2 username", username);
-                //Log.v("AR2 text", text);
-
                 int numLikes = queryLikes.find().size();
+                Log.v("AR3 totLikes", numLikes + "");
                 ReviewItem listItem = new ReviewItem(username, text, numLikes, reviewId);
                 items.add(listItem);
             }
@@ -175,7 +170,7 @@ public class ReviewPage extends Activity {
 
 
         }
-        return sorting(items);
+        return items;
     }
 
     private ArrayList<ReviewItem> sorting (ArrayList<ReviewItem> reviewItems){
