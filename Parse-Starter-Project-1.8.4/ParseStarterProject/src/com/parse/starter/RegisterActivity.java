@@ -27,6 +27,7 @@ public class RegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
     }
 
 
@@ -53,7 +54,8 @@ public class RegisterActivity extends Activity {
     }
 
 
-    public void createNewUser(View v) {
+    public void createNewUser1(View v) {
+        Log.v("RA0", "got here1");
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
         EditText fullNameET = (EditText) findViewById(R.id.reg_fullname);
         output[0] = fullNameET.getText().toString();
@@ -64,6 +66,7 @@ public class RegisterActivity extends Activity {
         EditText passwordET = (EditText) findViewById(R.id.reg_password);
         output[3] = passwordET.getText().toString();
         ParseObject user = new ParseObject("User");
+        Log.v("RA1", "got here1");
         user.put("first_name", output[0]);
         user.put("user_name", output[2]);
         user.put("password", output[3]);
@@ -74,6 +77,7 @@ public class RegisterActivity extends Activity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
         Intent i = new Intent(this, MainActivity.class);
+        Log.v("RA1", "got here2");
         startActivity(i);
         /*
         try {

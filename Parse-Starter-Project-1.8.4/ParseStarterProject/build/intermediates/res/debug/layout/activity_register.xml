@@ -96,7 +96,8 @@
                 android:layout_below="@+id/linearLayout2"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:onClick="createNewUser1"/>
 
 
             <!-- Register Button -->
@@ -107,4 +108,4 @@
 
         <!-- Registration Form Ends -->
     </RelativeLayout>
-</ScrollView><!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/activity_register.xml -->
+</ScrollView><!-- From: file:/Users/raginiraghavan/Documents/mostupdated/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/activity_register.xml -->

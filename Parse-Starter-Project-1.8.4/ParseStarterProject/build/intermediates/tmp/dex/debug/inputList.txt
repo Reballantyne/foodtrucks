@@ -1,9 +1,9 @@
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\classes\debug
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-6083eedf1d48d319f9054484a84d19fc4c987b72.jar
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\bolts-android-1.1.4-e5075be0a9f20b34356230f5680917abb19ed1d1.jar
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\ParseCrashReporting-1.8.4-4f1364e14e9eb83bc77e23af0109371c28294cab.jar
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-df3e81e890a0ea29eb732a9152d2179f653d1bb7.jar
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\classes-8d95954e40ff9e898f098848de411989583e46fb.jar
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\Parse-1.8.4-2853bda782b149c14026e6dcf865c5050d23a131.jar
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\classes-ffbe44ebaf927014cd2fe397ac187623fbc3096a.jar
-C:\Users\Rebecca_2\Documents\foodtrucks\Parse-Starter-Project-1.8.4\ParseStarterProject\build\intermediates\pre-dexed\debug\classes-28608c6288d369074b56e1cdef983dd019bac183.jar
+/Users/raginiraghavan/Documents/foodtrucks-master 2/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/classes/debug
+/Users/raginiraghavan/Documents/foodtrucks-master 2/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-4caedca55d03b48c028ea2220c12dc2eb84884ad.jar
+/Users/raginiraghavan/Documents/foodtrucks-master 2/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/bolts-android-1.1.4-8c5063a50fc70ecada7e6a81cd79ced408742ba6.jar
+/Users/raginiraghavan/Documents/foodtrucks-master 2/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/ParseCrashReporting-1.8.4-c0393633cd9207f3aec5bb2e8a1dea412469d875.jar
+/Users/raginiraghavan/Documents/foodtrucks-master 2/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-2c70eb46cab797d516ba5516d25e3cf5887cefc8.jar
+/Users/raginiraghavan/Documents/foodtrucks-master 2/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/classes-1940eab741650ef6598c2b9cd6e27f97f86180c1.jar
+/Users/raginiraghavan/Documents/foodtrucks-master 2/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/Parse-1.8.4-560cea8faaf9aa0a90a7e4e783271086352dcefe.jar
+/Users/raginiraghavan/Documents/foodtrucks-master 2/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/classes-0894ccbe31d30737023b6a73d42180dd2d76c296.jar
+/Users/raginiraghavan/Documents/foodtrucks-master 2/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/pre-dexed/debug/classes-498b487c2e99e358a95e9b58f6579aa255b345b4.jar

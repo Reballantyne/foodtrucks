@@ -40,7 +40,7 @@
                     android:text="Name of Food Truck"
                     android:id="@+id/name"
                     android:textColor="#ff030303"
-                    android:layout_marginTop="8dp" />
+                    android:layout_marginTop="10dp" />
 
             </LinearLayout>
 
@@ -72,8 +72,7 @@
                 android:layout_below="@+id/address"
                 android:layout_alignLeft="@+id/address"
                 android:layout_alignStart="@+id/address"
-                android:textColor="#ff000000"
-                android:layout_alignParentBottom="true" />
+                android:textColor="#ff000000" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,15 +96,6 @@
                 android:layout_toLeftOf="@+id/space2"
                 android:layout_toStartOf="@+id/space2"
                 android:layout_marginBottom="3dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/isHealthy"
-                android:layout_below="@+id/linearLayout"
-                android:layout_alignRight="@+id/oC"
-                android:layout_alignEnd="@+id/oC" />
 
         </RelativeLayout>
 
@@ -163,7 +153,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/PictureBox"
-                android:src="@drawable/veg1"
                 android:onClick="photoClick"
                 android:background="#ccb1b2a7"
                 android:layout_marginBottom="7dp"
@@ -175,8 +164,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/Reviews"
-            android:background="#ccb1b2a7">
+            android:id="@+id/Reviews">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -237,7 +225,7 @@
             android:src="@drawable/specials"
             android:background="@android:color/transparent"
             android:contentDescription="specialsButton"
-            android:onClick="goSpecials" />
+            android:onClick="goSpecial" />
 
         </LinearLayout>
 
