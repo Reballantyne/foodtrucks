@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,64 +52,66 @@ public class ReviewPage extends Activity {
                     startActivity(i);
                 }
                 Log.v("in review", "here");
-
-                final Dialog dialog = new Dialog(context);
-                dialog.setContentView(R.layout.dialog_login);
-                dialog.setTitle("Please log in");
-
-                Button dialogCancel= (Button) dialog.findViewById(R.id.cancel);
-                Button dialogLogin = (Button) dialog.findViewById(R.id.SignIn);
-                Log.v("in review", "here2");
-                dialogCancel.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                dialogLogin.setOnClickListener(new OnClickListener(){
-                    @Override
-                    public void onClick(View v) {
-                        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
-                        EditText passwordView = (EditText) dialog.findViewById(R.id.passwordDialog);
-                        final String password = passwordView.getText().toString();
-                        EditText userNameView = (EditText) dialog.findViewById(R.id.usernameDialog);
-                        final String userName = userNameView.getText().toString();
-                        try {
-                            query.whereEqualTo("user_name", userName);
-                            query.findInBackground(new FindCallback<ParseObject>() {
-                                public void done(List<ParseObject> users, ParseException e) {
-                                    if (e == null) {
-                                        for (ParseObject u : users) {
-                                            String passwordMatch = (String) u.get("password");
-                                            if (passwordMatch.equals(password)) {
-                                                LoginActivity.userNameSession = userName;
-                                                Intent i = new Intent(getApplicationContext(), AddReview.class);
-                                                startActivity(i);
-                                            } else {
-                                                CharSequence text = "Incorrect Password/UserName";
-                                                int duration = Toast.LENGTH_SHORT;
-
-                                                Toast toast = Toast.makeText(context, text, duration);
-                                                toast.show();
-                                            }
-
-                                        }
-                                    } else {
-                                        Log.d("score", "Error: " + e.getMessage());
-                                    }
-                                }
-                            });
-
-                        } catch (Exception e){
-
-                        }
-                    }
-                });
-
-                dialog.show();
-
+                helperDialogLogIn();
             }
         });
+    }
+
+    private void helperDialogLogIn(){
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_login);
+        dialog.setTitle("Please log in");
+
+        Button dialogCancel= (Button) dialog.findViewById(R.id.cancel);
+        Button dialogLogin = (Button) dialog.findViewById(R.id.SignIn);
+        Log.v("in review", "here2");
+        dialogCancel.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialogLogin.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
+                EditText passwordView = (EditText) dialog.findViewById(R.id.passwordDialog);
+                final String password = passwordView.getText().toString();
+                EditText userNameView = (EditText) dialog.findViewById(R.id.usernameDialog);
+                final String userName = userNameView.getText().toString();
+                try {
+                    query.whereEqualTo("user_name", userName);
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        public void done(List<ParseObject> users, ParseException e) {
+                            if (e == null) {
+                                for (ParseObject u : users) {
+                                    String passwordMatch = (String) u.get("password");
+                                    if (passwordMatch.equals(password)) {
+                                        LoginActivity.userNameSession = userName;
+                                        Intent i = new Intent(getApplicationContext(), AddReview.class);
+                                        startActivity(i);
+                                    } else {
+                                        CharSequence text = "Incorrect Password/UserName";
+                                        int duration = Toast.LENGTH_SHORT;
+
+                                        Toast toast = Toast.makeText(context, text, duration);
+                                        toast.show();
+                                    }
+
+                                }
+                            } else {
+                                Log.d("score", "Error: " + e.getMessage());
+                            }
+                        }
+                    });
+
+                } catch (Exception e){
+
+                }
+            }
+        });
+
+        dialog.show();
     }
 
 
@@ -140,28 +143,34 @@ public class ReviewPage extends Activity {
         queryFoodTruck.whereEqualTo("name", FoodTruckPage.foodTruckName);
         try {
             List<ParseObject> foodTrucks = queryFoodTruck.find();
-            String foodTruck = (String) foodTrucks.get(0).get("objectId");
+            //String foodTruck = (String) foodTrucks.get(0).get("objectId");
+           // String foodTruck = foodTrucks
+            String foodTruck = foodTrucks.get(0).getObjectId();
             ParseQuery<ParseObject> queryReview = new ParseQuery<ParseObject>("Review");
             queryReview.whereEqualTo("foodtruck_id", foodTruck);
             List<ParseObject> reviews = queryReview.find();
             int numReviews = reviews.size();
             TextView reviewNumber = (TextView)findViewById(R.id.numReviews);
             reviewNumber.setText(numReviews+" reviews");
+            Log.v("AR2", "hi");
             for(ParseObject r: reviews){
+                Log.v("AR2", "hiya");
                 String username = (String) r.get("user_name");
                 String text = (String) r.get("text");
-                String reviewId = (String) r.get("objectId");
+                //String reviewId = (String) r.get("objectId");
+                String reviewId = r.getObjectId();
                 ParseQuery<ParseObject> queryLikes = new ParseQuery<ParseObject>("ReviewLike");
                 queryLikes.whereEqualTo("review_id", reviewId);
                 int numLikes = queryLikes.find().size();
-                ReviewItem listItem = new ReviewItem(username, text, numLikes);
+                Log.v("AR3 totLikes", numLikes + "");
+                ReviewItem listItem = new ReviewItem(username, text, numLikes, reviewId);
                 items.add(listItem);
             }
         } catch (Exception e) {
 
 
         }
-        return sorting(items);
+        return items;
     }
 
     private ArrayList<ReviewItem> sorting (ArrayList<ReviewItem> reviewItems){
@@ -187,6 +196,7 @@ public class ReviewPage extends Activity {
         return reviewItems;
     }
 
+    /*
     public void likeReview (View v){
         if(LoginActivity.userNameSession == null){
             Context context = getApplicationContext();
@@ -203,12 +213,13 @@ public class ReviewPage extends Activity {
             queryFoodTruck.whereEqualTo("user_name", LoginActivity.userNameSession);
             try {
                 List<ParseObject> foodTrucks = queryFoodTruck.find();
-                String foodTruckID = (String) foodTrucks.get(0).get("objectId");
+                //String foodTruckID = (String) foodTrucks.get(0).get("objectId");
+                String foodTruckID = foodTrucks.get(0).getObjectId();
                 ParseQuery<ParseObject> queryUserName = new ParseQuery<ParseObject>("User");
                 queryFoodTruck.whereEqualTo("user_name", LoginActivity.userNameSession);
                 List<ParseObject> users = queryUserName.find();
-                String userID = (String) users.get(0).get("objectId");
-
+               // String userID = (String) users.get(0).get("objectId");
+                String userID =  users.get(0).getObjectId();
 
                 Intent i = new Intent(getApplicationContext(), ReviewPage.class);
                 startActivity(i);
@@ -218,7 +229,7 @@ public class ReviewPage extends Activity {
             }
         }
 
-    }
+    }*/
 
 
 }
