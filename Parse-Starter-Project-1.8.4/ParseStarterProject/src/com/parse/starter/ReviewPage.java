@@ -170,7 +170,7 @@ public class ReviewPage extends Activity {
 
 
         }
-        return items;
+        return sorting(items);
     }
 
     private ArrayList<ReviewItem> sorting (ArrayList<ReviewItem> reviewItems){
@@ -188,12 +188,11 @@ public class ReviewPage extends Activity {
                 }
             }
             if(swapIndex != i){
-                ReviewItem temp = reviewItems.get(swapIndex);
+                ReviewItem temp = reviewItems.get(i);
                 reviewItems.set(i, reviewItems.get(swapIndex));
                 reviewItems.set(swapIndex, temp);
             }
         }
-        return reviewItems;
     }
 
     /*
