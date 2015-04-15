@@ -193,6 +193,7 @@ public class ReviewPage extends Activity {
                 reviewItems.set(swapIndex, temp);
             }
         }
+        return reviewItems;
     }
 
     /*
