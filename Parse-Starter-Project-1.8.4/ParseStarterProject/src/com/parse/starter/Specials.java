@@ -47,7 +47,7 @@ public class Specials extends Activity {
 
     //Method: Nikila & Paarth
     public void goMap(View v) {
-        Intent i = new Intent(getApplicationContext(), MapTest.class);
+        Intent i = new Intent(getApplicationContext(), NearbyActivity.class);
         startActivity(i);
     }
 

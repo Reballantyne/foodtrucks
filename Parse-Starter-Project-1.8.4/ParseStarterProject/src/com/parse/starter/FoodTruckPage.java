@@ -14,12 +14,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -149,7 +146,7 @@ public class FoodTruckPage extends Activity {
 
     //Method: Nikila & Paarth
     public void goMap(View v) {
-        Intent i = new Intent(getApplicationContext(), MapTest.class);
+        Intent i = new Intent(getApplicationContext(), NearbyActivity.class);
         startActivity(i);
     }
 

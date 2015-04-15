@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import android.widget.RadioButton;
@@ -196,7 +196,7 @@ public class MainActivity extends Activity {
 
     //Method: Nikila & Paarth
     public void goMap(View v) {
-        Intent i = new Intent(getApplicationContext(), MapTest.class);
+        Intent i = new Intent(getApplicationContext(), NearbyActivity.class);
         startActivity(i);
     }
 

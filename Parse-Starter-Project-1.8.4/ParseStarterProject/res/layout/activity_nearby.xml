@@ -24,7 +24,7 @@
         android:layout_height="64dp"
         android:layout_row="3"
         android:layout_column="0"
-        android:background="#ff5a6b77">
+        android:background="#ff318e21">
 
         <ImageButton
             android:layout_width="0dp"
@@ -43,7 +43,7 @@
             android:layout_weight="0.25"
             android:background="@android:color/transparent"
             android:src="@drawable/map"
-            android:contentDescription="mapButton"/>
+            android:contentDescription="mapButton" />
 
         <ImageButton
             android:layout_width="0dp"
@@ -52,7 +52,8 @@
             android:layout_weight="0.25"
             android:src="@drawable/favorites"
             android:background="@android:color/transparent"
-            android:contentDescription="favoritesButton" />
+            android:contentDescription="favoritesButton"
+            android:onClick="goFavorite" />
 
         <ImageButton
             android:layout_width="0dp"
@@ -61,9 +62,10 @@
             android:layout_weight="0.25"
             android:src="@drawable/specials"
             android:background="@android:color/transparent"
-            android:contentDescription="specialsButton" />
+            android:contentDescription="specialsButton"
+            android:onClick="goSpecials" />
+
 
     </LinearLayout>
 
 </GridLayout>
-<!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/activity_map_test.xml -->

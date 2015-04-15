@@ -7,21 +7,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.parse.*;
 import android.util.*;
-
 import java.text.SimpleDateFormat;
 import java.util.*;
 import android.view.View;
-
 import android.location.*;
 
 
-
-public class MapTest extends Activity implements OnMapReadyCallback{
+public class NearbyActivity extends Activity implements OnMapReadyCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map_test);
+        setContentView(R.layout.activity_nearby);
 
        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
        mapFragment.getMapAsync(this);
@@ -52,12 +49,27 @@ public class MapTest extends Activity implements OnMapReadyCallback{
                                        .snippet("Open")
                                        .position(store)
                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                               MAP.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
+                                   public void onInfoWindowClick(Marker marker) {
+                                       Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
+                                       i.putExtra("TRUCK_NAME", marker.getTitle());
+                                       startActivity(i);
+                                   }
+                               });
+
                            } else {
                                MAP.addMarker(new MarkerOptions()
                                        .title(name)
                                        .snippet("Closed")
                                        .position(store)
                                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                               MAP.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
+                                   public void onInfoWindowClick(Marker marker) {
+                                       Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
+                                       i.putExtra("TRUCK_NAME", marker.getTitle());
+                                       startActivity(i);
+                                   }
+                               });
                            }
                         } else {
                            if (open) {
@@ -65,11 +77,25 @@ public class MapTest extends Activity implements OnMapReadyCallback{
                                        .title(name)
                                        .snippet("Open")
                                        .position(store));
+                               MAP.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
+                                   public void onInfoWindowClick(Marker marker) {
+                                       Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
+                                       i.putExtra("TRUCK_NAME", marker.getTitle());
+                                       startActivity(i);
+                                   }
+                               });
                            } else {
                                MAP.addMarker(new MarkerOptions()
                                        .title(name)
                                        .snippet("Closed")
                                        .position(store));
+                               MAP.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
+                                   public void onInfoWindowClick(Marker marker) {
+                                       Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
+                                       i.putExtra("TRUCK_NAME", marker.getTitle());
+                                       startActivity(i);
+                                   }
+                               });
                            }
                         }
                     }

@@ -31,7 +31,7 @@
         android:name="com.parse.starter.ParseApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name" >
+        android:label="FoodTrucks" >
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -55,11 +55,6 @@
         <activity
             android:name="com.parse.starter.MainActivity"
             android:label="@string/title_activity_main" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.parse.starter.FoodTruckPage"
@@ -70,6 +65,11 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/title_activity_login"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.parse.starter.RegisterActivity"
@@ -89,17 +89,12 @@
             android:label="@string/title_activity_picture_swiper" >
         </activity>
         <activity
-            android:name="com.parse.starter.MapTest"
-            android:label="@string/title_activity_map_test" >
+            android:name="com.parse.starter.NearbyActivity"
+            android:label="Nearby" >
         </activity>
         <activity
             android:name="com.parse.starter.ReviewPage"
             android:label="@string/title_activity_review_page" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.parse.starter.AddReview"
