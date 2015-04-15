@@ -96,7 +96,8 @@
                 android:layout_below="@+id/linearLayout2"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_gravity="right" />
+                android:layout_gravity="right"
+                android:onClick="createNewUser1"/>
 
 
             <!-- Register Button -->
