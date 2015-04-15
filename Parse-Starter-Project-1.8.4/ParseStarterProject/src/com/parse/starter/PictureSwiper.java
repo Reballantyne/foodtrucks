@@ -8,7 +8,6 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -29,6 +28,7 @@ public class PictureSwiper extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_swiper);
+
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         ImagePagerAdapter adapter = new ImagePagerAdapter();
         viewPager.setAdapter(adapter);
@@ -46,13 +46,11 @@ public class PictureSwiper extends Activity {
 
         private ArrayList<Bitmap> mImages = new ArrayList<Bitmap>();
         public ImagePagerAdapter() {
-
             try {
                 ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("FoodTruck");
                 queryFoodTruck.whereEqualTo("name", FoodTruckPage.foodTruckName);
                 List<ParseObject> foodTrucks = queryFoodTruck.find();
-                ParseObject foodTruckO = foodTrucks.get(0);
-                String foodTruckID = (String) foodTruckO.getObjectId();
+                String foodTruckID = (String) foodTrucks.get(0).get("objectId");
                 ParseQuery<ParseObject> queryPhotos = new ParseQuery<ParseObject>("Photo");
                 queryPhotos.whereEqualTo("foodtruck_id", foodTruckID);
                 List<ParseObject> dataPhotos = queryPhotos.find();
@@ -66,8 +64,6 @@ public class PictureSwiper extends Activity {
             } catch(Exception e){
                 e.printStackTrace();
             }
-
-
 
         }
 

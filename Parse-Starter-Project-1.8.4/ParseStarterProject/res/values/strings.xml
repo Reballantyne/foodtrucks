@@ -20,5 +20,6 @@
     <string name="title_activity_map_test">MapTest</string>
     <string name="title_activity_review_page">ReviewPage</string>
     <string name="title_activity_add_review">AddReview</string>
+    <string name="title_activity_specials">Specials</string>
 
 </resources>
