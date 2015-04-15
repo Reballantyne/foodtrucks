@@ -86,7 +86,7 @@ public class AddReview extends Activity {
             Log.v("AR1:", "got here8");
             newReview.put("foodtruck_id", foodTruckID);
             newReview.put("text", review);
-            newReview.put("createdAt", currentTime);
+            //newReview.put("createdAt", currentTime);
             Log.v("AR1:username", LoginActivity.userNameSession);
             newReview.put("user_name", LoginActivity.userNameSession);
             newReview.saveInBackground();

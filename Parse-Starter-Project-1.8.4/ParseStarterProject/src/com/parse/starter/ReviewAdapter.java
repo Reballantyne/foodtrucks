@@ -70,9 +70,9 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
                 try {
                     if (LoginActivity.userNameSession != null) {
                         helperLike(pos);
+                    } else {
+                        helperDialogLogIn(pos);
                     }
-                    Log.v("in review", "here");
-                    helperDialogLogIn(pos);
                 } catch (Exception e) {
 
                 }
@@ -114,9 +114,17 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
                 newReviewLike.put("review_id", revId);
                 newReviewLike.put("user_id", userID);
                 newReviewLike.saveInBackground();
+                reviewItemsList.get(pos).likes = reviewItemsList.get(pos).likes + 1;
+                notifyDataSetChanged();
 
 
+            } else {
+                Context context = getContext();
+                CharSequence text = "Already Liked!!";
+                int duration = Toast.LENGTH_SHORT;
 
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
         } catch(Exception e){
             e.printStackTrace();
