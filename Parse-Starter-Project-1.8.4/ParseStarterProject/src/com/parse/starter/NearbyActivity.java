@@ -2,29 +2,35 @@ package com.parse.starter;
 
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import com.parse.*;
+
 import android.util.*;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 import android.view.View;
 import android.location.*;
 
-
+// Creators: Paarth Taneja & Nikila Venkat
+// Implements "Nearby" tab. Displays map, adds markers corresponding to food truck locations.
 public class NearbyActivity extends Activity implements OnMapReadyCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby);
-
-       MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
-       mapFragment.getMapAsync(this);
+        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
     }
 
+    // Creates markers for food trucks & displays them on map.
     @Override
     public void onMapReady(GoogleMap map) {
         final GoogleMap MAP = map;
@@ -32,72 +38,42 @@ public class NearbyActivity extends Activity implements OnMapReadyCallback {
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> foodtrucks, ParseException e) {
                 if (e == null) {
-                    for (ParseObject food: foodtrucks) {
-                        ParseGeoPoint location = (ParseGeoPoint) food.get("location");
-                        String name = (String) food.get("name");
-                        Boolean healthy = (Boolean) food.get("hasHealthyOptions");
-                        ArrayList<Integer> opening_times = (ArrayList<Integer>)food.get("opening_times");
-                        ArrayList<Integer> closing_times = (ArrayList<Integer>)food.get("closing_times");
-                        Boolean open = isOpen(opening_times, closing_times);
 
-                        LatLng store = new LatLng(location.getLatitude(), location.getLongitude());
+                    // Iterate through all food trucks, extract info to be displayed on marker.
+                    for (ParseObject currentFoodTruck : foodtrucks) {
+                        ParseGeoPoint location = (ParseGeoPoint) currentFoodTruck.get("location");
+                        String name = (String) currentFoodTruck.get("name");
+                        Boolean isHealthy = (Boolean) currentFoodTruck.get("hasHealthyOptions");
+                        ArrayList<Integer> openingTimes =
+                                (ArrayList<Integer>) currentFoodTruck.get("opening_times");
+                        ArrayList<Integer> closingTimes =
+                                (ArrayList<Integer>) currentFoodTruck.get("closing_times");
+                        String openStatus = isOpen(openingTimes, closingTimes);
 
-                       if (healthy) {
-                           if (open) {
-                               MAP.addMarker(new MarkerOptions()
-                                       .title(name)
-                                       .snippet("Open")
-                                       .position(store)
-                                       .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-                               MAP.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
-                                   public void onInfoWindowClick(Marker marker) {
-                                       Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
-                                       i.putExtra("TRUCK_NAME", marker.getTitle());
-                                       startActivity(i);
-                                   }
-                               });
+                        LatLng foodTruckCoordinates = new LatLng(location.getLatitude(),
+                                location.getLongitude());
 
-                           } else {
-                               MAP.addMarker(new MarkerOptions()
-                                       .title(name)
-                                       .snippet("Closed")
-                                       .position(store)
-                                       .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-                               MAP.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
-                                   public void onInfoWindowClick(Marker marker) {
-                                       Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
-                                       i.putExtra("TRUCK_NAME", marker.getTitle());
-                                       startActivity(i);
-                                   }
-                               });
-                           }
+                        //This determines the marker color
+                        Float markerColor;
+                        if (isHealthy) {
+                            markerColor = BitmapDescriptorFactory.HUE_GREEN;
                         } else {
-                           if (open) {
-                               MAP.addMarker(new MarkerOptions()
-                                       .title(name)
-                                       .snippet("Open")
-                                       .position(store));
-                               MAP.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
-                                   public void onInfoWindowClick(Marker marker) {
-                                       Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
-                                       i.putExtra("TRUCK_NAME", marker.getTitle());
-                                       startActivity(i);
-                                   }
-                               });
-                           } else {
-                               MAP.addMarker(new MarkerOptions()
-                                       .title(name)
-                                       .snippet("Closed")
-                                       .position(store));
-                               MAP.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener(){
-                                   public void onInfoWindowClick(Marker marker) {
-                                       Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
-                                       i.putExtra("TRUCK_NAME", marker.getTitle());
-                                       startActivity(i);
-                                   }
-                               });
-                           }
+                            markerColor = BitmapDescriptorFactory.HUE_RED;
                         }
+
+                        // Add markers to map
+                        MAP.addMarker(new MarkerOptions()
+                                .title(name)
+                                .snippet(openStatus)
+                                .position(foodTruckCoordinates)
+                                .icon(BitmapDescriptorFactory.defaultMarker(markerColor)));
+                        MAP.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                            public void onInfoWindowClick(Marker marker) {
+                                Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
+                                i.putExtra("TRUCK_NAME", marker.getTitle());
+                                startActivity(i);
+                            }
+                        });
                     }
                 } else {
                     Log.d("score", "Error: " + e.getMessage());
@@ -106,40 +82,49 @@ public class NearbyActivity extends Activity implements OnMapReadyCallback {
         });
 
 
+        // Zoom map to user location.
         map.setMyLocationEnabled(true);
+        LatLng userLocation = findUserLocation();
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 13));
 
+    }
+
+    // Finds the user's current latitude and longitude.
+    public LatLng findUserLocation() {
         LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         String provider = service.getBestProvider(criteria, false);
         Location location = service.getLastKnownLocation(provider);
         LatLng userLocation;
         if (location == null) {
+            //This is used as a default because sometimes Genymotion does not have a location stored
             userLocation = new LatLng(39.950948, -75.195417);
         } else {
-            userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+            userLocation = new LatLng(location.getLatitude(), location.getLongitude());
         }
-
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 13));
-
+        return userLocation;
     }
 
-    public void goSearch(View v){
+
+    // TO BE MOVED LATER.
+    public void goSearch(View v) {
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
     }
 
-    public boolean isOpen(ArrayList<Integer> open, ArrayList<Integer> close) {
-        Calendar current = Calendar.getInstance();
-        int dayOfWeek = current.get(Calendar.DAY_OF_WEEK)-1;
+    // Checks if a food truck is currently open. Returns the string "Open" or "Closed"
+    public String isOpen(ArrayList<Integer> open, ArrayList<Integer> close) {
+        Calendar currentCalendar = Calendar.getInstance();
+        int dayOfWeek = currentCalendar.get(Calendar.DAY_OF_WEEK) - 1;
         SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
-        String currentTime = sdf.format(current.getTime());
+        String currentTime = sdf.format(currentCalendar.getTime());
         int militaryTime = Integer.parseInt(currentTime);
         int openTime = open.get(dayOfWeek);
         int closeTime = close.get(dayOfWeek);
-        if(openTime == -1 || militaryTime < openTime || militaryTime > closeTime) {
-            return false;
+        if (openTime == -1 || militaryTime < openTime || militaryTime > closeTime) {
+            return "Closed";
         } else {
-            return true;
+            return "Open";
         }
     }
 

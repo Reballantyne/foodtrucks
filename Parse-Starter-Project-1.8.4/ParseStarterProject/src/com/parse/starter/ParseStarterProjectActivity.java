@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.parse.ParseAnalytics;
 
+// THIS IS ALL SAMPLE CODE. NOT ACTUALLY USED IN PROJECT.
+
+
 public class ParseStarterProjectActivity extends Activity {
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
