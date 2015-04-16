@@ -23,31 +23,34 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class that creates the Picture Swiping View
+ * @author Srinidhi Raghavan
+ */
+
+
 public class PictureSwiper extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picture_swiper);
+        //Custom View
         ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         ImagePagerAdapter adapter = new ImagePagerAdapter();
+        //Sets the custom View
         viewPager.setAdapter(adapter);
     }
 
+
+    //Custom PageAdapter to swipe photos and switch screens
     private class ImagePagerAdapter extends PagerAdapter {
 
-        /*
-        private int[] mImages = new int[] {
-                R.drawable.veg1,
-                R.drawable.veg2,
-                R.drawable.veg3
-        };
-        */
-
+        //Array of Images from parse
         private ArrayList<Bitmap> mImages = new ArrayList<Bitmap>();
         public ImagePagerAdapter() {
-
             try {
+                //gets needed objects from parse
                 ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("FoodTruck");
                 queryFoodTruck.whereEqualTo("name", FoodTruckPage.foodTruckName);
                 List<ParseObject> foodTrucks = queryFoodTruck.find();
@@ -56,6 +59,7 @@ public class PictureSwiper extends Activity {
                 ParseQuery<ParseObject> queryPhotos = new ParseQuery<ParseObject>("Photo");
                 queryPhotos.whereEqualTo("foodtruck_id", foodTruckID);
                 List<ParseObject> dataPhotos = queryPhotos.find();
+                //gets photos from parse and decodes them
                 for (ParseObject photoObject : dataPhotos){
                     ParseFile photo = (ParseFile) photoObject.get("photo_file");
                     byte[] file  = photo.getData();
@@ -71,30 +75,33 @@ public class PictureSwiper extends Activity {
 
         }
 
+        //gets the count
         @Override
         public int getCount() {
             return mImages.size();
         }
 
+        //gets current object
         @Override
         public boolean isViewFromObject(View view, Object object) {
             return view == ((ImageView) object);
         }
 
         @Override
+        //gets the image
         public Object instantiateItem(ViewGroup container, int position) {
             Context context = PictureSwiper.this;
             ImageView imageView = new ImageView(context);
+            //Adds padding
             int padding = context.getResources().getDimensionPixelSize(
                     R.dimen.activity_vertical_margin);
             imageView.setPadding(padding, padding, padding, padding);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             imageView.setImageBitmap(mImages.get(position));
-            //imageView.setImageResource(mImages.get(position));
             ((ViewPager) container).addView(imageView, 0);
             return imageView;
         }
 
+        //removes certain object
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             ((ViewPager) container).removeView((ImageView) object);

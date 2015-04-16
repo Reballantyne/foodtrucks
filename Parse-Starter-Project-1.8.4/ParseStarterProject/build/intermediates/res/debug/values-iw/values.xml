@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- From: file:/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.0.0/res/values-iw/values.xml -->
+    <!-- From: file:/Users/raginiraghavan/Documents/cis350New/project1/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.0.0/res/values-iw/values.xml -->
     <eat-comment/>
     <string name="com_facebook_image_download_unknown_error">שגיאה בעת הורדת תמונה</string>
     <string name="com_facebook_internet_permission_error_message">ההתחברות לתצוגת אתר דורשת אישור אינטרנט</string>
@@ -12,7 +12,7 @@
     <string name="com_facebook_loginview_log_out_button">התנתק</string>
     <string name="com_facebook_loginview_logged_in_as">מחובר בשם: %1$s</string>
     <string name="com_facebook_loginview_logged_in_using_facebook">מחובר באמצעות פייסבוק</string>
-    <!-- From: file:/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values-iw/common_strings.xml -->
+    <!-- From: file:/Users/raginiraghavan/Documents/cis350New/project1/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values-iw/common_strings.xml -->
     <eat-comment/>
     <string msgid="473679118463211576" name="common_android_wear_notification_needs_update_text">"‏אפליקציה מסוימת דורשת עדכון לאפליקציה Android Wear."</string>
     <string msgid="3046420540094071256" name="common_android_wear_update_text">"‏אפליקציה זו לא תפעל עד שתעדכן את האפליקציה Android Wear."</string>

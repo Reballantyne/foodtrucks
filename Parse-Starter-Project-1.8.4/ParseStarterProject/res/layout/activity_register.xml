@@ -17,7 +17,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Register"
+                android:text="@string/registerUser"
                 android:id="@+id/headerText"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="#ff318e21"
@@ -43,7 +43,7 @@
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#372c24"
-                android:text="Full Name"/>
+                android:text="@string/fullName"/>
             <EditText android:id="@+id/reg_fullname"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

@@ -22,17 +22,27 @@ import com.parse.ParseQuery;
 import java.util.List;
 
 
+/**
+ * First Screen when opening the app
+ * Creates Login Functionality
+ * @author  Srinidhi Raghavan
+ */
+
 public class LoginActivity extends Activity {
 
-    String password = "";
+    //The username used across the entire application
     static String userNameSession = null;
 
+    //The first function called in the Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //adds the facebook button
         FacebookSdk.sdkInitialize(getApplicationContext());
+        //sets the context
         setContentView(R.layout.activity_login);
         TextView registerScreen = (TextView) findViewById(R.id.link_to_register);
+        //onclick listener for the register text field
         registerScreen.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -42,6 +52,7 @@ public class LoginActivity extends Activity {
             }
         });
         TextView mainScreen = (TextView) findViewById(R.id.Without_Password);
+        //onclick listener for the "continue without registering" text field
         mainScreen.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -75,29 +86,34 @@ public class LoginActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void createNewUser(View v){
+
+    //Checks if login username and password is correct and does appropriate action
+    public void loginUser(View v){
+        //Selects the User field and all necessary values
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
         EditText passwordView = (EditText) findViewById(R.id.passwordField);
-        password = passwordView.getText().toString();
+        final String password = passwordView.getText().toString();
         EditText userNameView = (EditText) findViewById(R.id.UserNameTF);
         final String userName = userNameView.getText().toString();
         try {
-            //query.whereEqualTo("login", "rebecca");
+            //finds user associated value
             query.whereEqualTo("user_name", userName);
             query.findInBackground(new FindCallback<ParseObject>() {
                 public void done(List<ParseObject> users, ParseException e) {
                     if (e == null) {
                         for (ParseObject u : users) {
                             String passwordMatch = (String) u.get("password");
+                            //if user credentials match
                             if (passwordMatch.equals(password)) {
+                                //set the userName and go to Main screen
                                 userNameSession = userName;
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
                             } else {
+                                //display toast if incorrect
                                 Context context = getApplicationContext();
                                 CharSequence text = "Incorrect Password/UserName";
                                 int duration = Toast.LENGTH_SHORT;
-
                                 Toast toast = Toast.makeText(context, text, duration);
                                 toast.show();
                             }

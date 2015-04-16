@@ -21,5 +21,12 @@
     <string name="title_activity_review_page">ReviewPage</string>
     <string name="title_activity_add_review">AddReview</string>
     <string name="title_activity_specials">Specials</string>
+    <string name="Welcome">Welcome</string>
+    <string name="Email">Email</string>
+    <string name="withoutRegistration">Continue without registration</string>
+    <string name="registerFT">New to Food Trucks? Register here</string>
+    <string name="LoginUser">Login</string>
+    <string name="registerUser">Register</string>
+    <string name="fullName">Full Name</string>
 
 </resources>

@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Welcome"
+                android:text="@string/Welcome"
                 android:id="@+id/headerText"
                 android:gravity="center_vertical|center_horizontal"
                 android:background="#ff318e21"
@@ -45,7 +45,7 @@
             <TextView android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#372c24"
-                android:text="Email"/>
+                android:text="@string/Email"/>
             <EditText android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dip"
@@ -68,8 +68,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
-                android:onClick="createNewUser"
-                android:text="Login"/>
+                android:onClick="loginUser"
+                android:text="@string/LoginUser"/>
             <!-- Link to Registration Screen -->
 
 
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dip"
                 android:layout_marginBottom="20dip"
-                android:text="New to Food Trucks? Register here"
+                android:text="@string/registerFT"
                 android:gravity="center"
                 android:textSize="20dip"
                 android:textColor="#0b84aa"/>
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
                 android:layout_marginBottom="40dip"
-                android:text="Continue without registration"
+                android:text="@string/withoutRegistration"
                 android:gravity="center"
                 android:textSize="20dip"
                 android:textColor="#0b84aa"/>

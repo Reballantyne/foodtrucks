@@ -20,6 +20,12 @@ import com.parse.ParseQuery;
 import java.util.List;
 
 
+/**
+ * The registration screen for creating a new user
+ * @Srinidhi Raghavan
+ */
+
+
 public class RegisterActivity extends Activity {
     String[] output = new String [4];
 
@@ -54,8 +60,9 @@ public class RegisterActivity extends Activity {
     }
 
 
+    //Creates a new User
     public void createNewUser1(View v) {
-        Log.v("RA0", "got here1");
+        //Get necessary information to update database
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
         EditText fullNameET = (EditText) findViewById(R.id.reg_fullname);
         output[0] = fullNameET.getText().toString();
@@ -66,53 +73,14 @@ public class RegisterActivity extends Activity {
         EditText passwordET = (EditText) findViewById(R.id.reg_password);
         output[3] = passwordET.getText().toString();
         ParseObject user = new ParseObject("User");
-        Log.v("RA1", "got here1");
+        //Add nesscesary values for the database
         user.put("first_name", output[0]);
         user.put("user_name", output[2]);
         user.put("password", output[3]);
         user.saveInBackground();
         Context context = getApplicationContext();
-        CharSequence text = "Thanks for registering!";
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+        HelperFunctions.displayToast(context, "Thanks for registering");
         Intent i = new Intent(this, MainActivity.class);
-        Log.v("RA1", "got here2");
         startActivity(i);
-        /*
-        try {
-            //query.whereEqualTo("login", "rebecca");
-            query.whereEqualTo("login", userName);
-            query.findInBackground(new FindCallback<ParseObject>() {
-                public void done(List<ParseObject> users, ParseException e) {
-                    if (e == null) {
-                        for (ParseObject u : users) {
-                            String passwordMatch = (String) u.get("password");
-                            if (passwordMatch.equals(password)) {
-                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(i);
-                            } else {
-                                Context context = getApplicationContext();
-                                CharSequence text = "Incorrect Password/UserName";
-                                int duration = Toast.LENGTH_SHORT;
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
-                            }
-
-                        }
-                    } else {
-                        Log.d("score", "Error: " + e.getMessage());
-                    }
-                }
-            });
-
-        } catch (Exception e){
-
-        }
-        */
     }
-
-
-
-
 }

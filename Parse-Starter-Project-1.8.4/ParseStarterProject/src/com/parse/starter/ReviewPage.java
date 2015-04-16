@@ -25,6 +25,7 @@ import com.parse.ParseQuery;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -193,43 +194,11 @@ public class ReviewPage extends Activity {
                 reviewItems.set(swapIndex, temp);
             }
         }
+        Collections.reverse(reviewItems);
         return reviewItems;
     }
 
-    /*
-    public void likeReview (View v){
-        if(LoginActivity.userNameSession == null){
-            Context context = getApplicationContext();
-            CharSequence text = "Please log in";
-            int duration = Toast.LENGTH_SHORT;
 
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        }
-        else{
-            String userName = LoginActivity.userNameSession;
-
-            ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("Review");
-            queryFoodTruck.whereEqualTo("user_name", LoginActivity.userNameSession);
-            try {
-                List<ParseObject> foodTrucks = queryFoodTruck.find();
-                //String foodTruckID = (String) foodTrucks.get(0).get("objectId");
-                String foodTruckID = foodTrucks.get(0).getObjectId();
-                ParseQuery<ParseObject> queryUserName = new ParseQuery<ParseObject>("User");
-                queryFoodTruck.whereEqualTo("user_name", LoginActivity.userNameSession);
-                List<ParseObject> users = queryUserName.find();
-               // String userID = (String) users.get(0).get("objectId");
-                String userID =  users.get(0).getObjectId();
-
-                Intent i = new Intent(getApplicationContext(), ReviewPage.class);
-                startActivity(i);
-            } catch (Exception e) {
-
-
-            }
-        }
-
-    }*/
 
 
 }
