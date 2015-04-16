@@ -274,7 +274,7 @@ public class FoodTruckActivity extends Activity {
         startActivity(i);
     }
 
-    //Method: Nikila & Paarth. Redirects to the Nearby page. 
+    //Method: Nikila & Paarth. Redirects to the Nearby page.
     public void goMap(View v) {
         Intent i = new Intent(getApplicationContext(), NearbyActivity.class);
         startActivity(i);
