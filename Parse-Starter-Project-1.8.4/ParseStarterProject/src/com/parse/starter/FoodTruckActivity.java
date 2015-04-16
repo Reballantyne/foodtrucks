@@ -30,15 +30,15 @@ import java.util.ArrayList;
  * Created by Rebecca_2 on 3/29/2015.
  */
 public class FoodTruckActivity extends Activity {
-    private List<ParseObject> foodTrucks;
-    static String foodTruckName;
-    private static String telNumber;
-    private static String website;
-    private static String hoursOpen;
-    private static String openClosed;
-    private static String address;
-    private static String mainGenre;
-    private static boolean hasHealthy;
+    private List<ParseObject> foodTrucks; //list of all food trucks
+    static String foodTruckName; //name of food truck to load page with
+    private static String telNumber; //telephone number of truck
+    private static String website; //website of truck
+    private static String hoursOpen; //hours the truck is open
+    private static String openClosed; //whether or  not the truck is open now
+    private static String address; //address of the truck
+    private static String mainGenre; //genre of the truck
+    private static boolean hasHealthy; //whether or not the truck has healthy options
 
 
     //Method: Rebecca
@@ -67,9 +67,7 @@ public class FoodTruckActivity extends Activity {
                 startActivity(i);
             }
         });
-
     }
-
 
     private Bitmap getFirstPicture() {
 
@@ -120,11 +118,11 @@ public class FoodTruckActivity extends Activity {
         }
     }
 
-    //Method: Rebecca. This class retrieves all relevant food truck information from the database
+    //Class: Rebecca. This class retrieves all relevant food truck information from the database
     //and populates the FoodTruckPage with that information.
     private class GetFoodTruckInfo extends AsyncTask<Void, Void, Void> {
 
-        //Rebecca: This method retrieves the relevant ParseObject for the FoodTruck specified
+        //This method retrieves the relevant ParseObject for the FoodTruck specified
         //as part of the savedInstanceState Bundle
         protected Void doInBackground(Void... params) {
             //Get the current list of foodtrucks from parse
@@ -262,19 +260,19 @@ public class FoodTruckActivity extends Activity {
         startActivity(intent);
     }
 
-    //Method: Rebecca. Redirects to the Search page.
+    //Method: Rebecca. Main Menu botton. Redirects to the Search page.
     public void goSearch(View v) {
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
     }
 
-    //Method: Rebecca. Redirects to the Specials page.
+    //Method: Rebecca. Main Menu button. Forwards to the Specials page.
     public void goSpecials(View v) {
         Intent i = new Intent(getApplicationContext(), SpecialsActivity.class);
         startActivity(i);
     }
 
-    //Method: Nikila & Paarth. Redirects to the Nearby page.
+    //Method: Nikila & Paarth : Main Menu button. Forwards to the Map Page.
     public void goMap(View v) {
         Intent i = new Intent(getApplicationContext(), NearbyActivity.class);
         startActivity(i);
