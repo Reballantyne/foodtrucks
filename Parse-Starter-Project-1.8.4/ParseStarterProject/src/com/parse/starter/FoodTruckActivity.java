@@ -31,7 +31,7 @@ import java.util.ArrayList;
  */
 public class FoodTruckActivity extends Activity {
     private List<ParseObject> foodTrucks;
-    private static String foodTruckName;
+    static String foodTruckName;
     private static String telNumber;
     private static String website;
     private static String hoursOpen;

@@ -57,7 +57,7 @@
             android:label="@string/title_activity_main" >
         </activity>
         <activity
-            android:name="com.parse.starter.FoodTruckPage"
+            android:name="com.parse.starter.FoodTruckActivity"
             android:label="FoodTruckPage" >
         </activity>
         <activity
@@ -101,7 +101,7 @@
             android:label="@string/title_activity_add_review" >
         </activity>
         <activity
-            android:name="com.parse.starter.Specials"
+            android:name="com.parse.starter.SpecialsActivity"
             android:label="@string/title_activity_specials" >
         </activity>
     </application>

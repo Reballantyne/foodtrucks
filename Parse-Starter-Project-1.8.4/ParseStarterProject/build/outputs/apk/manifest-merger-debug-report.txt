@@ -122,7 +122,7 @@ ADDED from AndroidManifest.xml:55:9
 		ADDED from AndroidManifest.xml:57:13
 	android:name
 		ADDED from AndroidManifest.xml:56:13
-activity#com.parse.starter.FoodTruckPage
+activity#com.parse.starter.FoodTruckActivity
 ADDED from AndroidManifest.xml:60:9
 	android:label
 		ADDED from AndroidManifest.xml:62:13
@@ -194,7 +194,7 @@ ADDED from AndroidManifest.xml:101:9
 		ADDED from AndroidManifest.xml:103:13
 	android:name
 		ADDED from AndroidManifest.xml:102:13
-activity#com.parse.starter.Specials
+activity#com.parse.starter.SpecialsActivity
 ADDED from AndroidManifest.xml:105:9
 	android:label
 		ADDED from AndroidManifest.xml:107:13
