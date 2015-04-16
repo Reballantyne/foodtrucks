@@ -9,7 +9,7 @@ public class SpecialsItem {
     String endDate;
     String truckName;
 
-    public SpecialsItem(String title, String desc, String endDate, String truckName){
+    public SpecialsItem(String title, String desc, String endDate, String truckName) {
         this.title = title;
         this.desc = desc;
         this.endDate = endDate;

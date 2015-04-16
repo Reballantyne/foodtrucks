@@ -2,15 +2,11 @@ package com.parse.starter;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -19,6 +15,7 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+
 import android.widget.RadioButton;
 
 import com.parse.ParseException;
@@ -30,28 +27,33 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends Activity {
-    private List<ParseObject> foodTrucks;
+    private List<ParseObject> foodTrucks; //all parse data for all foodTrucks
     private int sorted = -1;
-    private int latitude;
-    private int longitude;
+    //private int latitude;
+    // private int longitude;
 
     @TargetApi(11)
     @Override
-    //Method: Rebecca
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Sets query hint for search bar at top of activity
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setQueryHint("Search for a truck.");
+
+        //starts thread that populates the listView with data
         new RemoteDataTask().execute();
+
+        //gets extra bundles from filtering activity to perform filtering on search results
         Bundle extraBundles = getIntent().getExtras();
-        if(extraBundles != null) {
+        if (extraBundles != null) {
             sorted = extraBundles.getInt("filter");
-            Log.v("bundles","x" + sorted);
+            Log.v("bundles", "x" + sorted);
             RadioButton selected = (RadioButton) findViewById(sorted);
         }
-        //handle creating the onClickListener for the arrayList
-        arrayListOnClick();
+        //Redirects a user to the relevant food truck's page
+        redirectFoodTruckPage();
 
         /*
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -69,78 +71,53 @@ public class MainActivity extends Activity {
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);*/
     }
 
-    private void arrayListOnClick(){
+    //Method: Rebecca. Redirects a user to the food truck page who's name they clicked on.
+    private void redirectFoodTruckPage() {
         ListView foodList = (ListView) findViewById(R.id.listView);
 
+        //listener for items in the ListView
         foodList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String truckName = ((TextView) view).getText().toString();
-                Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
+                Intent i = new Intent(getApplicationContext(), FoodTruckActivity.class);
+                //extra information added so the FoodTruckPage can populate with correct data
                 i.putExtra("TRUCK_NAME", truckName);
                 startActivity(i);
             }
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    //Method: Rebecca
-    //displays the on screen keyboard when a user clicks on the searchView
-    public void searchClick(View v){
-        SearchView search = (SearchView) findViewById(R.id.searchView);
-        search.requestFocus();
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.showSoftInput(search, InputMethodManager.SHOW_IMPLICIT);
-    }
-
-    //Method: Rebecca
+    //This class pulls all the relevant information about each food truck name from the database
+    //and, if the user has chosen to filter, only displays relevant options.
     private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
+
+        //Method: Shilpa
         protected Void doInBackground(Void... params) {
             //Get the current list of foodtrucks
-            ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("FoodTruck");
-            if(sorted == -1) {
+            ParseQuery<ParseObject> query = new ParseQuery<>("FoodTruck");
+            if (sorted == -1) {
                 query.orderByDescending("name");
                 try {
                     foodTrucks = query.find();
                 } catch (ParseException e) {
                 }
-            } else if(sorted == R.id.radio_distance){
+            } else if (sorted == R.id.radio_distance) {
                 query.orderByDescending("location");
                 try {
                     foodTrucks = query.find();
                 } catch (ParseException e) {
                 }
 
-            } else if (sorted == R.id.radio_food){
+            } else if (sorted == R.id.radio_food) {
                 query.orderByDescending("categories");
                 try {
                     foodTrucks = query.find();
                 } catch (ParseException e) {
                 }
-            } else if (sorted == R.id.radio_open){
+            } else if (sorted == R.id.radio_open) {
                 Calendar current = Calendar.getInstance();
-                int dayOfWeek = current.get(Calendar.DAY_OF_WEEK)-1;
+                int dayOfWeek = current.get(Calendar.DAY_OF_WEEK) - 1;
                 SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
                 String currentTime = sdf.format(current.getTime());
                 int militaryTime = Integer.parseInt(currentTime);
@@ -148,17 +125,17 @@ public class MainActivity extends Activity {
                 try {
                     foodTrucks = query.find();
                     List<ParseObject> foodTrucksCopy = query.find();
-                    for(ParseObject f: foodTrucksCopy){
-                        ArrayList<Integer> open = (ArrayList<Integer>)f.get("opening_times");
-                        ArrayList<Integer> close = (ArrayList<Integer>)f.get("closing_times");
+                    for (ParseObject f : foodTrucksCopy) {
+                        ArrayList<Integer> open = (ArrayList<Integer>) f.get("opening_times");
+                        ArrayList<Integer> close = (ArrayList<Integer>) f.get("closing_times");
                         int openTime = open.get(dayOfWeek);
                         int closeTime = close.get(dayOfWeek);
-                        if(openTime == -1 || militaryTime < openTime || militaryTime > closeTime)
+                        if (openTime == -1 || militaryTime < openTime || militaryTime > closeTime)
                             foodTrucks.remove(f);
                     }
                 } catch (ParseException e) {
                 }
-            } else if (sorted == R.id.radio_healthy){
+            } else if (sorted == R.id.radio_healthy) {
                 query.whereEqualTo("hasHealthyOptions", true);
                 try {
                     foodTrucks = query.find();
@@ -168,33 +145,37 @@ public class MainActivity extends Activity {
             return null;
         }
 
+        //Method: Rebecca: This method populates the ListView with the names of each FoodTruck
         @Override
         protected void onPostExecute(Void result) {
-            //Put the list of todos into the list viewer
             ListView foodList = (ListView) findViewById(R.id.listView);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1);
+            //creates an ArrayAdapter to populate the list
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
+                    android.R.layout.simple_list_item_1);
             if (foodTrucks != null) {
                 for (ParseObject truck : foodTrucks) {
+                    //add to the adapter each truck's name
                     adapter.add((String) truck.get("name"));
                 }
             }
+            //set the ListView's adapter to the recently populated adapter
             foodList.setAdapter(adapter);
         }
     }
 
-    public void onFilterClicked(View view){
-            Intent i = new Intent(this, FilterActivity.class);
-            startActivity(i);
+    public void onFilterClicked(View view) {
+        Intent i = new Intent(this, FilterActivity.class);
+        startActivity(i);
         new RemoteDataTask().execute();
     }
 
-    //Method: Rebecca
-    public void goSpecials(View v){
-        Intent i = new Intent(getApplicationContext(), Specials.class);
+    //Menu bar button click: redirects to the specials page
+    public void goSpecials(View v) {
+        Intent i = new Intent(getApplicationContext(), SpecialsActivity.class);
         startActivity(i);
     }
 
-    //Method: Nikila & Paarth
+    //Menu bar button click: redirects to the map page
     public void goMap(View v) {
         Intent i = new Intent(getApplicationContext(), NearbyActivity.class);
         startActivity(i);

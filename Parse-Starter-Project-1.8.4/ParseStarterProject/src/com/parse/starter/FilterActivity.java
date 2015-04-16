@@ -39,10 +39,10 @@ public class FilterActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onFilterClicked(View view){
+    public void onFilterClicked(View view) {
         RadioGroup buttonID = (RadioGroup) findViewById(R.id.radio_group);
         int checked = buttonID.getCheckedRadioButtonId();
-        if(checked > -1) {
+        if (checked > -1) {
             Intent i = new Intent(this, MainActivity.class);
             i.putExtra("filter", checked);
             startActivity(i);

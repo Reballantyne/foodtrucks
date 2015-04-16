@@ -10,13 +10,12 @@ public class ReviewItem {
     public String reviewID;
 
 
-    public ReviewItem(String user_name, String review, int likes, String reviewId){
+    public ReviewItem(String user_name, String review, int likes, String reviewId) {
         this.user_name = user_name;
         this.review = review;
         this.likes = likes;
         this.reviewID = reviewId;
     }
-
 
 
 }

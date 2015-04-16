@@ -32,15 +32,16 @@ import java.util.List;
 public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
 
     private final Context context;
-    private  final ArrayList<ReviewItem> reviewItemsList;
-    public ReviewAdapter(Context context, ArrayList<ReviewItem> reviewItemList){
+    private final ArrayList<ReviewItem> reviewItemsList;
+
+    public ReviewAdapter(Context context, ArrayList<ReviewItem> reviewItemList) {
         super(context, R.layout.review_row, reviewItemList);
         this.context = context;
         this.reviewItemsList = reviewItemList;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
         // 1. Create inflater
         final int pos = position;
         LayoutInflater inflater = (LayoutInflater) context
@@ -55,11 +56,11 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
         TextView review = (TextView) rowView.findViewById(R.id.reviews);
         TextView reviewID = (TextView) rowView.findViewById(R.id.reviewID);
 
-                // 4. Set the text for textView
-        Log.v("RA1 Likes:", reviewItemsList.get(position).likes+"");
+        // 4. Set the text for textView
+        Log.v("RA1 Likes:", reviewItemsList.get(position).likes + "");
         Log.v("RA1", reviewItemsList.get(position).user_name);
         userNameView.setText(reviewItemsList.get(position).user_name);
-        likesView.setText(reviewItemsList.get(position).likes+"");
+        likesView.setText(reviewItemsList.get(position).likes + "");
         review.setText(reviewItemsList.get(position).review);
         reviewID.setText(reviewItemsList.get(position).reviewID);
 
@@ -84,7 +85,7 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
         return rowView;
     }
 
-    private void helperLike(int pos){
+    private void helperLike(int pos) {
         try {
 
             String revId = reviewItemsList.get(pos).reviewID;
@@ -126,18 +127,18 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void helperDialogLogIn(int pos){
+    private void helperDialogLogIn(int pos) {
         final int position = pos;
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_login);
         dialog.setTitle("Please log in");
 
-        Button dialogCancel= (Button) dialog.findViewById(R.id.cancel);
+        Button dialogCancel = (Button) dialog.findViewById(R.id.cancel);
         Button dialogLogin = (Button) dialog.findViewById(R.id.SignIn);
         dialogCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +146,7 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
                 dialog.dismiss();
             }
         });
-        dialogLogin.setOnClickListener(new View.OnClickListener(){
+        dialogLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
@@ -179,7 +180,7 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
                         }
                     });
 
-                } catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }

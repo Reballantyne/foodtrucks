@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,11 +21,8 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 
@@ -39,8 +35,8 @@ public class ReviewPage extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_page);
         ReviewAdapter adapter = new ReviewAdapter(this, generateData());
-        TextView foodTruck = (TextView)findViewById(R.id.foodTruck);
-        foodTruck.setText(FoodTruckPage.foodTruckName);
+        TextView foodTruck = (TextView) findViewById(R.id.foodTruck);
+        foodTruck.setText(FoodTruckActivity.foodTruckName);
         ListView listView = (ListView) findViewById(R.id.listReview);
         listView.setAdapter(adapter);
         context = this;
@@ -48,7 +44,7 @@ public class ReviewPage extends Activity {
         buttonCreateReview.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(LoginActivity.userNameSession != null) {
+                if (LoginActivity.userNameSession != null) {
                     Intent i = new Intent(context, AddReview.class);
                     startActivity(i);
                 }
@@ -58,12 +54,12 @@ public class ReviewPage extends Activity {
         });
     }
 
-    private void helperDialogLogIn(){
+    private void helperDialogLogIn() {
         final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_login);
         dialog.setTitle("Please log in");
 
-        Button dialogCancel= (Button) dialog.findViewById(R.id.cancel);
+        Button dialogCancel = (Button) dialog.findViewById(R.id.cancel);
         Button dialogLogin = (Button) dialog.findViewById(R.id.SignIn);
         Log.v("in review", "here2");
         dialogCancel.setOnClickListener(new OnClickListener() {
@@ -72,7 +68,7 @@ public class ReviewPage extends Activity {
                 dialog.dismiss();
             }
         });
-        dialogLogin.setOnClickListener(new OnClickListener(){
+        dialogLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
@@ -106,7 +102,7 @@ public class ReviewPage extends Activity {
                         }
                     });
 
-                } catch (Exception e){
+                } catch (Exception e) {
 
                 }
             }
@@ -141,20 +137,20 @@ public class ReviewPage extends Activity {
     private ArrayList<ReviewItem> generateData() {
         ArrayList<ReviewItem> items = new ArrayList<ReviewItem>();
         ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("FoodTruck");
-        queryFoodTruck.whereEqualTo("name", FoodTruckPage.foodTruckName);
+        queryFoodTruck.whereEqualTo("name", FoodTruckActivity.foodTruckName);
         try {
             List<ParseObject> foodTrucks = queryFoodTruck.find();
             //String foodTruck = (String) foodTrucks.get(0).get("objectId");
-           // String foodTruck = foodTrucks
+            // String foodTruck = foodTrucks
             String foodTruck = foodTrucks.get(0).getObjectId();
             ParseQuery<ParseObject> queryReview = new ParseQuery<ParseObject>("Review");
             queryReview.whereEqualTo("foodtruck_id", foodTruck);
             List<ParseObject> reviews = queryReview.find();
             int numReviews = reviews.size();
-            TextView reviewNumber = (TextView)findViewById(R.id.numReviews);
-            reviewNumber.setText(numReviews+" reviews");
+            TextView reviewNumber = (TextView) findViewById(R.id.numReviews);
+            reviewNumber.setText(numReviews + " reviews");
             Log.v("AR2", "hi");
-            for(ParseObject r: reviews){
+            for (ParseObject r : reviews) {
                 Log.v("AR2", "hiya");
                 String username = (String) r.get("user_name");
                 String text = (String) r.get("text");
@@ -174,21 +170,21 @@ public class ReviewPage extends Activity {
         return sorting(items);
     }
 
-    private ArrayList<ReviewItem> sorting (ArrayList<ReviewItem> reviewItems){
+    private ArrayList<ReviewItem> sorting(ArrayList<ReviewItem> reviewItems) {
         int size = reviewItems.size();
         int currLikes = 0;
         int swapIndex = 0;
-        for(int i=0; i< size-1; i++) {
+        for (int i = 0; i < size - 1; i++) {
             currLikes = reviewItems.get(i).likes;
             swapIndex = i;
-            for (int j = i+1; j < size; j++) {
+            for (int j = i + 1; j < size; j++) {
                 int newLikes = reviewItems.get(j).likes;
-                if(newLikes < currLikes){
+                if (newLikes < currLikes) {
                     currLikes = newLikes;
                     swapIndex = j;
                 }
             }
-            if(swapIndex != i){
+            if (swapIndex != i) {
                 ReviewItem temp = reviewItems.get(i);
                 reviewItems.set(i, reviewItems.get(swapIndex));
                 reviewItems.set(swapIndex, temp);
@@ -197,8 +193,6 @@ public class ReviewPage extends Activity {
         Collections.reverse(reviewItems);
         return reviewItems;
     }
-
-
 
 
 }

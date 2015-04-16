@@ -69,7 +69,7 @@ public class NearbyActivity extends Activity implements OnMapReadyCallback {
                                 .icon(BitmapDescriptorFactory.defaultMarker(markerColor)));
                         MAP.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                             public void onInfoWindowClick(Marker marker) {
-                                Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
+                                Intent i = new Intent(getApplicationContext(), FoodTruckActivity.class);
                                 i.putExtra("TRUCK_NAME", marker.getTitle());
                                 startActivity(i);
                             }
@@ -105,19 +105,6 @@ public class NearbyActivity extends Activity implements OnMapReadyCallback {
         return userLocation;
     }
 
-
-    // TO BE MOVED LATER.
-    public void goSearch(View v) {
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(i);
-    }
-
-    //Method: Rebecca
-    public void goSpecials(View v) {
-        Intent i = new Intent(getApplicationContext(), Specials.class);
-        startActivity(i);
-    }
-
     // Checks if a food truck is currently open. Returns the string "Open" or "Closed"
     public String isOpen(ArrayList<Integer> open, ArrayList<Integer> close) {
         Calendar currentCalendar = Calendar.getInstance();
@@ -132,6 +119,18 @@ public class NearbyActivity extends Activity implements OnMapReadyCallback {
         } else {
             return "Open";
         }
+    }
+
+    //Menu bar: Redirects to the search page
+    public void goSearch(View v) {
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+    }
+
+    //Menu bar: Redirects to the specials page
+    public void goSpecials(View v) {
+        Intent i = new Intent(getApplicationContext(), SpecialsActivity.class);
+        startActivity(i);
     }
 
 }

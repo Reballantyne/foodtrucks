@@ -25,7 +25,8 @@ import java.util.List;
 /**
  * First Screen when opening the app
  * Creates Login Functionality
- * @author  Srinidhi Raghavan
+ *
+ * @author Srinidhi Raghavan
  */
 
 public class LoginActivity extends Activity {
@@ -88,7 +89,7 @@ public class LoginActivity extends Activity {
 
 
     //Checks if login username and password is correct and does appropriate action
-    public void loginUser(View v){
+    public void loginUser(View v) {
         //Selects the User field and all necessary values
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
         EditText passwordView = (EditText) findViewById(R.id.passwordField);
@@ -125,7 +126,7 @@ public class LoginActivity extends Activity {
                 }
             });
 
-        } catch (Exception e){
+        } catch (Exception e) {
 
         }
     }

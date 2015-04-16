@@ -8,13 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -27,8 +25,8 @@ public class AddReview extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
         //UNCOMMENT THIS
-   //     TextView foodTruck = (TextView)findViewById(R.id.foodTruck);
-     //   foodTruck.setText(FoodTruckPage.foodTruckName);
+        //     TextView foodTruck = (TextView)findViewById(R.id.foodTruck);
+        //   foodTruck.setText(FoodTruckPage.foodTruckName);
     }
 
 
@@ -54,12 +52,12 @@ public class AddReview extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void submitReview(View v){
+    public void submitReview(View v) {
         //Send to parse
         EditText et = (EditText) findViewById(R.id.reviewBox);
         String review = et.getText().toString();
         ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("FoodTruck");
-        queryFoodTruck.whereEqualTo("name", FoodTruckPage.foodTruckName);
+        queryFoodTruck.whereEqualTo("name", FoodTruckActivity.foodTruckName);
         try {
             Log.v("AR1:", "got here1");
             List<ParseObject> foodTrucks = queryFoodTruck.find();

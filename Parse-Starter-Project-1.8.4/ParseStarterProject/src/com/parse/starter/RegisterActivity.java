@@ -22,12 +22,13 @@ import java.util.List;
 
 /**
  * The registration screen for creating a new user
+ *
  * @Srinidhi Raghavan
  */
 
 
 public class RegisterActivity extends Activity {
-    String[] output = new String [4];
+    String[] output = new String[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

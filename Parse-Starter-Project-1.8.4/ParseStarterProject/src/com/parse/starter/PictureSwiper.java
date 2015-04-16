@@ -4,27 +4,23 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.parse.Parse;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.starter.R;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Class that creates the Picture Swiping View
+ *
  * @author Srinidhi Raghavan
  */
 
@@ -48,11 +44,12 @@ public class PictureSwiper extends Activity {
 
         //Array of Images from parse
         private ArrayList<Bitmap> mImages = new ArrayList<Bitmap>();
+
         public ImagePagerAdapter() {
             try {
                 //gets needed objects from parse
                 ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("FoodTruck");
-                queryFoodTruck.whereEqualTo("name", FoodTruckPage.foodTruckName);
+                queryFoodTruck.whereEqualTo("name", FoodTruckActivity.foodTruckName);
                 List<ParseObject> foodTrucks = queryFoodTruck.find();
                 ParseObject foodTruckO = foodTrucks.get(0);
                 String foodTruckID = (String) foodTruckO.getObjectId();
@@ -60,17 +57,16 @@ public class PictureSwiper extends Activity {
                 queryPhotos.whereEqualTo("foodtruck_id", foodTruckID);
                 List<ParseObject> dataPhotos = queryPhotos.find();
                 //gets photos from parse and decodes them
-                for (ParseObject photoObject : dataPhotos){
+                for (ParseObject photoObject : dataPhotos) {
                     ParseFile photo = (ParseFile) photoObject.get("photo_file");
-                    byte[] file  = photo.getData();
-                    Bitmap image = BitmapFactory.decodeByteArray(file,0,file.length);
+                    byte[] file = photo.getData();
+                    Bitmap image = BitmapFactory.decodeByteArray(file, 0, file.length);
                     mImages.add(image);
 
                 }
-            } catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
 
 
         }
