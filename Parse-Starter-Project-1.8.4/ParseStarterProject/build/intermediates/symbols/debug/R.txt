@@ -185,7 +185,7 @@ int id SubmitReview 0x7f0b002a
 int id UserNameTF 0x7f0b0030
 int id User_Name 0x7f0b0072
 int id Without_Password 0x7f0b0035
-int id action_settings 0x7f0b0078
+int id action_settings 0x7f0b007c
 int id address 0x7f0b0065
 int id adjust_height 0x7f0b0000
 int id adjust_width 0x7f0b0001
@@ -211,7 +211,9 @@ int id com_facebook_login_activity_progress_bar 0x7f0b0053
 int id com_facebook_tooltip_bubble_view_bottom_pointer 0x7f0b0058
 int id com_facebook_tooltip_bubble_view_text_body 0x7f0b0057
 int id com_facebook_tooltip_bubble_view_top_pointer 0x7f0b0055
+int id desc 0x7f0b0079
 int id donate_with_google 0x7f0b0013
+int id endDate 0x7f0b007a
 int id favorite 0x7f0b006c
 int id filterButton 0x7f0b0038
 int id foodTruck 0x7f0b0048
@@ -243,9 +245,9 @@ int id linearLayout2 0x7f0b0041
 int id linearLayout3 0x7f0b0074
 int id linearLayoutParent 0x7f0b005f
 int id link_to_register 0x7f0b0034
+int id listOfSpecials 0x7f0b004d
 int id listReview 0x7f0b004b
 int id listView 0x7f0b003a
-int id listView2 0x7f0b004d
 int id login_button 0x7f0b0033
 int id map 0x7f0b003f
 int id match_parent 0x7f0b000e
@@ -289,7 +291,9 @@ int id terrain 0x7f0b0006
 int id textView 0x7f0b0027
 int id textView2 0x7f0b0028
 int id textView3 0x7f0b004c
+int id title 0x7f0b0078
 int id top 0x7f0b001f
+int id truckName 0x7f0b007b
 int id unknown 0x7f0b0019
 int id userPrompt 0x7f0b0059
 int id usernameDialog 0x7f0b005a
@@ -319,6 +323,7 @@ int layout messenger_button_send_white_large 0x7f030011
 int layout messenger_button_send_white_round 0x7f030012
 int layout messenger_button_send_white_small 0x7f030013
 int layout review_row 0x7f030014
+int layout specials_row 0x7f030015
 int menu menu_add_review 0x7f0a0000
 int menu menu_filter 0x7f0a0001
 int menu menu_login 0x7f0a0002

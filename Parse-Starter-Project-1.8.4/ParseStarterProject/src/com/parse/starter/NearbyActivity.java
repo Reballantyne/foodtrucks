@@ -112,6 +112,12 @@ public class NearbyActivity extends Activity implements OnMapReadyCallback {
         startActivity(i);
     }
 
+    //Method: Rebecca
+    public void goSpecials(View v) {
+        Intent i = new Intent(getApplicationContext(), Specials.class);
+        startActivity(i);
+    }
+
     // Checks if a food truck is currently open. Returns the string "Open" or "Closed"
     public String isOpen(ArrayList<Integer> open, ArrayList<Integer> close) {
         Calendar currentCalendar = Calendar.getInstance();

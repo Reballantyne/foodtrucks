@@ -596,7 +596,7 @@ containing a value of this type.
         public static final int UserNameTF=0x7f0b0030;
         public static final int User_Name=0x7f0b0072;
         public static final int Without_Password=0x7f0b0035;
-        public static final int action_settings=0x7f0b0078;
+        public static final int action_settings=0x7f0b007c;
         public static final int address=0x7f0b0065;
         public static final int adjust_height=0x7f0b0000;
         public static final int adjust_width=0x7f0b0001;
@@ -622,7 +622,9 @@ containing a value of this type.
         public static final int com_facebook_tooltip_bubble_view_bottom_pointer=0x7f0b0058;
         public static final int com_facebook_tooltip_bubble_view_text_body=0x7f0b0057;
         public static final int com_facebook_tooltip_bubble_view_top_pointer=0x7f0b0055;
+        public static final int desc=0x7f0b0079;
         public static final int donate_with_google=0x7f0b0013;
+        public static final int endDate=0x7f0b007a;
         public static final int favorite=0x7f0b006c;
         public static final int filterButton=0x7f0b0038;
         public static final int foodTruck=0x7f0b0048;
@@ -654,9 +656,9 @@ containing a value of this type.
         public static final int linearLayout3=0x7f0b0074;
         public static final int linearLayoutParent=0x7f0b005f;
         public static final int link_to_register=0x7f0b0034;
+        public static final int listOfSpecials=0x7f0b004d;
         public static final int listReview=0x7f0b004b;
         public static final int listView=0x7f0b003a;
-        public static final int listView2=0x7f0b004d;
         public static final int login_button=0x7f0b0033;
         public static final int map=0x7f0b003f;
         public static final int match_parent=0x7f0b000e;
@@ -700,7 +702,9 @@ containing a value of this type.
         public static final int textView=0x7f0b0027;
         public static final int textView2=0x7f0b0028;
         public static final int textView3=0x7f0b004c;
+        public static final int title=0x7f0b0078;
         public static final int top=0x7f0b001f;
+        public static final int truckName=0x7f0b007b;
         public static final int unknown=0x7f0b0019;
         public static final int userPrompt=0x7f0b0059;
         public static final int usernameDialog=0x7f0b005a;
@@ -734,6 +738,7 @@ containing a value of this type.
         public static final int messenger_button_send_white_round=0x7f030012;
         public static final int messenger_button_send_white_small=0x7f030013;
         public static final int review_row=0x7f030014;
+        public static final int specials_row=0x7f030015;
     }
     public static final class menu {
         public static final int menu_add_review=0x7f0a0000;

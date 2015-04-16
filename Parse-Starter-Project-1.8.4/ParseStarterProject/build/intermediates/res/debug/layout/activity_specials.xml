@@ -40,7 +40,7 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="315dp"
-            android:id="@+id/listView2"
+            android:id="@+id/listOfSpecials"
             android:layout_row="2"
             android:layout_column="0"
             android:background="#ccb1b2a7"
@@ -97,4 +97,4 @@
     </LinearLayout>
 
 </RelativeLayout>
-<!-- From: file:/Users/raginiraghavan/Documents/cis350New/project1/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/activity_specials.xml -->
+<!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/layout/activity_specials.xml -->

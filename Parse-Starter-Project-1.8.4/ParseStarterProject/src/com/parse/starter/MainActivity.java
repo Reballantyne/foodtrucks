@@ -200,24 +200,4 @@ public class MainActivity extends Activity {
         startActivity(i);
     }
 
-
-   /* public void launchFoodTruckPage(AdapterView<?> adapter, View v, int position, long id) {
-        String item = ((TextView)v).getText().toString();
-        Log.v("Working?", "x" + item);
-    }*/
-
-    /*
-    //Method:Rebecca
-    //redirects to food truck page
-    public void foodTruckRedirect(View v){
-        Intent i = new Intent(getApplicationContext(), FoodTruckPage.class);
-        startActivity(i);
-    }
-
-    public void redirectFoodTruckPage(AdapterView<?> adapter, View v, int position){
-        ItemClicked truck = adapter.getItem(position);
-    }*/
-
-    //On-Click methods that re-direct to the relevant FoodTruckPage - Rebecca
-
 }
