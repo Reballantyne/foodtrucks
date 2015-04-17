@@ -92,11 +92,11 @@ public class MainActivity extends Activity {
     //and, if the user has chosen to filter, only displays relevant options.
     private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
 
-        //Method: Shilpa
+        //Method: Shilpa. Enables user to filter food trucks
         protected Void doInBackground(Void... params) {
             //Get the current list of foodtrucks
             ParseQuery<ParseObject> query = new ParseQuery<>("FoodTruck");
-            if (sorted == -1) {
+            if (sorted == -1) {//If no option is selected, sort by name
                 query.orderByDescending("name");
                 try {
                     foodTrucks = query.find();
@@ -109,15 +109,16 @@ public class MainActivity extends Activity {
                 } catch (ParseException e) {
                 }
 
-            } else if (sorted == R.id.radio_food) {
+            } else if (sorted == R.id.radio_food) {//Sort by food categories
                 query.orderByDescending("categories");
                 try {
                     foodTrucks = query.find();
                 } catch (ParseException e) {
                 }
-            } else if (sorted == R.id.radio_open) {
+            } else if (sorted == R.id.radio_open) {//Find the food trucks currently open
                 Calendar current = Calendar.getInstance();
                 int dayOfWeek = current.get(Calendar.DAY_OF_WEEK) - 1;
+                //Change format to military time
                 SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
                 String currentTime = sdf.format(current.getTime());
                 int militaryTime = Integer.parseInt(currentTime);
@@ -130,12 +131,13 @@ public class MainActivity extends Activity {
                         ArrayList<Integer> close = (ArrayList<Integer>) f.get("closing_times");
                         int openTime = open.get(dayOfWeek);
                         int closeTime = close.get(dayOfWeek);
+                        //If the food truck is outside open and close time (or closed entirely)
                         if (openTime == -1 || militaryTime < openTime || militaryTime > closeTime)
                             foodTrucks.remove(f);
                     }
                 } catch (ParseException e) {
                 }
-            } else if (sorted == R.id.radio_healthy) {
+            } else if (sorted == R.id.radio_healthy) {//Find the food trucks with healthy options
                 query.whereEqualTo("hasHealthyOptions", true);
                 try {
                     foodTrucks = query.find();
@@ -163,6 +165,7 @@ public class MainActivity extends Activity {
         }
     }
 
+    //Filter button click: redirects the user to the Filter page
     public void onFilterClicked(View view) {
         Intent i = new Intent(this, FilterActivity.class);
         startActivity(i);
