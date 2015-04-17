@@ -248,6 +248,7 @@ public class FoodTruckActivity extends Activity {
         startActivity(i);
     }
 
+    //Method: Shilpa & Srinidhi. Redirects to reviews if users want to see more reviews
     public void seeMoreReviews(View v) {
         Intent i = new Intent(this, ReviewPage.class);
         startActivity(i);
