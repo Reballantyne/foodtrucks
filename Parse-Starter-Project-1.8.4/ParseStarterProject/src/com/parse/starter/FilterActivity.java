@@ -8,6 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioGroup;
 
+/**
+ * The filter activity. Enables users to filter the food trucks based on certain preset criteria
+ * @author Shilpa Kannan
+ */
+
 public class FilterActivity extends Activity {
 
     @Override
@@ -41,8 +46,10 @@ public class FilterActivity extends Activity {
 
     public void onFilterClicked(View view) {
         RadioGroup buttonID = (RadioGroup) findViewById(R.id.radio_group);
+        //Get the option selected for filtering
         int checked = buttonID.getCheckedRadioButtonId();
-        if (checked > -1) {
+        if (checked > -1) {//As long as something is checked
+            //Filter & display the food trucks on the home page
             Intent i = new Intent(this, MainActivity.class);
             i.putExtra("filter", checked);
             startActivity(i);
