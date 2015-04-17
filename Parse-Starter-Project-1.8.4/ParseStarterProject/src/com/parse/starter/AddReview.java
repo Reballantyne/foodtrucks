@@ -72,7 +72,7 @@ public class AddReview extends Activity {
             queryFoodTruck.whereEqualTo("user_name", LoginActivity.userNameSession);
             List<ParseObject> users = queryUserName.find();
             String userID = users.get(0).getObjectId();
-            //creates a new Parse Object to store and added infromation
+            //creates a new Parse Object to store and added information
             ParseObject newReview = new ParseObject("Review");
             newReview.put("user_id", userID);
             newReview.put("foodtruck_id", foodTruckID);
