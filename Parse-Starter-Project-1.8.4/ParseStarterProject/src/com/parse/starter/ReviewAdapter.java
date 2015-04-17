@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * The ReviewAdapter class works to display the reviews in a dynamic list form
  * @author  shilpa Kannan, Srinidhi Raghavan
  */
 public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
