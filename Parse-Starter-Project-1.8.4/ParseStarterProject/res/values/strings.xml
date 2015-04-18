@@ -28,5 +28,6 @@
     <string name="LoginUser">Login</string>
     <string name="registerUser">Register</string>
     <string name="fullName">Full Name</string>
+    <string name="pic">Review</string>
 
 </resources>

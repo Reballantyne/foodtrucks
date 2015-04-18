@@ -1,18 +1,23 @@
 package com.parse.starter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.DialogPreference;
+import android.provider.MediaStore;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +25,9 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -39,8 +46,10 @@ public class FoodTruckActivity extends Activity {
     private static String address; //address of the truck
     private static String mainGenre; //genre of the truck
     private static boolean hasHealthy; //whether or not the truck has healthy options
-
-
+    private static final int SELECT_PICTURE = 1;
+    private String selectedImagePath;
+    private ImageView img;
+    private Bitmap uploadPicture = null;
     //Method: Rebecca
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +74,16 @@ public class FoodTruckActivity extends Activity {
                 // Switching to Register screen
                 Intent i = new Intent(getApplicationContext(), ReviewPage.class);
                 startActivity(i);
+            }
+        });
+        Button uploadPicButton = (Button) findViewById(R.id.UploadPic);
+        uploadPicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
             }
         });
     }
@@ -279,4 +298,54 @@ public class FoodTruckActivity extends Activity {
         startActivity(i);
     }
 
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        try {
+            if (resultCode == RESULT_OK) {
+                if (requestCode == SELECT_PICTURE) {
+                    Uri selectedImageUri = data.getData();
+                    Log.v("imagePath", "got here");
+                    Bitmap uploadPicture = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                    ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("FoodTruck");
+                    query.whereEqualTo("name", FoodTruckActivity.foodTruckName);
+                    List<ParseObject> queryId = query.find();
+                    String userID = queryId.get(0).getObjectId();
+                    ParseObject newPhoto = new ParseObject("Photo");
+                    ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+                    uploadPicture.compress(Bitmap.CompressFormat.PNG, 100, byteStream);
+                    byte[] dataPicture = byteStream.toByteArray();
+                    ParseFile image= new ParseFile("image.png", dataPicture);
+                    newPhoto.put("photo_file", image);
+                    newPhoto.put("foodtruck_id", userID);
+                    newPhoto.saveInBackground();
+
+                }
+            }
+        } catch (Exception e){
+            Log.v("imagePath", "Error in getting image");
+            e.printStackTrace();
+
+        }
+    }
+
+    /*
+    public String getRealPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if(cursor.moveToFirst()){;
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
+    }
+    */
+
+
+
 }
+
+
