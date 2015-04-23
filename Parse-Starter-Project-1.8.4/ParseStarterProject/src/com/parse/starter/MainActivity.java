@@ -160,11 +160,15 @@ public class MainActivity extends Activity {
                     for (ParseObject f : foodTrucksCopy) {
                         ArrayList<Integer> open = (ArrayList<Integer>) f.get("opening_times");
                         ArrayList<Integer> close = (ArrayList<Integer>) f.get("closing_times");
-                        int openTime = open.get(dayOfWeek);
-                        int closeTime = close.get(dayOfWeek);
-                        //If the food truck is outside open and close time (or closed entirely)
-                        if (openTime == -1 || militaryTime < openTime || militaryTime > closeTime)
+                        if (open == null || close == null) {
                             foodTrucks.remove(f);
+                        } else {
+                            int openTime = open.get(dayOfWeek);
+                            int closeTime = close.get(dayOfWeek);
+                            //If the food truck is outside open and close time (or closed entirely)
+                            if (openTime == -1 || militaryTime < openTime || militaryTime > closeTime)
+                                foodTrucks.remove(f);
+                        }
                     }
                 } catch (ParseException e) {
                 }
