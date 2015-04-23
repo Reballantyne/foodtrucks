@@ -24,7 +24,7 @@ import com.parse.ParseQuery;
 
 import java.util.List;
 import java.util.ArrayList;
-
+import android.widget.SearchView.*;
 
 public class MainActivity extends Activity {
     private List<ParseObject> foodTrucks; //all parse data for all foodTrucks
@@ -41,6 +41,36 @@ public class MainActivity extends Activity {
         //Sets query hint for search bar at top of activity
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setQueryHint("Search for a truck.");
+
+        searchView.setOnQueryTextListener(new OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ListView foodList = (ListView) findViewById(R.id.listView);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
+                        android.R.layout.simple_list_item_1);
+                if (foodTrucks != null) {
+                    for (ParseObject truck : foodTrucks) {
+                        SearchView searchView = (SearchView) findViewById(R.id.searchView);
+                        String search = searchView.getQuery().toString();
+                        String searchLower = search.toLowerCase();
+                        String truckName = (String) truck.get("name");
+                        String truckNameLower = truckName.toLowerCase();
+                        if (truckNameLower.contains(searchLower)) {
+                            //add to the adapter each truck's name
+                            adapter.add((String) truck.get("name"));
+                        }
+                    }
+                }
+                //set the ListView's adapter to the recently populated adapter
+                foodList.setAdapter(adapter);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+        });
+
 
         //starts thread that populates the listView with data
         new RemoteDataTask().execute();
