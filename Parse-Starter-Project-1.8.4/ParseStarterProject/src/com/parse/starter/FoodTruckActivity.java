@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -32,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
+import android.view.Gravity;
 
 /**
  * Created by Rebecca_2 on 3/29/2015.
@@ -113,12 +115,20 @@ public class FoodTruckActivity extends Activity {
 
     //Method: Rebecca. Call a FoodTruck using the telephone number stored as a field.
     public void callTruck(View v) {
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse(telNumber));
-        EndCallListener callListener = new EndCallListener();
-        TelephonyManager mTM = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-        mTM.listen(callListener, PhoneStateListener.LISTEN_CALL_STATE);
-        startActivity(callIntent);
+        if (telNumber == null) {
+            CharSequence text = "Phone number not available";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(this, text, duration);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        } else {
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse(telNumber));
+            EndCallListener callListener = new EndCallListener();
+            TelephonyManager mTM = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+            mTM.listen(callListener, PhoneStateListener.LISTEN_CALL_STATE);
+            startActivity(callIntent);
+        }
     }
 
     //Method: Rebecca. Wait for the end of a phone call, or log relevant phone call errors.
@@ -161,7 +171,10 @@ public class FoodTruckActivity extends Activity {
             //pulls the data from the database
             for (ParseObject truck : foodTrucks) {
                 address = (String) truck.get("address");
-                telNumber = "tel:" + truck.get("phoneNum");
+
+                telNumber = (String) truck.get("phoneNum");
+                //telNumber = "tel:" + truck.get("phoneNum");
+                
                 //create an arraylist to hold all possible genres for the truck
                 ArrayList<String> genreList = (ArrayList<String>) truck.get("categories");
                 if (genreList != null) {
