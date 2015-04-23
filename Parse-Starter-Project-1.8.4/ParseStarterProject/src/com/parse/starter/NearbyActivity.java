@@ -44,11 +44,18 @@ public class NearbyActivity extends Activity implements OnMapReadyCallback {
                         ParseGeoPoint location = (ParseGeoPoint) currentFoodTruck.get("location");
                         String name = (String) currentFoodTruck.get("name");
                         Boolean isHealthy = (Boolean) currentFoodTruck.get("hasHealthyOptions");
+
                         ArrayList<Integer> openingTimes =
                                 (ArrayList<Integer>) currentFoodTruck.get("opening_times");
                         ArrayList<Integer> closingTimes =
                                 (ArrayList<Integer>) currentFoodTruck.get("closing_times");
-                        String openStatus = isOpen(openingTimes, closingTimes);
+
+                        String openStatus;
+                        if (openingTimes == null || closingTimes == null) {
+                            openStatus = "";
+                        } else {
+                            openStatus = isOpen(openingTimes, closingTimes);
+                        }
 
                         LatLng foodTruckCoordinates = new LatLng(location.getLatitude(),
                                 location.getLongitude());

@@ -232,13 +232,14 @@ public class FoodTruckActivity extends Activity {
         Calendar current = Calendar.getInstance();
         int dayOfWeek = current.get(Calendar.DAY_OF_WEEK) - 1;
 
-        if (truck.get("opening_times") == null) {
+        //identify opening and closing time of the truck
+        ArrayList<Integer> open = (ArrayList<Integer>) truck.get("opening_times");
+        ArrayList<Integer> close = (ArrayList<Integer>) truck.get("closing_times");
+
+        if (open == null || close == null) {
             openClosed = "";
             hoursOpen = "Hours not available";
         } else {
-            //identify opening and closing time of the truck
-            ArrayList<Integer> open = (ArrayList<Integer>) truck.get("opening_times");
-            ArrayList<Integer> close = (ArrayList<Integer>) truck.get("closing_times");
 
             //identify the open time for the day of the week it is today
             int openTime = open.get(dayOfWeek);
