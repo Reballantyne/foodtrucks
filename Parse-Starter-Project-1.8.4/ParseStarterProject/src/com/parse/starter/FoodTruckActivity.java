@@ -174,7 +174,7 @@ public class FoodTruckActivity extends Activity {
 
                 telNumber = (String) truck.get("phoneNum");
                 //telNumber = "tel:" + truck.get("phoneNum");
-                
+
                 //create an arraylist to hold all possible genres for the truck
                 ArrayList<String> genreList = (ArrayList<String>) truck.get("categories");
                 if (genreList != null) {
@@ -232,23 +232,31 @@ public class FoodTruckActivity extends Activity {
         Calendar current = Calendar.getInstance();
         int dayOfWeek = current.get(Calendar.DAY_OF_WEEK) - 1;
 
-        //identify opening and closing time of the truck
-        ArrayList<Integer> open = (ArrayList<Integer>) truck.get("opening_times");
-        ArrayList<Integer> close = (ArrayList<Integer>) truck.get("closing_times");
+        if (truck.get("opening_times") == null) {
+            openClosed = "";
+            hoursOpen = "Hours not available";
+        } else {
+            //identify opening and closing time of the truck
+            ArrayList<Integer> open = (ArrayList<Integer>) truck.get("opening_times");
+            ArrayList<Integer> close = (ArrayList<Integer>) truck.get("closing_times");
 
-        //identify the open time for the day of the week it is today
-        int openTime = open.get(dayOfWeek);
-        int closeTime = close.get(dayOfWeek);
+            //identify the open time for the day of the week it is today
+            int openTime = open.get(dayOfWeek);
+            int closeTime = close.get(dayOfWeek);
 
-        //format the string to display the hours to the screen
-        formatOpenClosedText(openTime, closeTime);
+            //format the string to display the hours to the screen
+            formatOpenClosedText(openTime, closeTime);
 
-        //check whether open now or not and set the open-closed tag
-        SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
-        String currentTime = sdf.format(current.getTime());
-        int militaryTime = Integer.parseInt(currentTime);
-        if (militaryTime < openTime || militaryTime > closeTime) { openClosed = "Closed"; }
-        else { openClosed = "Open"; }
+            //check whether open now or not and set the open-closed tag
+            SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
+            String currentTime = sdf.format(current.getTime());
+            int militaryTime = Integer.parseInt(currentTime);
+            if (militaryTime < openTime || militaryTime > closeTime) {
+                openClosed = "Closed";
+            } else {
+                openClosed = "Open";
+            }
+        }
     }
 
     //Method: Rebecca - parses a integer that contains the time into a properly formatted time
