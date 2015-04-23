@@ -22,6 +22,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
 import android.widget.SearchView.*;
@@ -57,7 +58,7 @@ public class MainActivity extends Activity {
                         String truckNameLower = truckName.toLowerCase();
                         if (truckNameLower.contains(searchLower)) {
                             //add to the adapter each truck's name
-                            adapter.add((String) truck.get("name"));
+                            adapter.insert((String) truck.get("name"), 0);
                         }
                     }
                 }
@@ -187,9 +188,11 @@ public class MainActivity extends Activity {
             if (foodTrucks != null) {
                 for (ParseObject truck : foodTrucks) {
                     //add to the adapter each truck's name
-                    adapter.add((String) truck.get("name"));
+
+                    adapter.insert((String) truck.get("name"), 0);
                 }
             }
+
             //set the ListView's adapter to the recently populated adapter
             foodList.setAdapter(adapter);
         }
