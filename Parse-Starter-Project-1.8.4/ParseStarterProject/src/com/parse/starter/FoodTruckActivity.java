@@ -178,8 +178,11 @@ public class FoodTruckActivity extends Activity {
                 //create an arraylist to hold all possible genres for the truck
                 ArrayList<String> genreList = (ArrayList<String>) truck.get("categories");
                 if (genreList != null) {
-                    //pick the main(first) genre to display on the screen
-                    mainGenre = genreList.get(0);
+                    mainGenre = "";
+                    for (int i = 0; i < genreList.size() - 1; i++) {
+                        mainGenre += genreList.get(i) + ", ";
+                    }
+                    mainGenre += genreList.get(genreList.size() - 1);
                 }
                 website = (String) truck.get("url");
                 //get if it has healthy options
@@ -221,8 +224,11 @@ public class FoodTruckActivity extends Activity {
         //set the healthy tag and color it
         TextView healthy = (TextView) findViewById(R.id.isHealthy);
         if (hasHealthy) {
-            healthy.setText("Healthy");
+            healthy.setText("Healthy  ");
             healthy.setTextColor(Color.parseColor("#ff318e21"));
+        }
+        else {
+            healthy.setText("");
         }
     }
 
@@ -317,6 +323,14 @@ public class FoodTruckActivity extends Activity {
     //Method: Nikila & Paarth : Main Menu button. Forwards to the Map Page.
     public void goMap(View v) {
         Intent i = new Intent(getApplicationContext(), NearbyActivity.class);
+        startActivity(i);
+    }
+
+    //Method: Rebecca : Forwards to the Menu page.
+    public void goMenu(View v) {
+        Intent i = new Intent(getApplicationContext(), MenuActivity.class);
+        //extra information added so the FoodTruckPage can populate with correct data
+        i.putExtra("TRUCK_NAME", foodTruckName);
         startActivity(i);
     }
 

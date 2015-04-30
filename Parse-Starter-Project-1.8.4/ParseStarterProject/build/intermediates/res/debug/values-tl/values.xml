@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- From: file:/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values-tl/common_strings.xml -->
+    <!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/res/values-tl/common_strings.xml -->
     <eat-comment/>
     <string msgid="473679118463211576" name="common_android_wear_notification_needs_update_text">"Ang isang application ay nangangailangan ng update sa Android Wear app."</string>
     <string msgid="3046420540094071256" name="common_android_wear_update_text">"Hindi gagana ang app na ito hanggang sa i-update mo ang Android Wear app."</string>
@@ -30,7 +30,7 @@
     <string msgid="411506735369601515" name="common_open_on_phone">"Buksan sa telepono"</string>
     <string msgid="9071884888741449141" name="common_signin_button_text">"Sign in"</string>
     <string msgid="2429381841831957106" name="common_signin_button_text_long">"Mag-sign in sa Google"</string>
-    <!-- From: file:/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.0.0/res/values-tl/values.xml -->
+    <!-- From: file:/C:/Users/Rebecca_2/Documents/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.0.0/res/values-tl/values.xml -->
     <eat-comment/>
     <string name="messenger_send_button_text">Ipadala</string>
 </resources>

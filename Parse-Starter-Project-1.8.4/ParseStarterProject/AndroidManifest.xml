@@ -55,7 +55,6 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
-            
         </activity>
         <activity
             android:name=".FoodTruckActivity"
@@ -96,7 +95,6 @@
         <activity
             android:name=".ReviewPage"
             android:label="@string/title_activity_review_page" >
-            
         </activity>
         <activity
             android:name=".AddReview"
@@ -105,6 +103,10 @@
         <activity
             android:name=".SpecialsActivity"
             android:label="@string/title_activity_specials" >
+        </activity>
+        <activity
+            android:name=".MenuActivity"
+            android:label="@string/title_activity_menu" >
         </activity>
     </application>
 

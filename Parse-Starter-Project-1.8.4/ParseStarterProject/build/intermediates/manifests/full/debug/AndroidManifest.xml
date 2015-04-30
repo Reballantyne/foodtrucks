@@ -104,6 +104,10 @@
             android:name="com.parse.starter.SpecialsActivity"
             android:label="@string/title_activity_specials" >
         </activity>
+        <activity
+            android:name="com.parse.starter.MenuActivity"
+            android:label="@string/title_activity_menu" >
+        </activity>
     </application>
 
 </manifest>

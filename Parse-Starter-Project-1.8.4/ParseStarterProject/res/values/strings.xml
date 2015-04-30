@@ -29,5 +29,6 @@
     <string name="registerUser">Register</string>
     <string name="fullName">Full Name</string>
     <string name="pic">Review</string>
+    <string name="title_activity_menu">MenuActivity</string>
 
 </resources>
