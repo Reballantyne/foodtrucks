@@ -1,30 +1,39 @@
 package com.parse.starter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.DialogPreference;
+import android.provider.MediaStore;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
+import android.view.Gravity;
 
 /**
  * Created by Rebecca_2 on 3/29/2015.
@@ -39,8 +48,10 @@ public class FoodTruckActivity extends Activity {
     private static String address; //address of the truck
     private static String mainGenre; //genre of the truck
     private static boolean hasHealthy; //whether or not the truck has healthy options
-
-
+    private static final int SELECT_PICTURE = 1;
+    private String selectedImagePath;
+    private ImageView img;
+    private Bitmap uploadPicture = null;
     //Method: Rebecca
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +76,16 @@ public class FoodTruckActivity extends Activity {
                 // Switching to Register screen
                 Intent i = new Intent(getApplicationContext(), ReviewPage.class);
                 startActivity(i);
+            }
+        });
+        Button uploadPicButton = (Button) findViewById(R.id.UploadPic);
+        uploadPicButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
             }
         });
     }
@@ -94,12 +115,20 @@ public class FoodTruckActivity extends Activity {
 
     //Method: Rebecca. Call a FoodTruck using the telephone number stored as a field.
     public void callTruck(View v) {
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse(telNumber));
-        EndCallListener callListener = new EndCallListener();
-        TelephonyManager mTM = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-        mTM.listen(callListener, PhoneStateListener.LISTEN_CALL_STATE);
-        startActivity(callIntent);
+        if (telNumber == null) {
+            CharSequence text = "Phone number not available";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(this, text, duration);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        } else {
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
+            callIntent.setData(Uri.parse(telNumber));
+            EndCallListener callListener = new EndCallListener();
+            TelephonyManager mTM = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+            mTM.listen(callListener, PhoneStateListener.LISTEN_CALL_STATE);
+            startActivity(callIntent);
+        }
     }
 
     //Method: Rebecca. Wait for the end of a phone call, or log relevant phone call errors.
@@ -142,7 +171,10 @@ public class FoodTruckActivity extends Activity {
             //pulls the data from the database
             for (ParseObject truck : foodTrucks) {
                 address = (String) truck.get("address");
-                telNumber = "tel:" + truck.get("phoneNum");
+
+                telNumber = (String) truck.get("phoneNum");
+                //telNumber = "tel:" + truck.get("phoneNum");
+
                 //create an arraylist to hold all possible genres for the truck
                 ArrayList<String> genreList = (ArrayList<String>) truck.get("categories");
                 if (genreList != null) {
@@ -204,19 +236,28 @@ public class FoodTruckActivity extends Activity {
         ArrayList<Integer> open = (ArrayList<Integer>) truck.get("opening_times");
         ArrayList<Integer> close = (ArrayList<Integer>) truck.get("closing_times");
 
-        //identify the open time for the day of the week it is today
-        int openTime = open.get(dayOfWeek);
-        int closeTime = close.get(dayOfWeek);
+        if (open == null || close == null) {
+            openClosed = "";
+            hoursOpen = "Hours not available";
+        } else {
 
-        //format the string to display the hours to the screen
-        formatOpenClosedText(openTime, closeTime);
+            //identify the open time for the day of the week it is today
+            int openTime = open.get(dayOfWeek);
+            int closeTime = close.get(dayOfWeek);
 
-        //check whether open now or not and set the open-closed tag
-        SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
-        String currentTime = sdf.format(current.getTime());
-        int militaryTime = Integer.parseInt(currentTime);
-        if (militaryTime < openTime || militaryTime > closeTime) { openClosed = "Closed"; }
-        else { openClosed = "Open"; }
+            //format the string to display the hours to the screen
+            formatOpenClosedText(openTime, closeTime);
+
+            //check whether open now or not and set the open-closed tag
+            SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
+            String currentTime = sdf.format(current.getTime());
+            int militaryTime = Integer.parseInt(currentTime);
+            if (militaryTime < openTime || militaryTime > closeTime) {
+                openClosed = "Closed";
+            } else {
+                openClosed = "Open";
+            }
+        }
     }
 
     //Method: Rebecca - parses a integer that contains the time into a properly formatted time
@@ -248,6 +289,7 @@ public class FoodTruckActivity extends Activity {
         startActivity(i);
     }
 
+    //Method: Shilpa & Srinidhi. Redirects to reviews if users want to see more reviews
     public void seeMoreReviews(View v) {
         Intent i = new Intent(this, ReviewPage.class);
         startActivity(i);
@@ -278,4 +320,54 @@ public class FoodTruckActivity extends Activity {
         startActivity(i);
     }
 
+
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        try {
+            if (resultCode == RESULT_OK) {
+                if (requestCode == SELECT_PICTURE) {
+                    Uri selectedImageUri = data.getData();
+                    Log.v("imagePath", "got here");
+                    Bitmap uploadPicture = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
+                    ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("FoodTruck");
+                    query.whereEqualTo("name", FoodTruckActivity.foodTruckName);
+                    List<ParseObject> queryId = query.find();
+                    String userID = queryId.get(0).getObjectId();
+                    ParseObject newPhoto = new ParseObject("Photo");
+                    ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+                    uploadPicture.compress(Bitmap.CompressFormat.PNG, 100, byteStream);
+                    byte[] dataPicture = byteStream.toByteArray();
+                    ParseFile image= new ParseFile("image.png", dataPicture);
+                    newPhoto.put("photo_file", image);
+                    newPhoto.put("foodtruck_id", userID);
+                    newPhoto.saveInBackground();
+
+                }
+            }
+        } catch (Exception e){
+            Log.v("imagePath", "Error in getting image");
+            e.printStackTrace();
+
+        }
+    }
+
+    /*
+    public String getRealPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if(cursor.moveToFirst()){;
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
+    }
+    */
+
+
+
 }
+
+

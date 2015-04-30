@@ -22,9 +22,10 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
-
+import android.widget.SearchView.*;
 
 public class MainActivity extends Activity {
     private List<ParseObject> foodTrucks; //all parse data for all foodTrucks
@@ -41,6 +42,36 @@ public class MainActivity extends Activity {
         //Sets query hint for search bar at top of activity
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
         searchView.setQueryHint("Search for a truck.");
+
+        searchView.setOnQueryTextListener(new OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ListView foodList = (ListView) findViewById(R.id.listView);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
+                        android.R.layout.simple_list_item_1);
+                if (foodTrucks != null) {
+                    for (ParseObject truck : foodTrucks) {
+                        SearchView searchView = (SearchView) findViewById(R.id.searchView);
+                        String search = searchView.getQuery().toString();
+                        String searchLower = search.toLowerCase();
+                        String truckName = (String) truck.get("name");
+                        String truckNameLower = truckName.toLowerCase();
+                        if (truckNameLower.contains(searchLower)) {
+                            //add to the adapter each truck's name
+                            adapter.insert((String) truck.get("name"), 0);
+                        }
+                    }
+                }
+                //set the ListView's adapter to the recently populated adapter
+                foodList.setAdapter(adapter);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+        });
+
 
         //starts thread that populates the listView with data
         new RemoteDataTask().execute();
@@ -92,11 +123,11 @@ public class MainActivity extends Activity {
     //and, if the user has chosen to filter, only displays relevant options.
     private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
 
-        //Method: Shilpa
+        //Method: Shilpa. Enables user to filter food trucks
         protected Void doInBackground(Void... params) {
             //Get the current list of foodtrucks
             ParseQuery<ParseObject> query = new ParseQuery<>("FoodTruck");
-            if (sorted == -1) {
+            if (sorted == -1) {//If no option is selected, sort by name
                 query.orderByDescending("name");
                 try {
                     foodTrucks = query.find();
@@ -109,15 +140,16 @@ public class MainActivity extends Activity {
                 } catch (ParseException e) {
                 }
 
-            } else if (sorted == R.id.radio_food) {
+            } else if (sorted == R.id.radio_food) {//Sort by food categories
                 query.orderByDescending("categories");
                 try {
                     foodTrucks = query.find();
                 } catch (ParseException e) {
                 }
-            } else if (sorted == R.id.radio_open) {
+            } else if (sorted == R.id.radio_open) {//Find the food trucks currently open
                 Calendar current = Calendar.getInstance();
                 int dayOfWeek = current.get(Calendar.DAY_OF_WEEK) - 1;
+                //Change format to military time
                 SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
                 String currentTime = sdf.format(current.getTime());
                 int militaryTime = Integer.parseInt(currentTime);
@@ -128,14 +160,19 @@ public class MainActivity extends Activity {
                     for (ParseObject f : foodTrucksCopy) {
                         ArrayList<Integer> open = (ArrayList<Integer>) f.get("opening_times");
                         ArrayList<Integer> close = (ArrayList<Integer>) f.get("closing_times");
-                        int openTime = open.get(dayOfWeek);
-                        int closeTime = close.get(dayOfWeek);
-                        if (openTime == -1 || militaryTime < openTime || militaryTime > closeTime)
+                        if (open == null || close == null) {
                             foodTrucks.remove(f);
+                        } else {
+                            int openTime = open.get(dayOfWeek);
+                            int closeTime = close.get(dayOfWeek);
+                            //If the food truck is outside open and close time (or closed entirely)
+                            if (openTime == -1 || militaryTime < openTime || militaryTime > closeTime)
+                                foodTrucks.remove(f);
+                        }
                     }
                 } catch (ParseException e) {
                 }
-            } else if (sorted == R.id.radio_healthy) {
+            } else if (sorted == R.id.radio_healthy) {//Find the food trucks with healthy options
                 query.whereEqualTo("hasHealthyOptions", true);
                 try {
                     foodTrucks = query.find();
@@ -155,14 +192,17 @@ public class MainActivity extends Activity {
             if (foodTrucks != null) {
                 for (ParseObject truck : foodTrucks) {
                     //add to the adapter each truck's name
-                    adapter.add((String) truck.get("name"));
+
+                    adapter.insert((String) truck.get("name"), 0);
                 }
             }
+
             //set the ListView's adapter to the recently populated adapter
             foodList.setAdapter(adapter);
         }
     }
 
+    //Filter button click: redirects the user to the Filter page
     public void onFilterClicked(View view) {
         Intent i = new Intent(this, FilterActivity.class);
         startActivity(i);

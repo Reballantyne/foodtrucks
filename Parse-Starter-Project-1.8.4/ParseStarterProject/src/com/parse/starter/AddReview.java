@@ -17,6 +17,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The add review activity. Enables users to write and submit new reviews
+ * @author Srinidhi Raghavan, Shilpa Kannan
+ */
+
 
 public class AddReview extends Activity {
 
@@ -24,9 +29,6 @@ public class AddReview extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
-        //UNCOMMENT THIS
-        //     TextView foodTruck = (TextView)findViewById(R.id.foodTruck);
-        //   foodTruck.setText(FoodTruckPage.foodTruckName);
     }
 
 
@@ -52,48 +54,34 @@ public class AddReview extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    //Saves the Review to the database when the submit button is hit
     public void submitReview(View v) {
         //Send to parse
         EditText et = (EditText) findViewById(R.id.reviewBox);
         String review = et.getText().toString();
+        //Get the parseObject related to specific food truck
         ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("FoodTruck");
         queryFoodTruck.whereEqualTo("name", FoodTruckActivity.foodTruckName);
         try {
-            Log.v("AR1:", "got here1");
+
             List<ParseObject> foodTrucks = queryFoodTruck.find();
-            //String foodTruckID = (String) foodTrucks.get(0).get("objectId");
             String foodTruckID = foodTrucks.get(0).getObjectId();
             ParseQuery<ParseObject> queryUserName = new ParseQuery<ParseObject>("User");
+            //gets username associated with the login session
             queryFoodTruck.whereEqualTo("user_name", LoginActivity.userNameSession);
             List<ParseObject> users = queryUserName.find();
-            Log.v("AR1:", "got here2");
-            //String userID = (String) users.get(0).get("objectId");
             String userID = users.get(0).getObjectId();
-            Calendar current = Calendar.getInstance();
-            Log.v("AR1:", "got here3");
-            SimpleDateFormat sdf = new SimpleDateFormat("MMM DD, yyyy, HH:mm");
-            Log.v("AR1:", "got here4");
-            String dateNow = sdf.format(current.getTime());
-            Log.v("AR1:", "got here5");
-            Date currentTime = sdf.parse(dateNow);
-            Log.v("AR1:", "got here6");
+            //creates a new Parse Object to store and added information
             ParseObject newReview = new ParseObject("Review");
-            Log.v("AR1:", "got here7");
-
             newReview.put("user_id", userID);
-            Log.v("AR1:", "got here8");
             newReview.put("foodtruck_id", foodTruckID);
             newReview.put("text", review);
-            //newReview.put("createdAt", currentTime);
-            Log.v("AR1:username", LoginActivity.userNameSession);
             newReview.put("user_name", LoginActivity.userNameSession);
             newReview.saveInBackground();
-            Log.v("AR1:", "got here9");
-            //CHANGEDs
             Intent i = new Intent(getApplicationContext(), ReviewPage.class);
             startActivity(i);
         } catch (Exception e) {
-
             e.printStackTrace();
         }
 
