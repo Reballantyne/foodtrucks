@@ -177,25 +177,27 @@
             android:layout_height="match_parent"
             android:id="@+id/Reviews"
             android:background="#ccb1b2a7">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Reviews"
-                android:id="@+id/ReviewClick"
-                android:layout_marginLeft="10dp"
-                android:textColor="#ff000000"
-                android:onClick = "seeMoreReviews"
-                android:layout_row="0"
-                android:layout_column="0" />
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
+                android:text="View Reviews"
+                android:id="@+id/button2"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:onClick="seeMoreReviews"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="7dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
                 android:text="Upload Picture"
                 android:id="@+id/UploadPic"
                 android:layout_row="0"
-                android:layout_column="15" />
+                android:layout_column="13"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="7dp" />
 
         </GridLayout>
 
