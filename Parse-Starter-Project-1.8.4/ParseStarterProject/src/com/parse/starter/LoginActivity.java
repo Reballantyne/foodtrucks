@@ -110,6 +110,7 @@ public class LoginActivity extends Activity {
                                 userNameSession = userName;
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
+                                break;
                             } else {
                                 //display toast if incorrect
                                 Context context = getApplicationContext();
