@@ -361,6 +361,106 @@ public class FoodTruckActivity extends Activity {
 
         }
     }
+        public void goFavorite(View v) {
+        Intent i = new Intent(getApplicationContext(), FavoritesActivity.class);
+        startActivity(i);
+    }
+
+
+    public void favoriteIt(View v){
+        if(LoginActivity.userNameSession == null){
+            helperDialogLogIn();
+        }
+        if(LoginActivity.userNameSession != null) {
+            //Send to parse
+            ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("FoodTruck");
+            queryFoodTruck.whereEqualTo("name", FoodTruckActivity.foodTruckName);
+            try {
+
+                List<ParseObject> foodTrucks = queryFoodTruck.find();
+                String foodTruckID = foodTrucks.get(0).getObjectId();
+                ParseQuery<ParseObject> queryUserName = new ParseQuery<ParseObject>("User");
+                //gets username associated with the login session
+                queryFoodTruck.whereEqualTo("user_name", LoginActivity.userNameSession);
+                List<ParseObject> users = queryUserName.find();
+                String userID = users.get(0).getObjectId();
+                //creates a new Parse Object to store and added information
+                ParseQuery<ParseObject> queryFavorite = new ParseQuery<ParseObject>("Favorite");
+                queryFavorite.whereEqualTo("user_id", userID);
+                List<ParseObject> favorites = queryFavorite.find();
+                for (ParseObject fav : favorites) {
+                    if (fav.get("foodtruck_id").equals(foodTruckID)) {
+                        HelperFunctions.displayToast(getApplicationContext(), "Already on your favorites!");
+                    }
+                }
+                ParseObject newFav = new ParseObject("Favorite");
+                newFav.put("user_id", userID);
+                newFav.put("foodtruck_id", foodTruckID);
+                newFav.saveInBackground();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void helperDialogLogIn() {
+        final Dialog dialog = new Dialog(getApplicationContext());
+        dialog.setContentView(R.layout.dialog_login);
+        dialog.setTitle("Please log in");
+
+        Button dialogCancel = (Button) dialog.findViewById(R.id.cancel);
+        Button dialogLogin = (Button) dialog.findViewById(R.id.SignIn);
+        //Cancel makes the dialog go away
+        dialogCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        //Log in checks the user name and password
+        dialogLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
+                EditText passwordView = (EditText) dialog.findViewById(R.id.passwordDialog);
+                final String password = passwordView.getText().toString();
+                EditText userNameView = (EditText) dialog.findViewById(R.id.usernameDialog);
+                final String userName = userNameView.getText().toString();
+                try {
+                    query.whereEqualTo("user_name", userName);
+                    //Check the users with the same user name
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        public void done(List<ParseObject> users, ParseException e) {
+                            if (e == null) {
+                                for (ParseObject u : users) {
+                                    String passwordMatch = (String) u.get("password");
+                                    //If the password is right, go to the add a review
+                                    if (passwordMatch.equals(password)) {
+                                        LoginActivity.userNameSession = userName;
+                                    } else {
+                                        //Otherwise show a toast that the log in is incorrect
+                                        CharSequence text = "Incorrect Password/UserName";
+                                        int duration = Toast.LENGTH_SHORT;
+
+                                        Toast toast = Toast.makeText(getApplicationContext(), text, duration);
+                                        toast.show();
+                                    }
+
+                                }
+                            } else {
+                                Log.d("score", "Error: " + e.getMessage());
+                            }
+                        }
+                    });
+
+                } catch (Exception e) {
+
+                }
+            }
+        });
+
+        dialog.show();
+    }
 
     /*
     public String getRealPathFromURI(Uri contentUri) {
