@@ -57,7 +57,7 @@ public class FavoritesActivity extends Activity {
         ArrayList<String> items = new ArrayList<String>();
         ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("User");
         //Pull the food truck information
-        queryFoodTruck.whereEqualTo("username", LoginActivity.userNameSession);
+        queryFoodTruck.whereEqualTo("user_name", LoginActivity.userNameSession);
         try {
             List<ParseObject> foodTrucks = queryFoodTruck.find();
             String userID = foodTrucks.get(0).getObjectId();
