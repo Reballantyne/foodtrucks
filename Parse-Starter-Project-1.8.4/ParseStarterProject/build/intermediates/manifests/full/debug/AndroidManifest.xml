@@ -108,6 +108,10 @@
             android:name="com.parse.starter.MenuActivity"
             android:label="@string/title_activity_menu" >
         </activity>
+        <activity
+            android:name="com.parse.starter.FavoritesActivity"
+            android:label="@string/title_activity_menu" >
+        </activity>
     </application>
 
 </manifest>

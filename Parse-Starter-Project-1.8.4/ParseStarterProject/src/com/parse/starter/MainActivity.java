@@ -330,6 +330,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                                         LoginActivity.userNameSession = userName;
                                         Intent i = new Intent(context, FavoritesActivity.class);
                                         startActivity(i);
+                                        break;
                                     } else {
                                         //Otherwise show a toast that the log in is incorrect
                                         CharSequence text = "Incorrect Password/UserName";

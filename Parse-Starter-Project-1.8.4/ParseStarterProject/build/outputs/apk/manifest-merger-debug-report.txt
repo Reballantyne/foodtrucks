@@ -206,3 +206,9 @@ ADDED from AndroidManifest.xml:107:9
 		ADDED from AndroidManifest.xml:109:13
 	android:name
 		ADDED from AndroidManifest.xml:108:13
+activity#com.parse.starter.FavoritesActivity
+ADDED from AndroidManifest.xml:111:9
+	android:label
+		ADDED from AndroidManifest.xml:113:13
+	android:name
+		ADDED from AndroidManifest.xml:112:13
