@@ -3,4 +3,4 @@
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" android:showAsAction="never" />
 </menu>
-<!-- From: file:/Users/raginiraghavan/Documents/cis350New/mr/Parse-Starter-Project-1.8.4/ParseStarterProject/res/menu/menu_login.xml -->
+<!-- From: file:/Users/paarth/Repositories/cis350-project/foodtrucks/Parse-Starter-Project-1.8.4/ParseStarterProject/res/menu/menu_login.xml -->

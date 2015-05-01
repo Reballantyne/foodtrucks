@@ -40,7 +40,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD2tmG8AhIhPP7Yfz0pOERtCDEGb5pajxo" />
+            android:value="AIzaSyCA4WHZFfhQpmnArryajp2guLtG8ZAWmPk" />
         <meta-data
             android:name="com.parse.APPLICATION_ID"
             android:value="@string/parse_app_id" />
