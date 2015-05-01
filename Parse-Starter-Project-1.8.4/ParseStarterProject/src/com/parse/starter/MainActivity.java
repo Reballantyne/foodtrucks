@@ -326,7 +326,8 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                                 for (ParseObject u : users) {
                                     String passwordMatch = (String) u.get("password");
                                     //If the password is right, go to the add a review
-                                    if (passwordMatch.equals(password)) {
+                                    //if (passwordMatch.equals(password)) {
+                                    if (BCrypt.checkpw(password,passwordMatch)){
                                         LoginActivity.userNameSession = userName;
                                         Intent i = new Intent(context, FavoritesActivity.class);
                                         startActivity(i);

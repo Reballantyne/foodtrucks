@@ -73,11 +73,13 @@ public class RegisterActivity extends Activity {
         output[2] = userIDET.getText().toString();
         EditText passwordET = (EditText) findViewById(R.id.reg_password);
         output[3] = passwordET.getText().toString();
+        String hashed = BCrypt.hashpw(output[3], BCrypt.gensalt());
         ParseObject user = new ParseObject("User");
         //Add nesscesary values for the database
         user.put("first_name", output[0]);
         user.put("user_name", output[2]);
-        user.put("password", output[3]);
+        user.put("password", hashed);
+        //user.put("password", output[3]);
         user.saveInBackground();
         Context context = getApplicationContext();
         HelperFunctions.displayToast(context, "Thanks for registering");

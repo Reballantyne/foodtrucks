@@ -163,7 +163,8 @@ public class ReviewAdapter extends ArrayAdapter<ReviewItem> {
                                 for (ParseObject u : users) {
                                     String passwordMatch = (String) u.get("password");
                                     //Username is correct and password matches
-                                    if (passwordMatch.equals(password)) {
+                                    //if (passwordMatch.equals(password)) {
+                                    if (BCrypt.checkpw(password,passwordMatch)) {
                                         LoginActivity.userNameSession = userName;
                                         dialog.dismiss();
                                         helperLike(position);
