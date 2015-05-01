@@ -411,7 +411,8 @@ public class FoodTruckActivity extends Activity {
                                 for (ParseObject u : users) {
                                     String passwordMatch = (String) u.get("password");
                                     //If the password is right, go to the add a review
-                                    if (passwordMatch.equals(password)) {
+                                    //if (passwordMatch.equals(password)) {
+                                    if(BCrypt.checkpw(password,passwordMatch)){
                                         LoginActivity.userNameSession = userName;
                                         addAFavorite();
                                     } else {
