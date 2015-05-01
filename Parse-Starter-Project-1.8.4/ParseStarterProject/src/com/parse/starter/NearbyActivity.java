@@ -4,6 +4,7 @@ import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.*;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,6 +17,9 @@ import java.util.*;
 
 import android.view.View;
 import android.location.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 // Creators: Paarth Taneja & Nikila Venkat
 // Implements "Nearby" tab. Displays map, adds markers corresponding to food truck locations.
@@ -147,11 +151,10 @@ public class NearbyActivity extends Activity implements OnMapReadyCallback {
         }
         helperDialogLogIn();
     }
-
     //This is a helper method that contains the dialog functionality to
     //prompt and check a user's password if they are not already logged in
     private void helperDialogLogIn() {
-        final Dialog dialog = new Dialog(context);
+        final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_login);
         dialog.setTitle("Please log in");
 
@@ -182,16 +185,18 @@ public class NearbyActivity extends Activity implements OnMapReadyCallback {
                                 for (ParseObject u : users) {
                                     String passwordMatch = (String) u.get("password");
                                     //If the password is right, go to the add a review
-                                    if (passwordMatch.equals(password)) {
+                                    //if (passwordMatch.equals(password)) {
+                                    if (BCrypt.checkpw(password,passwordMatch)){
                                         LoginActivity.userNameSession = userName;
-                                        Intent i = new Intent(context, FavoritesActivity.class);
+                                        Intent i = new Intent(getApplicationContext(), FavoritesActivity.class);
                                         startActivity(i);
+                                        break;
                                     } else {
                                         //Otherwise show a toast that the log in is incorrect
                                         CharSequence text = "Incorrect Password/UserName";
                                         int duration = Toast.LENGTH_SHORT;
 
-                                        Toast toast = Toast.makeText(context, text, duration);
+                                        Toast toast = Toast.makeText(getApplicationContext(), text, duration);
                                         toast.show();
                                     }
 
@@ -210,6 +215,5 @@ public class NearbyActivity extends Activity implements OnMapReadyCallback {
 
         dialog.show();
     }
-
 }
 
