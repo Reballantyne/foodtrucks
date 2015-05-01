@@ -53,7 +53,17 @@ public class FavoritesAdapter extends ArrayAdapter<String> {
 
         // 4. Set the text for textView
         foodtruckView.setText(favoriteItemsList.get(position));
+        foodtruckView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, FoodTruckActivity.class);
+                //extra information added so the FoodTruckPage can populate with correct data
+                i.putExtra("TRUCK_NAME", favoriteItemsList.get(pos));
+                context.startActivity(i);
+            }
 
+        });
+ 
         // 5. return rowView
         return rowView;
     }
