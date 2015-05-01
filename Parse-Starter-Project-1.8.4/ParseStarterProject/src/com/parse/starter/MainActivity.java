@@ -2,6 +2,8 @@ package com.parse.starter;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -18,6 +22,7 @@ import java.text.SimpleDateFormat;
 
 import android.widget.RadioButton;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -26,6 +31,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
 import android.widget.SearchView.*;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private List<ParseObject> foodTrucks; //all parse data for all foodTrucks
@@ -219,6 +225,78 @@ public class MainActivity extends Activity {
     public void goMap(View v) {
         Intent i = new Intent(getApplicationContext(), NearbyActivity.class);
         startActivity(i);
+    }
+
+    public void goFavorites(View v){
+        if(LoginActivity.userNameSession != null) {
+            Intent i = new Intent(getApplicationContext(), FavoritesActivity.class);
+            startActivity(i);
+        }
+        helperDialogLogIn();
+    }
+
+    //This is a helper method that contains the dialog functionality to
+    //prompt and check a user's password if they are not already logged in
+    private void helperDialogLogIn() {
+        final Dialog dialog = new Dialog(getApplicationContext());
+        dialog.setContentView(R.layout.dialog_login);
+        dialog.setTitle("Please log in");
+
+        Button dialogCancel = (Button) dialog.findViewById(R.id.cancel);
+        Button dialogLogin = (Button) dialog.findViewById(R.id.SignIn);
+        //Cancel makes the dialog go away
+        dialogCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        //Log in checks the user name and password
+        dialogLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Context appContext = getApplicationContext();
+                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
+                EditText passwordView = (EditText) dialog.findViewById(R.id.passwordDialog);
+                final String password = passwordView.getText().toString();
+                EditText userNameView = (EditText) dialog.findViewById(R.id.usernameDialog);
+                final String userName = userNameView.getText().toString();
+                try {
+                    query.whereEqualTo("user_name", userName);
+                    //Check the users with the same user name
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        public void done(List<ParseObject> users, ParseException e) {
+                            if (e == null) {
+                                for (ParseObject u : users) {
+                                    String passwordMatch = (String) u.get("password");
+                                    //If the password is right, go to the add a review
+                                    if (passwordMatch.equals(password)) {
+                                        LoginActivity.userNameSession = userName;
+                                        Intent i = new Intent(getApplicationContext(), FavoritesActivity.class);
+                                        startActivity(i);
+                                    } else {
+                                        //Otherwise show a toast that the log in is incorrect
+                                        CharSequence text = "Incorrect Password/UserName";
+                                        int duration = Toast.LENGTH_SHORT;
+
+                                        Toast toast = Toast.makeText(appContext, text, duration);
+                                        toast.show();
+                                    }
+
+                                }
+                            } else {
+                                Log.d("score", "Error: " + e.getMessage());
+                            }
+                        }
+                    });
+
+                } catch (Exception e) {
+
+                }
+            }
+        });
+
+        dialog.show();
     }
 
 }
