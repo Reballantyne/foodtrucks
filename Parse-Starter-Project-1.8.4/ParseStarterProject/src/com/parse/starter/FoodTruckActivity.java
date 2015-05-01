@@ -463,6 +463,7 @@ public class FoodTruckActivity extends Activity {
             for (ParseObject fav : favorites) {
                 if (fav.get("foodtruck_id").equals(foodTruckID)) {
                     HelperFunctions.displayToast(getApplicationContext(), "Already on your favorites!");
+                    return;
                 }
             }
             ParseObject newFav = new ParseObject("Favorite");
