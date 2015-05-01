@@ -144,5 +144,76 @@ public class SpecialsActivity extends Activity {
         Intent i = new Intent(getApplicationContext(), NearbyActivity.class);
         startActivity(i);
     }
+    
+      public void goFavorites(View v){
+        if(LoginActivity.userNameSession != null) {
+            Intent i = new Intent(getApplicationContext(), FavoritesActivity.class);
+            startActivity(i);
+        }
+        helperDialogLogIn();
+    }
+
+    //This is a helper method that contains the dialog functionality to
+    //prompt and check a user's password if they are not already logged in
+    private void helperDialogLogIn() {
+        final Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_login);
+        dialog.setTitle("Please log in");
+
+        Button dialogCancel = (Button) dialog.findViewById(R.id.cancel);
+        Button dialogLogin = (Button) dialog.findViewById(R.id.SignIn);
+        //Cancel makes the dialog go away
+        dialogCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        //Log in checks the user name and password
+        dialogLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
+                EditText passwordView = (EditText) dialog.findViewById(R.id.passwordDialog);
+                final String password = passwordView.getText().toString();
+                EditText userNameView = (EditText) dialog.findViewById(R.id.usernameDialog);
+                final String userName = userNameView.getText().toString();
+                try {
+                    query.whereEqualTo("user_name", userName);
+                    //Check the users with the same user name
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        public void done(List<ParseObject> users, ParseException e) {
+                            if (e == null) {
+                                for (ParseObject u : users) {
+                                    String passwordMatch = (String) u.get("password");
+                                    //If the password is right, go to the add a review
+                                    if (passwordMatch.equals(password)) {
+                                        LoginActivity.userNameSession = userName;
+                                        Intent i = new Intent(context, FavoritesActivity.class);
+                                        startActivity(i);
+                                    } else {
+                                        //Otherwise show a toast that the log in is incorrect
+                                        CharSequence text = "Incorrect Password/UserName";
+                                        int duration = Toast.LENGTH_SHORT;
+
+                                        Toast toast = Toast.makeText(context, text, duration);
+                                        toast.show();
+                                    }
+
+                                }
+                            } else {
+                                Log.d("score", "Error: " + e.getMessage());
+                            }
+                        }
+                    });
+
+                } catch (Exception e) {
+
+                }
+            }
+        });
+
+        dialog.show();
+    }
 
 }
