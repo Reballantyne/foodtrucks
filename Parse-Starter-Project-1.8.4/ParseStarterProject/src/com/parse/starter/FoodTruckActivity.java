@@ -374,35 +374,8 @@ public class FoodTruckActivity extends Activity {
         if(LoginActivity.userNameSession == null){
             helperDialogLogIn();
         }
-        if(LoginActivity.userNameSession != null) {
-            //Send to parse
-            ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("FoodTruck");
-            queryFoodTruck.whereEqualTo("name", FoodTruckActivity.foodTruckName);
-            try {
-
-                List<ParseObject> foodTrucks = queryFoodTruck.find();
-                String foodTruckID = foodTrucks.get(0).getObjectId();
-                ParseQuery<ParseObject> queryUserName = new ParseQuery<ParseObject>("User");
-                //gets username associated with the login session
-                queryFoodTruck.whereEqualTo("user_name", LoginActivity.userNameSession);
-                List<ParseObject> users = queryUserName.find();
-                String userID = users.get(0).getObjectId();
-                //creates a new Parse Object to store and added information
-                ParseQuery<ParseObject> queryFavorite = new ParseQuery<ParseObject>("Favorite");
-                queryFavorite.whereEqualTo("user_id", userID);
-                List<ParseObject> favorites = queryFavorite.find();
-                for (ParseObject fav : favorites) {
-                    if (fav.get("foodtruck_id").equals(foodTruckID)) {
-                        HelperFunctions.displayToast(getApplicationContext(), "Already on your favorites!");
-                    }
-                }
-                ParseObject newFav = new ParseObject("Favorite");
-                newFav.put("user_id", userID);
-                newFav.put("foodtruck_id", foodTruckID);
-                newFav.saveInBackground();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        else{
+            addAFavorite();
         }
     }
 
@@ -440,6 +413,7 @@ public class FoodTruckActivity extends Activity {
                                     //If the password is right, go to the add a review
                                     if (passwordMatch.equals(password)) {
                                         LoginActivity.userNameSession = userName;
+                                        addAFavorite();
                                     } else {
                                         //Otherwise show a toast that the log in is incorrect
                                         CharSequence text = "Incorrect Password/UserName";
@@ -465,6 +439,35 @@ public class FoodTruckActivity extends Activity {
         dialog.show();
     }
 
+    private void addAFavorite(){
+        ParseQuery<ParseObject> queryFoodTruck = new ParseQuery<ParseObject>("FoodTruck");
+        queryFoodTruck.whereEqualTo("name", FoodTruckActivity.foodTruckName);
+        try {
+
+            List<ParseObject> foodTrucks = queryFoodTruck.find();
+            String foodTruckID = foodTrucks.get(0).getObjectId();
+            ParseQuery<ParseObject> queryUserName = new ParseQuery<ParseObject>("User");
+            //gets username associated with the login session
+            queryFoodTruck.whereEqualTo("user_name", LoginActivity.userNameSession);
+            String userID = queryUserName.find().get(0).getObjectId();
+            //creates a new Parse Object to store and added information
+            ParseQuery<ParseObject> queryFavorite = new ParseQuery<ParseObject>("Favorite");
+            queryFavorite.whereEqualTo("user_id", userID);
+            List<ParseObject> favorites = queryFavorite.find();
+            for (ParseObject fav : favorites) {
+                if (fav.get("foodtruck_id").equals(foodTruckID)) {
+                    HelperFunctions.displayToast(getApplicationContext(), "Already on your favorites!");
+                }
+            }
+            ParseObject newFav = new ParseObject("Favorite");
+            newFav.put("user_id", userID);
+            newFav.put("foodtruck_id", foodTruckID);
+            newFav.saveInBackground();
+        } catch (Exception f) {
+            f.printStackTrace();
+        }
+    }
+
     /*
     public String getRealPathFromURI(Uri contentUri) {
         String res = null;
@@ -482,5 +485,3 @@ public class FoodTruckActivity extends Activity {
 
 
 }
-
-
