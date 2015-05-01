@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -29,6 +30,9 @@ public class AddReview extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
+        TextView foodTruck = (TextView) findViewById(R.id.foodTruckAddRev);
+        //Display the food truck name
+        foodTruck.setText(FoodTruckActivity.foodTruckName);
     }
 
 
