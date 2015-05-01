@@ -73,12 +73,7 @@
             <!-- Link to Registration Screen -->
 
 
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/login_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dp" />
+
 
 
             <TextView android:id="@+id/link_to_register"
