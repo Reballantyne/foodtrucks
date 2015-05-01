@@ -73,7 +73,7 @@ public class FavoritesActivity extends Activity {
             favoritesNumber.setText(numFavorites + " favorite food trucks");
             //Create a ReviewItem for each review
             for (ParseObject f : favorites) {
-                String name = (String) f.get("foodtruck_id");
+                String name = (String) f.get("foodtruck_name");
          /*       ParseQuery<ParseObject> queryFTName = new ParseQuery<ParseObject>("FoodTruck");
                 queryFTName.whereEqualTo("object_id", id);
                 String foodtruckName = (String) queryFTName.find().get(0).get("name");*/
