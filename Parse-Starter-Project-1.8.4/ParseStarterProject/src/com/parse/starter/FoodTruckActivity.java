@@ -454,7 +454,7 @@ public class FoodTruckActivity extends Activity {
             String foodTruckID = foodTrucks.get(0).getObjectId();
             ParseQuery<ParseObject> queryUserName = new ParseQuery<ParseObject>("User");
             //gets username associated with the login session
-            queryFoodTruck.whereEqualTo("user_name", LoginActivity.userNameSession);
+            queryUserName.whereEqualTo("user_name", LoginActivity.userNameSession);
             String userID = queryUserName.find().get(0).getObjectId();
             //creates a new Parse Object to store and added information
             ParseQuery<ParseObject> queryFavorite = new ParseQuery<ParseObject>("Favorite");
