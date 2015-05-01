@@ -107,7 +107,6 @@ public class SpecialsActivity extends Activity {
         @Override
         protected void onPostExecute(Void result) {
             //Put the list of todos into the list viewer
-            ListView foodList = (ListView) findViewById(R.id.listView);
             ArrayList<SpecialsItem> specialsData = new ArrayList();
 
             //if there are specials available

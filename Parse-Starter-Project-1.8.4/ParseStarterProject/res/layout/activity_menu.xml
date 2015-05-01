@@ -23,40 +23,14 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="393dp"
-        android:id="@+id/listView2"
+        android:id="@+id/listOfMenu"
         android:layout_row="2"
         android:layout_column="0"
         android:background="#ccb1b2a7"
         android:layout_weight="1"
         android:layout_below="@+id/textView4"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textView5"
-        android:gravity="center_vertical|center_horizontal"
-        android:background="#ccb1b2a7"
-        android:textStyle="bold"
-        android:textSize="22dp"
-        android:layout_below="@+id/listView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="70dp"
-        android:layout_height="50dp"
-        android:text="&lt;--"
-        android:id="@+id/button3"
-        android:gravity="center_vertical|center_horizontal"
-        android:onClick="goBack"
-        android:layout_alignTop="@+id/textView5"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="7dp" />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>
