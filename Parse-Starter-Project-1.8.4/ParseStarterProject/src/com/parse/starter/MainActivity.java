@@ -36,6 +36,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
     private List<ParseObject> foodTrucks; //all parse data for all foodTrucks
     private int sorted = -1;
+    private Context context;
     //private int latitude;
     // private int longitude;
 
@@ -44,6 +45,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
 
         //Sets query hint for search bar at top of activity
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
@@ -238,7 +240,7 @@ public class MainActivity extends Activity {
     //This is a helper method that contains the dialog functionality to
     //prompt and check a user's password if they are not already logged in
     private void helperDialogLogIn() {
-        final Dialog dialog = new Dialog(getApplicationContext());
+        final Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_login);
         dialog.setTitle("Please log in");
 
@@ -255,7 +257,6 @@ public class MainActivity extends Activity {
         dialogLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Context appContext = getApplicationContext();
                 ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("User");
                 EditText passwordView = (EditText) dialog.findViewById(R.id.passwordDialog);
                 final String password = passwordView.getText().toString();
@@ -272,14 +273,14 @@ public class MainActivity extends Activity {
                                     //If the password is right, go to the add a review
                                     if (passwordMatch.equals(password)) {
                                         LoginActivity.userNameSession = userName;
-                                        Intent i = new Intent(getApplicationContext(), FavoritesActivity.class);
+                                        Intent i = new Intent(context, FavoritesActivity.class);
                                         startActivity(i);
                                     } else {
                                         //Otherwise show a toast that the log in is incorrect
                                         CharSequence text = "Incorrect Password/UserName";
                                         int duration = Toast.LENGTH_SHORT;
 
-                                        Toast toast = Toast.makeText(appContext, text, duration);
+                                        Toast toast = Toast.makeText(context, text, duration);
                                         toast.show();
                                     }
 
