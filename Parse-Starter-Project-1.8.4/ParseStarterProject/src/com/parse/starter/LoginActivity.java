@@ -104,13 +104,18 @@ public class LoginActivity extends Activity {
                     if (e == null) {
                         for (ParseObject u : users) {
                             String passwordMatch = (String) u.get("password");
-                            //if user credentials match
-                            if (passwordMatch.equals(password)) {
+                            Log.v("hashedPassword:nonHashed1",passwordMatch );
+                            BCrypt.checkpw(password,passwordMatch);
+                            Log.v("hashedPassword","got here");
+
+                            //if (passwordMatch.equals(password)) {
+                            if (BCrypt.checkpw(password,passwordMatch)) {
                                 //set the userName and go to Main screen
+                                Log.v("hashedPassword","it matched");
+
                                 userNameSession = userName;
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
-                                break;
                             } else {
                                 //display toast if incorrect
                                 Context context = getApplicationContext();
