@@ -106,7 +106,8 @@
                 android:layout_height="35dp"
                 android:text="Favorite"
                 android:id="@+id/favorite"
-                android:gravity="center_vertical|center_horizontal" />
+                android:gravity="center_vertical|center_horizontal" 
+                android:onClick = "favoriteIt" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"

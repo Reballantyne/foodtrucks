@@ -119,7 +119,8 @@
                 android:layout_weight="0.25"
                 android:src="@drawable/favorites"
                 android:background="@android:color/transparent"
-                android:contentDescription="favoritesButton" />
+                android:contentDescription="favoritesButton"
+                android:onClick = "goFavorites"/>
 
             <ImageButton
                 android:layout_width="0dp"

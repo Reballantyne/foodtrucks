@@ -87,6 +87,8 @@ public class MenuActivity extends Activity {
                 holder.txtItem.setText(menu.item);
                 holder.txtDesc.setText(menu.desc);
                 holder.txtHealthy.setText(menu.healthy);
+                holder.txtCategory.setText("");
+
             }
 
             return row;
