@@ -74,7 +74,7 @@ public class FavoritesActivity extends Activity {
                 String id = (String) f.get("foodtruck_id");
                 ParseQuery<ParseObject> queryFTName = new ParseQuery<ParseObject>("FoodTruck");
                 queryFTName.whereEqualTo("object_id", id);
-                String foodtruckName = (String) queryFTName.find().get(0).get("foodtruck_name");
+                String foodtruckName = (String) queryFTName.find().get(0).get("name");
                 items.add(foodtruckName);
             }
         } catch (Exception e) {
