@@ -587,7 +587,7 @@ containing a value of this type.
         public static final int veg3=0x7f020044;
     }
     public static final class id {
-        public static final int Likes=0x7f0b0079;
+        public static final int Likes=0x7f0b007a;
         public static final int PictureBox=0x7f0b006d;
         public static final int ReviewClick=0x7f0b006f;
         public static final int Reviews=0x7f0b006e;
@@ -595,9 +595,9 @@ containing a value of this type.
         public static final int SubmitReview=0x7f0b002a;
         public static final int UploadPic=0x7f0b0070;
         public static final int UserNameTF=0x7f0b0030;
-        public static final int User_Name=0x7f0b0076;
+        public static final int User_Name=0x7f0b0077;
         public static final int Without_Password=0x7f0b0035;
-        public static final int action_settings=0x7f0b007f;
+        public static final int action_settings=0x7f0b0080;
         public static final int address=0x7f0b0062;
         public static final int adjust_height=0x7f0b0000;
         public static final int adjust_width=0x7f0b0001;
@@ -614,6 +614,7 @@ containing a value of this type.
         public static final int buy_with_google=0x7f0b0012;
         public static final int callTruck=0x7f0b0068;
         public static final int cancel=0x7f0b0060;
+        public static final int category=0x7f0b0072;
         public static final int center=0x7f0b0020;
         public static final int classic=0x7f0b0014;
         public static final int com_facebook_body_frame=0x7f0b0056;
@@ -625,7 +626,7 @@ containing a value of this type.
         public static final int com_facebook_tooltip_bubble_view_top_pointer=0x7f0b0057;
         public static final int desc=0x7f0b0073;
         public static final int donate_with_google=0x7f0b0013;
-        public static final int endDate=0x7f0b007d;
+        public static final int endDate=0x7f0b007e;
         public static final int favorite=0x7f0b006a;
         public static final int filterButton=0x7f0b0038;
         public static final int foodTruck=0x7f0b004a;
@@ -636,7 +637,7 @@ containing a value of this type.
         public static final int grayscale=0x7f0b0015;
         public static final int gridBag=0x7f0b0036;
         public static final int gridLayout=0x7f0b0049;
-        public static final int h=0x7f0b0072;
+        public static final int h=0x7f0b0074;
         public static final int header=0x7f0b0025;
         public static final int headerText=0x7f0b0026;
         public static final int holo_dark=0x7f0b0007;
@@ -650,12 +651,12 @@ containing a value of this type.
         public static final int imageButton8=0x7f0b0053;
         public static final int inline=0x7f0b001e;
         public static final int isHealthy=0x7f0b0066;
-        public static final int item=0x7f0b0074;
+        public static final int item=0x7f0b0075;
         public static final int large=0x7f0b0023;
         public static final int left=0x7f0b0021;
-        public static final int likeThumb=0x7f0b007a;
+        public static final int likeThumb=0x7f0b007b;
         public static final int linearLayout2=0x7f0b0043;
-        public static final int linearLayout3=0x7f0b0078;
+        public static final int linearLayout3=0x7f0b0079;
         public static final int linearLayoutParent=0x7f0b006c;
         public static final int link_to_register=0x7f0b0034;
         public static final int listOfMenu=0x7f0b0040;
@@ -665,7 +666,7 @@ containing a value of this type.
         public static final int login_button=0x7f0b0033;
         public static final int map=0x7f0b0041;
         public static final int match_parent=0x7f0b000e;
-        public static final int messenger_send_button=0x7f0b0075;
+        public static final int messenger_send_button=0x7f0b0076;
         public static final int monochrome=0x7f0b0016;
         public static final int name=0x7f0b0071;
         public static final int none=0x7f0b0002;
@@ -688,8 +689,8 @@ containing a value of this type.
         public static final int reg_id=0x7f0b0046;
         public static final int reg_password=0x7f0b0047;
         public static final int reviewBox=0x7f0b0029;
-        public static final int reviewID=0x7f0b007b;
-        public static final int reviews=0x7f0b0077;
+        public static final int reviewID=0x7f0b007c;
+        public static final int reviews=0x7f0b0078;
         public static final int right=0x7f0b0022;
         public static final int sandbox=0x7f0b000a;
         public static final int satellite=0x7f0b0005;
@@ -705,9 +706,9 @@ containing a value of this type.
         public static final int textView2=0x7f0b0028;
         public static final int textView3=0x7f0b004e;
         public static final int textView4=0x7f0b003f;
-        public static final int title=0x7f0b007c;
+        public static final int title=0x7f0b007d;
         public static final int top=0x7f0b001f;
-        public static final int truckName=0x7f0b007e;
+        public static final int truckName=0x7f0b007f;
         public static final int unknown=0x7f0b0019;
         public static final int userPrompt=0x7f0b005b;
         public static final int usernameDialog=0x7f0b005c;
@@ -747,15 +748,16 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int menu_add_review=0x7f0a0000;
-        public static final int menu_filter=0x7f0a0001;
-        public static final int menu_login=0x7f0a0002;
-        public static final int menu_main=0x7f0a0003;
-        public static final int menu_map_test=0x7f0a0004;
-        public static final int menu_menu=0x7f0a0005;
-        public static final int menu_picture_swiper=0x7f0a0006;
-        public static final int menu_register=0x7f0a0007;
-        public static final int menu_review_page=0x7f0a0008;
-        public static final int menu_specials=0x7f0a0009;
+        public static final int menu_favorites=0x7f0a0001;
+        public static final int menu_filter=0x7f0a0002;
+        public static final int menu_login=0x7f0a0003;
+        public static final int menu_main=0x7f0a0004;
+        public static final int menu_map_test=0x7f0a0005;
+        public static final int menu_menu=0x7f0a0006;
+        public static final int menu_picture_swiper=0x7f0a0007;
+        public static final int menu_register=0x7f0a0008;
+        public static final int menu_review_page=0x7f0a0009;
+        public static final int menu_specials=0x7f0a000a;
     }
     public static final class raw {
         public static final int gtm_analytics=0x7f040000;

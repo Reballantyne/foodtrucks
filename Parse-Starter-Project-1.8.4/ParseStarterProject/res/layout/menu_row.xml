@@ -5,6 +5,22 @@
 
     <TextView
         android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/category"
+        android:gravity="center"
+        android:textColor="#ff2d322e"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_alignBottom="@+id/desc"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/h"
@@ -12,17 +28,20 @@
         android:layout_gravity="right"
         android:layout_above="@+id/desc"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/item"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textColor="#ff2d322e" />
+        android:textColor="#ff2d322e"
+        android:gravity="center_vertical" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -68,6 +68,7 @@ public class MenuActivity extends Activity {
                 holder.txtItem = (TextView) row.findViewById(R.id.item);
                 holder.txtDesc = (TextView) row.findViewById(R.id.desc);
                 holder.txtHealthy = (TextView) row.findViewById(R.id.h);
+                holder.txtCategory = (TextView) row.findViewById(R.id.category);
                 row.setTag(holder);
 
             } else {
@@ -76,9 +77,17 @@ public class MenuActivity extends Activity {
 
             //set the text
             MenuItem menu = menuData.get(position);
-            holder.txtItem.setText(menu.item);
-            holder.txtDesc.setText(menu.desc);
-            holder.txtHealthy.setText(menu.healthy);
+            if (menu.item == null && menu.desc == null && menu.healthy == null) {
+                holder.txtCategory.setText(menu.category);
+                holder.txtItem.setText("");
+                holder.txtDesc.setText("");
+                holder.txtHealthy.setText("");
+            }
+            else {
+                holder.txtItem.setText(menu.item);
+                holder.txtDesc.setText(menu.desc);
+                holder.txtHealthy.setText(menu.healthy);
+            }
 
             return row;
         }
@@ -88,6 +97,7 @@ public class MenuActivity extends Activity {
             TextView txtItem;
             TextView txtDesc;
             TextView txtHealthy;
+            TextView txtCategory;
         }
     }
 
@@ -114,13 +124,16 @@ public class MenuActivity extends Activity {
             //if there are specials available
             if (MenuActivity.this.menuParseObjects != null) {
                 for (ParseObject menuItem : MenuActivity.this.menuParseObjects) {
-                    String healthy = "";
-                    if ((Boolean) menuItem.get("healthy")) {
-                        healthy = "H  ";
+                    ArrayList<Integer> healthy = (ArrayList<Integer>) menuItem.get("healthy");
+                    ArrayList<String> item_names = (ArrayList<String>) menuItem.get("item_name");
+                    ArrayList<String> item_description = (ArrayList<String>) menuItem.get("item_description");
+                    String categoryName = (String) menuItem.get("category_name");
+                    menuData.add(new MenuItem(null, null, null, categoryName));
+                    for (int i = 0; i < healthy.size(); i++) {
+                        String isHealthy = "";
+                        if (healthy.get(i) == 1) { isHealthy = "H  "; }
+                        menuData.add((new MenuItem(item_names.get(i), item_description.get(i), isHealthy, "")));
                     }
-                    //MenuItem x = new MenuItem("sdfsd", "sdfsd", "sdfsd");
-                    menuData.add(new MenuItem((String) menuItem.get("item_name"),
-                            (String) menuItem.get("item_description"), healthy));
                 }
             }
             //set the adapter for the view
@@ -131,15 +144,17 @@ public class MenuActivity extends Activity {
     }
 
     private class MenuItem {
+        String category;
         String item;
         String desc;
         String healthy;
 
         //constructor
-        private MenuItem(String item, String desc, String healthy) {
+        private MenuItem(String item, String desc, String healthy, String category) {
             this.item = item;
             this.desc = desc;
             this.healthy = healthy;
+            this.category = category;
         }
     }
 }
