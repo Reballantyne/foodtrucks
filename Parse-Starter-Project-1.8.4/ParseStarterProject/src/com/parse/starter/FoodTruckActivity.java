@@ -467,6 +467,7 @@ public class FoodTruckActivity extends Activity {
                 }
             }
             ParseObject newFav = new ParseObject("Favorite");
+            newFav.put("user_name", LoginActivity.userNameSession);
             newFav.put("user_id", userID);
             newFav.put("foodtruck_id", foodTruckID);
             newFav.put("foodtruck_name", FoodTruckActivity.foodTruckName);
