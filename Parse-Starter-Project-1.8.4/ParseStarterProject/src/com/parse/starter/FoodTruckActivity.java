@@ -435,8 +435,13 @@ public class FoodTruckActivity extends Activity {
                 }
             }
         });
-
-        dialog.show();
+        if (LoginActivity.userNameSession == null) {
+            Toast toast = Toast.makeText(getApplicationContext(), "You are not logged in.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else {
+            dialog.show();
+        }
     }
 
     private void addAFavorite(){

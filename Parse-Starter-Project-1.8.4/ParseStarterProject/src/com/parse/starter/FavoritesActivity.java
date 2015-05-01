@@ -2,9 +2,11 @@ package com.parse.starter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -71,7 +73,7 @@ public class FavoritesActivity extends Activity {
             favoritesNumber.setText(numFavorites + " favorite food trucks");
             //Create a ReviewItem for each review
             for (ParseObject f : favorites) {
-                String name = (String) f.get("foodtruck_name");
+                String name = (String) f.get("foodtruck_id");
          /*       ParseQuery<ParseObject> queryFTName = new ParseQuery<ParseObject>("FoodTruck");
                 queryFTName.whereEqualTo("object_id", id);
                 String foodtruckName = (String) queryFTName.find().get(0).get("name");*/
@@ -83,4 +85,23 @@ public class FavoritesActivity extends Activity {
         }
         return items;
     }
+
+    //Menu bar button click: redirects to the specials page
+    public void goSpecials(View v) {
+        Intent i = new Intent(getApplicationContext(), SpecialsActivity.class);
+        startActivity(i);
+    }
+
+    //Menu bar button click: redirects to the map page
+    public void goMap(View v) {
+        Intent i = new Intent(getApplicationContext(), NearbyActivity.class);
+        startActivity(i);
+    }
+
+    //Menu bar: Redirects to the search page
+    public void goSearch(View v) {
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+    }
+
 }
