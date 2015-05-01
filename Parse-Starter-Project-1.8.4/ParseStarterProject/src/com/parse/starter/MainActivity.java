@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,21 +23,30 @@ import java.text.SimpleDateFormat;
 
 import android.widget.RadioButton;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+
 import android.widget.SearchView.*;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
     private List<ParseObject> foodTrucks; //all parse data for all foodTrucks
     private int sorted = -1;
     private Context context;
+    private GoogleApiClient mGoogleApiClient;
+    private ParseGeoPoint currentLocation;
     //private int latitude;
     // private int longitude;
 
@@ -46,6 +56,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
+        buildGoogleApiClient();
 
         //Sets query hint for search bar at top of activity
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
@@ -127,6 +138,26 @@ public class MainActivity extends Activity {
         });
     }
 
+    private void sort(){
+        Map<ParseObject, Double> foodTruckDistance = new HashMap<>();
+        if(currentLocation != null) {
+            for (ParseObject food : foodTrucks) {
+                double distance = currentLocation.distanceInMilesTo((ParseGeoPoint) food.get("location"));
+                foodTruckDistance.put(food, distance);
+            }
+            double min = Double.MAX_VALUE;
+            List<ParseObject> foodtrucksCopy = new ArrayList<>();
+            for (ParseObject food : foodTrucks) {
+                if (foodTruckDistance.containsKey(food) && foodTruckDistance.get(food) < min) {
+                    min = foodTruckDistance.get(food);
+                    foodtrucksCopy.add(food);
+                    foodTruckDistance.remove(food);
+                }
+            }
+            foodTrucks = foodtrucksCopy;
+        }
+    }
+
     //This class pulls all the relevant information about each food truck name from the database
     //and, if the user has chosen to filter, only displays relevant options.
     private class RemoteDataTask extends AsyncTask<Void, Void, Void> {
@@ -139,12 +170,14 @@ public class MainActivity extends Activity {
                 query.orderByDescending("name");
                 try {
                     foodTrucks = query.find();
+
                 } catch (ParseException e) {
                 }
             } else if (sorted == R.id.radio_distance) {
                 query.orderByDescending("location");
                 try {
                     foodTrucks = query.find();
+                    sort();
                 } catch (ParseException e) {
                 }
 
@@ -208,6 +241,28 @@ public class MainActivity extends Activity {
             //set the ListView's adapter to the recently populated adapter
             foodList.setAdapter(adapter);
         }
+    }
+
+    public void onConnected(Bundle connectionHint) {
+        Location current = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        currentLocation = new ParseGeoPoint(current.getLatitude(), current.getLongitude());
+    }
+
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
+
+    public void onConnectionFailed(ConnectionResult cr){
+        currentLocation = null;
+    }
+
+    public void onConnectionSuspended(int cause){
+        currentLocation = null;
     }
 
     //Filter button click: redirects the user to the Filter page
