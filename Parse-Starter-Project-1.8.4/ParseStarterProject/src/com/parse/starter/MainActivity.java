@@ -145,14 +145,18 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                 double distance = currentLocation.distanceInMilesTo((ParseGeoPoint) food.get("location"));
                 foodTruckDistance.put(food, distance);
             }
-            double min = Double.MAX_VALUE;
             List<ParseObject> foodtrucksCopy = new ArrayList<>();
-            for (ParseObject food : foodTrucks) {
-                if (foodTruckDistance.containsKey(food) && foodTruckDistance.get(food) < min) {
-                    min = foodTruckDistance.get(food);
-                    foodtrucksCopy.add(food);
-                    foodTruckDistance.remove(food);
+            while(!foodTruckDistance.isEmpty()) {
+                double min = Double.MAX_VALUE;
+                ParseObject selected = null;
+                for (ParseObject food : foodTrucks) {
+                    if (foodTruckDistance.containsKey(food) && foodTruckDistance.get(food) < min) {
+                        min = foodTruckDistance.get(food);
+                        selected = food;
+                    }
                 }
+                foodtrucksCopy.add(selected);
+                foodTruckDistance.remove(selected);
             }
             foodTrucks = foodtrucksCopy;
         }
